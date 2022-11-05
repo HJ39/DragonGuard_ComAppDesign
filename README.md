@@ -32,7 +32,7 @@
 <img src="https://img.shields.io/badge/Kotlin-7F52FF?style=flat-square&logo=Kotlin&logoColor=white"/> <img src="https://img.shields.io/badge/Swift-F05138?style=flat-square&logo=Swift&logoColor=white"/>
 
 ## TOOL
-<img src="https://img.shields.io/badge/Android Studio-3DDC84?style=flat-square&logo=Android Studio&logoColor=white"/>  <img src="https://img.shields.io/badge/Xcode- 147EFB?style=flat-square&logo=Xcode&logoColor=white"/> <img src="https://img.shields.io/badge/Kakao- FFCD00?style=flat-square&logo=Kakao&logoColor=white"/> <img src="https://img.shields.io/badge/JIRA-0052CC?style=flat-square&logo=JIRA&logoColor=white"/> <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white"/> <a href="https://www.notion.so/tukroea-com/9736562f436a466ab4ef3080b65d14e3"> <img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white"/> </a>
+<img src="https://img.shields.io/badge/Android Studio-3DDC84?style=flat-square&logo=Android Studio&logoColor=white"/>  <img src="https://img.shields.io/badge/Xcode- 147EFB?style=flat-square&logo=Xcode&logoColor=white"/> <img src="https://img.shields.io/badge/Kakao- FFCD00?style=flat-square&logo=Kakao&logoColor=white"/> <img src="https://img.shields.io/badge/JIRA-0052CC?style=flat-square&logo=JIRA&logoColor=white"/> <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white"/> <img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white"/>
 
 
 
