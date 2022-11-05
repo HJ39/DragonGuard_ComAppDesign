@@ -32,6 +32,6 @@
 <img src="https://img.shields.io/badge/Kotlin-7F52FF?style=flat-square&logo=Kotlin&logoColor=white"/> <img src="https://img.shields.io/badge/Swift-F05138?style=flat-square&logo=Swift&logoColor=white"/>
 
 ## TOOL
-<a href="https://trello.com/b/l1o6UBL3/brainstorm"><img src="https://img.shields.io/badge/Trello-blue?style=flat-square&logo=Trello&logoColor=white&link=https://trello.com/b/DmO8LTNt/%EC%84%B8%ED%83%81%EA%B8%B0-%EC%95%B1-%EC%8A%A4%ED%81%AC%EB%9F%BC-%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC"/></a> <img src="https://img.shields.io/badge/Android Studio-3DDC84?style=flat-square&logo=Android Studio&logoColor=white"/>  <img src="https://img.shields.io/badge/Xcode- 147EFB?style=flat-square&logo=Xcode&logoColor=white"/> <img src="https://img.shields.io/badge/Kakao- FFCD00?style=flat-square&logo=Kakao&logoColor=white"/> 
+<img src="https://img.shields.io/badge/Android Studio-3DDC84?style=flat-square&logo=Android Studio&logoColor=white"/>  <img src="https://img.shields.io/badge/Xcode- 147EFB?style=flat-square&logo=Xcode&logoColor=white"/> <img src="https://img.shields.io/badge/Kakao- FFCD00?style=flat-square&logo=Kakao&logoColor=white"/> <img src="https://img.shields.io/badge/JIRA-0052CC?style=flat-square&logo=JIRA&logoColor=white"/>
 
 
