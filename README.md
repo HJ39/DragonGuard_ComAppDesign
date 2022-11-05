@@ -11,11 +11,17 @@
 
 ***
 
-  ## Git Rule
+  ## Git 구성
   ![branch](https://user-images.githubusercontent.com/81843677/181170795-b7a13686-49cb-4021-bfdf-aae71a2f0a9c.png)
-  - main브랜치에 프로젝트 초기설정한 후 커밋<br>
-  - android 전용 브랜치, ios 전용 브랜치 생성<br>
+   - main브랜치에 프로젝트 초기설정한 후 커밋<br>
+   - android 전용 브랜치, ios 전용 브랜치 생성<br>
 <br>
+  
+  ## Rule
+   - Notion에 작성한 규칙 잘 지키기<br>
+   - 애매한 부분 팀원과 무조건 상의하기<br>
+   - JIRA 잘 관리하기
+  <br>
   
 ## 구성원
 
