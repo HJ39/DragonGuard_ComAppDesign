@@ -30,3 +30,25 @@ class SecondViewController: UIViewController{
     }
     
 }
+
+extension SecondViewController: UITableViewDataSource{
+    //
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
+        cell.textLabel?.text = "epdl"
+        return cell
+    }
+    
+    // 실행 시 몇개의 셀이 생성되는지 작성하는 함수
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+}
+
+// tableview 내부 이벤트 발생 시 처리할 수 있는 함수
+extension SecondViewController: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //클릭되면 몇번째 데이터가 클릭되었는지 알아내는 함수
+        NSLog("\(indexPath.row) 번째 선택됨")
+    }
+}
