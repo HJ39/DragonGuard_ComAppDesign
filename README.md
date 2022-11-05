@@ -27,7 +27,7 @@
 
 |이름|이메일|역할|
 |:-----:|:-----:|:-----:|
-|김관용|seoullian@gmail.com|전반적인 UI 제작, 앱 아이콘|
+|김관용|seoullian@gmail.com|전반적인 UI 제작, 앱 아이콘, swift 구현|
 |심영수|su84053@gmail.com|코틀린 구현|
 |정호진|jeonghojin03@gmail.com|swift 구현|
 
