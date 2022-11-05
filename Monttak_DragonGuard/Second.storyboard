@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--먹거리-->
+        <!--Second View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController storyboardIdentifier="SecondScreen" id="Y6W-OH-hqX" customClass="SecondViewController" customModule="Monttak_DragonGuard" customModuleProvider="target" sceneMemberID="viewController">
@@ -16,49 +16,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="jdjfd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="02q-Jv-NdC">
-                                <rect key="frame" x="183" y="362" width="33" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EkM-Y6-ONo">
-                                <rect key="frame" x="192" y="252" width="59" height="35"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fgU-8R-XkT">
+                                <rect key="frame" x="0.0" y="47" width="390" height="664"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LgU-Qo-LJY">
+                                <rect key="frame" x="164" y="754" width="64" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="third"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Third"/>
                                 <connections>
-                                    <action selector="Click_Go_Third:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ovy-9J-KZf"/>
+                                    <action selector="Click_Go_ThirdScreen:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="gn4-Zn-Ggx"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="fgU-8R-XkT" secondAttribute="trailing" id="Bd3-DV-Chr"/>
+                            <constraint firstItem="fgU-8R-XkT" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="PqN-DX-Fs2"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="fgU-8R-XkT" secondAttribute="bottom" constant="50" id="SId-Fn-rp8"/>
+                            <constraint firstItem="fgU-8R-XkT" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="U14-H5-E6v"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="먹거리" id="5c9-UM-0bE"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="5c9-UM-0bE">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="CyY-wI-hDi">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="I32-RQ-trY">
+                                <rect key="frame" x="288" y="5" width="86" height="34.333333333333336"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1986.1538461538462" y="3.5545023696682461"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Wr9-CP-1Vl">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8lM-Ze-ftI" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="y3D-Er-2Ct">
-                        <rect key="frame" x="0.0" y="47" width="390" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="bnp-rh-dwg"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eZi-6q-jSG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1297" y="4"/>
+            <point key="canvasLocation" x="2691" y="4"/>
         </scene>
     </scenes>
     <resources>

@@ -9,8 +9,10 @@ import UIKit
 
 //Third 화면 클래스
 class ThirdViewController: UIViewController{
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Third"
         
     }
 }
