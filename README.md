@@ -15,13 +15,13 @@
   ![branch](https://user-images.githubusercontent.com/81843677/181170795-b7a13686-49cb-4021-bfdf-aae71a2f0a9c.png)
   - main브랜치에 프로젝트 초기설정한 후 커밋<br>
   - android 전용 브랜치, ios 전용 브랜치 생성<br>
-  - 각 브랜치에서 작업을 진행 중 수정할 사항이 없는 경우 main 브랜치에 병합<br>
+<br>
   
 ## 구성원
 
 |이름|이메일|역할|
 |:-----:|:-----:|:-----:|
-|김관용|seoullian@gmail.com|xml 및 전반적인 UI, 앱 아이콘|
+|김관용|seoullian@gmail.com|전반적인 UI 제작, 앱 아이콘|
 |심영수|su84053@gmail.com|코틀린 구현|
 |정호진|jeonghojin03@gmail.com|swift 구현|
 
