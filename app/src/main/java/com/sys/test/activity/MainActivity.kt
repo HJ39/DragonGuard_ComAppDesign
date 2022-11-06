@@ -30,26 +30,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         binding.navigationView.setNavigationItemSelectedListener(this)
 
-        var longitude : Double = 127.005515
-        var latitude : Double  = 37.537229
-
-        binding.button.setOnClickListener {
-            if(latitude != 0.0 && longitude != 0.0){
-                val url ="kakaomap://look?p=${latitude},${longitude}"
-                var intent =  Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                intent.addCategory(Intent.CATEGORY_BROWSABLE)
-                var list = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
-
-                //카카오맵 어플리케이션이 사용자 핸드폰에 깔려있으면 바로 앱으로 연동
-                //그렇지 않다면 다운로드 페이지로 연결
-
-                if (list== null){
-                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=net.daum.android.map")))
-                }else{
-                    startActivity(intent)
-                }
-            }
-        }
+//        var longitude : Double = 127.005515
+//        var latitude : Double  = 37.537229
+//
+//        binding.button.setOnClickListener {
+//            if(latitude != 0.0 && longitude != 0.0){
+//                val url ="kakaomap://look?p=${latitude},${longitude}"
+//                var intent =  Intent(Intent.ACTION_VIEW, Uri.parse(url))
+//                intent.addCategory(Intent.CATEGORY_BROWSABLE)
+//                var list = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
+//
+//                //카카오맵 어플리케이션이 사용자 핸드폰에 깔려있으면 바로 앱으로 연동
+//                //그렇지 않다면 다운로드 페이지로 연결
+//
+//                if (list== null){
+//                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=net.daum.android.map")))
+//                }else{
+//                    startActivity(intent)
+//                }
+//            }
+//        }
         binding.bol.setOnClickListener {
             var intent = Intent(applicationContext, SecondActivity::class.java)
             intent.putExtra("label","정보,축제/행사")
