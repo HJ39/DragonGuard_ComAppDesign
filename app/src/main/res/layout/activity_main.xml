@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/monttakmain2"
     android:orientation="vertical"
+    android:layout_marginTop="7dp"
     tools:context=".activity.MainActivity">
 
     <androidx.drawerlayout.widget.DrawerLayout
@@ -31,7 +32,8 @@
                 android:background="@android:color/transparent"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:contentInsetStart="0dp"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                android:gravity="center_vertical"/>
 
 
             <LinearLayout
@@ -170,7 +172,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="#fbf2d7"
+            android:background="#fff3c8"
             app:headerLayout="@layout/main_navheader"
             app:menu="@menu/main_navigationmenu" />
 

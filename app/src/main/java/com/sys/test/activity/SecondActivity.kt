@@ -2,6 +2,7 @@ package com.sys.test.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -59,6 +60,20 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         label = intent.getStringExtra("label")!!
         Log.d("split:", " : $split")
         Log.d("label:", " : $label")
+        when(split){
+            "muk"->{
+                secondBinding.mung.text = "먹거리"
+            }
+            "nol"->{
+                secondBinding.mung.text = "놀멍"
+            }
+            "bol"->{
+                secondBinding.mung.text = "볼거리"
+            }
+            "shil"->{
+                secondBinding.mung.text = "쉴멍"
+            }
+        }
         CoroutineScope(Dispatchers.Default).launch {
             launch {
                 val intent = Intent(this@SecondActivity, LoadingActivity::class.java)
@@ -91,14 +106,14 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                         if(!datas.contains(ProfileData(
                                 roadaddress = "주소 : " + items[i].roadaddress,
                                 thumbnailpath = items[i].repPhoto.photoid.thumbnailpath,
-                                title = "제목 : " + items[i].title,
+                                title = items[i].title,
                                 item = items[i]
                             ))){
                             datas.add(
                                 ProfileData(
                                     roadaddress = "주소 : " + items[i].roadaddress,
                                     thumbnailpath = items[i].repPhoto.photoid.thumbnailpath,
-                                    title = "제목 : " + items[i].title,
+                                    title = items[i].title,
                                     item = items[i]
                                 ))
                         }
@@ -108,14 +123,14 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                         if(!datas.contains(ProfileData(
                                 roadaddress = "주소 : ",
                                 thumbnailpath = items[i].repPhoto.photoid.thumbnailpath,
-                                title = "제목 : " + items[i].title,
+                                title = items[i].title,
                                 item = items[i]
                             ))){
                             datas.add(
                                 ProfileData(
                                     roadaddress = "주소 : ",
                                     thumbnailpath = items[i].repPhoto.photoid.thumbnailpath,
-                                    title = "제목 : " + items[i].title,
+                                    title = items[i].title,
                                     item = items[i]
                                 )
                             )
@@ -188,7 +203,10 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                                 initScrollListener(split)
                                 Log.d("최종 결과", "성공")
                                 resultAmount = 0
+                                val handler = Handler()
+                                handler.postDelayed({  }, 500)
                             }
+
                         }
                     }
 
@@ -246,7 +264,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
         // 툴바 왼쪽 버튼 설정
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)  // 왼쪽 버튼 사용 여부 true
-        supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp)  // 왼쪽 버튼 이미지 설정
+        supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_orange_menu_24)  // 왼쪽 버튼 이미지 설정
         supportActionBar!!.setDisplayShowTitleEnabled(false)    // 타이틀 안보이게 하기
     }
 
