@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/monttakmain"
+    android:background="@drawable/monttakmain2"
     android:orientation="vertical"
     tools:context=".activity.MainActivity">
 
@@ -34,7 +34,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.9"
+                android:layout_weight="0.8"
                 android:orientation="vertical" />
 
             <LinearLayout
@@ -46,13 +46,15 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="0.5"
                     android:orientation="vertical" />
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="5.2"
+                    android:background="#fbf2d7"
+                    android:padding="10dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -75,39 +77,34 @@
 
                     </LinearLayout>
 
-                    <ScrollView
+
+                    <LinearLayout
+                        android:id="@+id/title"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
 
                         <LinearLayout
-                            android:id="@+id/title"
+                            android:id="@+id/content"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-
-                            <LinearLayout
-                                android:id="@+id/content"
+                            <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/mokwoosoosimgyul"
-                                    android:text="- '몬딱, 제주'는 '모두 함께, 제주'라는 뜻의 제주 방언입니다. 육지에 사는 당신이 아름다운 섬 제주도를 만끽할 수 있도록 여러가지 정보를 제공합니다.
+                                android:fontFamily="@font/mokwoosoosimgyul"
+                                android:text="- '몬딱, 제주'는 '모두 함께, 제주'라는 뜻의 제주 방언입니다. 육지에 사는 당신이 아름다운 섬 제주도를 만끽할 수 있도록 여러가지 정보를 제공합니다.
                             \n\n - 아래의 각 버튼을 클릭하면 정보가 나옵니다. 먹거리, 놀거리, 볼거리와 쉴 곳이 가득한 제주에서 당신의 인생에 쉼표를 찍어보세요.
                             \n\n- 먹거리에는 식당과 카페, 놀멍에는 테마여행과 쇼핑, 볼거리에는 축제 및 행사 정보, 쉴멍에는 숙박업소 정보가 있습니다.
                             \n\n- 이 앱의 정보는 제주관광공사의 오픈API를 받아서 제작했습니다."
-                                    android:textColor="@color/black"
-                                    android:textSize="20dp" />
+                                android:textColor="@color/black"
+                                android:textSize="20dp" />
 
 
-                            </LinearLayout>
                         </LinearLayout>
-
-                    </ScrollView>
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -117,41 +114,46 @@
                     android:layout_weight="2.6"
                     android:orientation="vertical">
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/muk"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:background="@drawable/mainmuk" />
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/mainmuk" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/nol"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
                         android:layout_gravity="center"
-                        android:background="@drawable/mainnol" />
+                        android:src="@drawable/mainnol" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/bol"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
                         android:layout_gravity="center"
-                        android:background="@drawable/mainbol" />
+                        android:src="@drawable/mainbol" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/shil"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
                         android:layout_gravity="center"
-                        android:background="@drawable/mainshuil" />
+                        android:src="@drawable/mainshuil" />
                 </LinearLayout>
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_gravity="bottom"
-                android:layout_weight="1.5"
+                android:layout_weight="1"
                 android:orientation="horizontal">
 
                 <ImageButton
@@ -160,8 +162,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:backgroundTint="#00ff0000"
-                    android:scaleType="centerInside"
-                    />
+                    android:scaleType="centerInside" />
 
             </LinearLayout>
 
