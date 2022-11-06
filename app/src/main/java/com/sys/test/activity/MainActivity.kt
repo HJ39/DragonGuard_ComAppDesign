@@ -3,11 +3,15 @@ package com.sys.test.activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.WindowInsets
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.core.view.WindowCompat
 import com.google.android.material.navigation.NavigationView
 import com.sys.test.R
 import com.sys.test.databinding.ActivityMainBinding
@@ -23,9 +27,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var binding : ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+//        window.apply {
+//            setFlags(
+//                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+//                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+//            )
+//        }
+//        if(Build.VERSION.SDK_INT >= 30) {	// API 30 에 적용
+//            WindowCompat.setDecorFitsSystemWindows(window, false)
+//        }
         setToolbar()
 
         binding.navigationView.setNavigationItemSelectedListener(this)
