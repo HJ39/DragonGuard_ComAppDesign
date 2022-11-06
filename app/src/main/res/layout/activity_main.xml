@@ -6,9 +6,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/monttakmain2"
+    android:background="@drawable/monttakmain1"
     android:orientation="vertical"
-    android:layout_marginTop="7dp"
+    android:layout_marginTop="5dp"
     tools:context=".activity.MainActivity">
 
     <androidx.drawerlayout.widget.DrawerLayout

@@ -1,14 +1,17 @@
 package com.sys.test.activity
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
@@ -53,6 +56,15 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         super.onCreate(savedInstanceState)
         secondBinding = SecondBinding.inflate(layoutInflater)
         setContentView(secondBinding.root)
+//        window.apply {
+//            setFlags(
+//                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+//                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+//            )
+//        }
+//        if(Build.VERSION.SDK_INT >= 30) {	// API 30 에 적용
+//            WindowCompat.setDecorFitsSystemWindows(window, false)
+//        }
         setToolbar()
         val intent = intent
         data = ArrayList<Item>()
@@ -151,7 +163,6 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             secondBinding.bollist.layoutManager = LinearLayoutManager(this)
             secondBinding.nollist.layoutManager = LinearLayoutManager(this)
             profileAdapter.notifyDataSetChanged()
-            chooseView(split)
         }
         when (split) {
             "nol" -> {
@@ -159,24 +170,28 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                     secondBinding.nollist.adapter = profileAdapter
                 }
                 secondBinding.nollist.scrollToPosition(secondBinding.nollist.adapter!!.itemCount-1)
+                chooseView(split)
             }
             "bol" -> {
                 if(resultDec==40){
                     secondBinding.bollist.adapter = profileAdapter
                 }
                 secondBinding.nollist.scrollToPosition(secondBinding.bollist.adapter!!.itemCount-1)
+                chooseView(split)
             }
             "shil" -> {
                 if(resultDec==40){
                     secondBinding.shillist.adapter = profileAdapter
                 }
                 secondBinding.nollist.scrollToPosition(secondBinding.shillist.adapter!!.itemCount-1)
+                chooseView(split)
             }
             "muk" -> {
                 if(resultDec==40){
                     secondBinding.muklist.adapter = profileAdapter
                 }
                 secondBinding.nollist.scrollToPosition(secondBinding.muklist.adapter!!.itemCount-1)
+                chooseView(split)
             }
         }
         Log.d("size", profileAdapter.itemCount.toString())
