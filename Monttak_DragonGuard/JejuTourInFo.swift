@@ -12,4 +12,6 @@ class JejuTourInFo{
     var title: String?
     var address: String?
     var imgURL: String?
+    var latitude: Double?
+    var longitude: Double?
 }
