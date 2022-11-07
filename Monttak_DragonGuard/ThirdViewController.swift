@@ -11,9 +11,6 @@ import UIKit
 class ThirdViewController: UIViewController{
     
     @IBOutlet var scrollView: UIScrollView!
-    @IBOutlet var imgView: UIImageView!
-    @IBOutlet var mapButton: UIButton!
-    @IBOutlet var callButton: UIButton!
     
     var tourPlaceName: String?  //관광지 이름
     var tourPlaceIndex: Int?    //관광지가 해당하는 배열의 인덱스
@@ -29,15 +26,6 @@ class ThirdViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = tourPlaceName ?? "Jeju Tour"
-        
-//        imgView.image = UIImage(named: "짜장면")
-        
-//        let img = cell.viewWithTag(100) as? UIImageView // 이미지를 표시할 변수
-//        img?.image = UIImage(named:"삼겹살")
-        
-        
-        
-        
         
     }
 }
