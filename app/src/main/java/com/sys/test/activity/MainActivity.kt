@@ -29,6 +29,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val intent = Intent(this@MainActivity, LoadingActivity::class.java)
+        startActivity(intent)
 //        window.apply {
 //            setFlags(
 //                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,

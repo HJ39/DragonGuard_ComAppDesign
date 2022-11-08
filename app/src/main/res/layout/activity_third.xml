@@ -4,40 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ThirdActivity"
-    android:background="@drawable/monttakmain2"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".activity.ThirdActivity">
+
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/monttakmain2"
             android:orientation="vertical">
+
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.65"
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:contentInsetStart="0dp"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
                 <TextView
+                    android:id="@+id/thirdtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:fontFamily="@font/mokwoosoosimgyul"
                     android:text="제목"
                     android:textColor="#020202"
-                    android:textSize="25dp"
-                    android:layout_gravity="center"
-                    android:id="@+id/thirdtitle"/>
+                    android:textSize="25dp" />
             </androidx.appcompat.widget.Toolbar>
+
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="4.7"
                 android:layout_gravity="center"
                 android:orientation="vertical">
 
@@ -45,56 +52,73 @@
                     android:id="@+id/thirdimage"
                     android:layout_width="300dp"
                     android:layout_height="200dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/tell"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:text="전화번호" />
-
-                <Button
-                    android:id="@+id/kakaoMap"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="카카오맵" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/thirdaddr"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:textColor="#020202"
-                    android:fontFamily="@font/binggraesamancobold"
-                    android:textSize="25dp"
-                    android:text="주소" />
-
-                <TextView
-                    android:id="@+id/thirdintro"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:textColor="#020202"
-                    android:fontFamily="@font/binggraesamancobold"
-                    android:textSize="25dp"
-                    android:text="설명" />
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/tell"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:text="전화번호" />
+
+                    <Button
+                        android:id="@+id/kakaoMap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="카카오맵" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/thirdaddr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/binggraesamancobold"
+                        android:text="주소"
+                        android:textColor="#020202"
+                        android:textSize="25dp" />
+
+                    <TextView
+                        android:id="@+id/thirdintro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/binggraesamancobold"
+                        android:text="설명"
+                        android:textColor="#020202"
+                        android:textSize="25dp" />
+
+
+                </LinearLayout>
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <ImageButton
+                    android:id="@+id/thirdunder"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="#00ff0000"
+                    android:scaleType="centerInside" />
+            </LinearLayout>
+
+
         </LinearLayout>
+
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigationView"
             android:layout_width="wrap_content"
