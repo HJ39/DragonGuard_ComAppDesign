@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        Thread.sleep(forTimeInterval: 0.8)  // 로딩화면 띄우고 잠시 멈춤
+        Thread.sleep(forTimeInterval: 0.3)  // 로딩화면 띄우고 잠시 멈춤
         return true
     }
 

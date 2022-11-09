@@ -52,19 +52,11 @@ extension SecondViewController: UITableViewDataSource{
         address?.text = row.address
         
         // url 이미지 주소 설정하는 코드
-//        guard let urlImg = row.repPhoto?.photoid.imgpath else {  }
-        
         img?.image = UIImage(named: "삼겹살")?.resize(newWidth: screenWidth)
-//        NSLog("\(row.repPhoto?.photoid.imgpath)")
-//        let url = URL(string: row.repPhoto?.photoid.imgpath ?? "")
-//        DispatchQueue.global().async {
-//            let data = try? Data(contentsOf: url!)
-//            DispatchQueue.main.async {
-//                img?.image
-//                = UIImage(data: data!)
-//            }
-//        }
 
+        let url = URL(string: datalist[indexPath.section].imgURL ?? "")!
+//        img?.image = img?.load(url: url)
+        
         // 셀 모양 설정 하는 코드
         cell.layer.cornerRadius = 40
         cell.layer.shadowRadius = 10
@@ -135,3 +127,16 @@ extension UIImage {
     }
 }
 
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
+    }
+}

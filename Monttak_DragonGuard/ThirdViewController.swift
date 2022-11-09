@@ -10,6 +10,7 @@ import UIKit
 //Third 화면 클래스
 class ThirdViewController: UIViewController{
     
+    @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tourtitle: UILabel!
     @IBOutlet var imgview: UIImageView!
     @IBOutlet var introduction: UITextView!

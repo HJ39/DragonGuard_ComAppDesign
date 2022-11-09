@@ -23,10 +23,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="388" height="739"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="301" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y3r-L7-B2p">
-                                                <rect key="frame" x="0.0" y="0.0" width="388" height="231.33333333333334"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="388" height="150"/>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RCP-gR-A3n">
-                                                <rect key="frame" x="0.0" y="231.33333333333334" width="388" height="50.333333333333343"/>
+                                                <rect key="frame" x="0.0" y="150" width="388" height="50.333333333333343"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qMD-r1-D19">
                                                         <rect key="frame" x="0.0" y="0.0" width="194" height="50.333333333333336"/>
@@ -57,13 +57,19 @@
                                                 </constraints>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQ5-Am-kdp">
-                                                <rect key="frame" x="0.0" y="281.66666666666669" width="388" height="20.333333333333314"/>
+                                                <rect key="frame" x="0.0" y="200.33333333333331" width="388" height="20.333333333333343"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BgP-VK-5Q7">
+                                                <rect key="frame" x="0.0" y="220.66666666666669" width="388" height="20.333333333333343"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQ6-4U-SCe">
-                                                <rect key="frame" x="0.0" y="302" width="388" height="437"/>
+                                                <rect key="frame" x="0.0" y="241" width="388" height="498"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                                 <color key="textColor" systemColor="labelColor"/>
@@ -74,20 +80,25 @@
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="sQ6-4U-SCe" secondAttribute="trailing" id="0Cw-Iz-zD8"/>
                                             <constraint firstItem="RCP-gR-A3n" firstAttribute="leading" secondItem="4LH-uD-QfM" secondAttribute="leading" id="2vR-aX-aCY"/>
+                                            <constraint firstItem="CQ5-Am-kdp" firstAttribute="centerX" secondItem="4LH-uD-QfM" secondAttribute="centerX" id="4M8-xI-Wyl"/>
+                                            <constraint firstAttribute="bottom" secondItem="sQ6-4U-SCe" secondAttribute="bottom" id="6Ev-qJ-m5X"/>
                                             <constraint firstItem="RCP-gR-A3n" firstAttribute="centerX" secondItem="4LH-uD-QfM" secondAttribute="centerX" id="6gy-5U-MnP"/>
-                                            <constraint firstItem="RCP-gR-A3n" firstAttribute="top" secondItem="Y3r-L7-B2p" secondAttribute="bottom" constant="50" id="Izg-zt-SMx"/>
+                                            <constraint firstItem="sQ6-4U-SCe" firstAttribute="top" secondItem="BgP-VK-5Q7" secondAttribute="bottom" id="Exk-Xi-BTB"/>
+                                            <constraint firstItem="RCP-gR-A3n" firstAttribute="top" secondItem="Y3r-L7-B2p" secondAttribute="bottom" id="Izg-zt-SMx"/>
+                                            <constraint firstItem="BgP-VK-5Q7" firstAttribute="centerX" secondItem="4LH-uD-QfM" secondAttribute="centerX" id="PWJ-fy-LDW"/>
                                             <constraint firstItem="sQ6-4U-SCe" firstAttribute="centerX" secondItem="4LH-uD-QfM" secondAttribute="centerX" id="Sxh-xz-3hx"/>
+                                            <constraint firstItem="BgP-VK-5Q7" firstAttribute="top" secondItem="CQ5-Am-kdp" secondAttribute="bottom" id="VCz-LT-kGI"/>
+                                            <constraint firstItem="BgP-VK-5Q7" firstAttribute="leading" secondItem="4LH-uD-QfM" secondAttribute="leading" id="We8-LP-7a4"/>
                                             <constraint firstItem="Y3r-L7-B2p" firstAttribute="top" secondItem="4LH-uD-QfM" secondAttribute="top" id="cM4-gz-T4P"/>
                                             <constraint firstItem="CQ5-Am-kdp" firstAttribute="leading" secondItem="4LH-uD-QfM" secondAttribute="leading" id="cam-zl-Qne"/>
                                             <constraint firstItem="Y3r-L7-B2p" firstAttribute="centerX" secondItem="4LH-uD-QfM" secondAttribute="centerX" id="cka-rH-0sO"/>
                                             <constraint firstItem="Y3r-L7-B2p" firstAttribute="leading" secondItem="4LH-uD-QfM" secondAttribute="leading" id="dfg-ys-Lnl"/>
                                             <constraint firstAttribute="trailing" secondItem="RCP-gR-A3n" secondAttribute="trailing" id="dt2-Tl-VOw"/>
-                                            <constraint firstAttribute="bottom" secondItem="sQ6-4U-SCe" secondAttribute="bottom" id="kfj-5G-dNu"/>
-                                            <constraint firstItem="CQ5-Am-kdp" firstAttribute="top" secondItem="RCP-gR-A3n" secondAttribute="bottom" constant="50" id="leB-pw-Wxc"/>
+                                            <constraint firstItem="CQ5-Am-kdp" firstAttribute="top" secondItem="RCP-gR-A3n" secondAttribute="bottom" id="kdS-cw-E1w"/>
                                             <constraint firstAttribute="trailing" secondItem="Y3r-L7-B2p" secondAttribute="trailing" id="nOZ-yg-EZo"/>
                                             <constraint firstAttribute="trailing" secondItem="CQ5-Am-kdp" secondAttribute="trailing" id="pRK-m0-QTX"/>
+                                            <constraint firstAttribute="trailing" secondItem="BgP-VK-5Q7" secondAttribute="trailing" id="tXL-0a-dKK"/>
                                             <constraint firstItem="sQ6-4U-SCe" firstAttribute="leading" secondItem="4LH-uD-QfM" secondAttribute="leading" id="y0R-eQ-VRW"/>
-                                            <constraint firstItem="sQ6-4U-SCe" firstAttribute="top" secondItem="CQ5-Am-kdp" secondAttribute="bottom" constant="100" id="zw6-56-FbV"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -116,7 +127,7 @@
                     <connections>
                         <outlet property="imgview" destination="Y3r-L7-B2p" id="kAq-YY-18p"/>
                         <outlet property="introduction" destination="sQ6-4U-SCe" id="Tvx-Mt-HtC"/>
-                        <outlet property="scrollView" destination="pI7-V7-a8n" id="eQJ-tb-vW4"/>
+                        <outlet property="scrollView" destination="pI7-V7-a8n" id="CwV-YJ-vP8"/>
                         <outlet property="tourtitle" destination="CQ5-Am-kdp" id="p1O-gW-M83"/>
                     </connections>
                 </viewController>
