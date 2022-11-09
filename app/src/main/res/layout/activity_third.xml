@@ -29,16 +29,26 @@
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:contentInsetStart="0dp"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-                <TextView
-                    android:id="@+id/thirdtitle"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/mokwoosoosimgyul"
-                    android:text="제목"
-                    android:textColor="#020202"
-                    android:textSize="25dp" />
+                    android:orientation="horizontal"
+                    android:layout_gravity="center">
+                    <TextView
+                        android:id="@+id/thirdtitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/mokwoosoosimgyul"
+                        android:text="제목"
+                        android:textColor="#020202"
+                        android:textSize="25dp" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.65"/>
+                </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
 
             <LinearLayout
@@ -84,7 +94,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:fontFamily="@font/binggraesamancobold"
-                        android:text="주소"
+                        android:text="주소 : "
                         android:textColor="#020202"
                         android:textSize="25dp" />
 
@@ -94,7 +104,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/binggraesamancobold"
-                        android:text="설명"
+                        android:text="설명 : "
                         android:textColor="#020202"
                         android:textSize="25dp" />
 

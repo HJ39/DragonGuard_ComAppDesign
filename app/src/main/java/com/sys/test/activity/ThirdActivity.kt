@@ -1,10 +1,13 @@
 package com.sys.test.activity
 
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.core.view.GravityCompat
 import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
@@ -13,16 +16,51 @@ import com.sys.test.databinding.ActivityThirdBinding
 import com.sys.test.profiledata.ProfileData
 
 class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-    lateinit var datas : ProfileData
+    lateinit var datas: ProfileData
     private lateinit var thirdBinding: ActivityThirdBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         thirdBinding = ActivityThirdBinding.inflate(layoutInflater)
+        var phoneno = ""
         setContentView(thirdBinding.root)
         setToolbar()
         datas = intent.getSerializableExtra("data") as ProfileData
+
+        thirdBinding.thirdtitle.text = datas.item.title
+        thirdBinding.thirdaddr.append(datas.item.roadaddress ?: "")
+        thirdBinding.thirdintro.append(datas.item.introduction ?: "")
         Glide.with(this).load(datas.thumbnailpath).into(thirdBinding.thirdimage)
+        if(datas.item.phoneno.isNullOrEmpty()|| datas.item.phoneno.isNullOrBlank()){
+            thirdBinding.tell.visibility = View.GONE
+            thirdBinding.tell.isEnabled = false
+        }
+        if (datas.item.latitude==null || datas.item.longitude == null) {
+            thirdBinding.kakaoMap.isEnabled = false
+            thirdBinding.kakaoMap.visibility = View.GONE
+        }
+        thirdBinding.tell.setOnClickListener {
+            var intent = Intent(Intent.ACTION_DIAL)
+            intent.data = Uri.parse("tel:${datas.item.phoneno}")
+            if(intent.resolveActivity(packageManager) != null){
+                startActivity(intent)
+            }
+        }
+        thirdBinding.kakaoMap.setOnClickListener {
+            val url = "kakaomap://look?p=${datas.item.latitude},${datas.item.longitude}"
+            var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            intent.addCategory(Intent.CATEGORY_BROWSABLE)
+            var list = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
+            if (list == null) {
+                startActivity(
+                    Intent(Intent.ACTION_VIEW,Uri.parse("market://details?id=net.daum.android.map"))
+                )
+            } else {
+                startActivity(intent)
+            }
+        }
+
     }
+
     private fun setToolbar() {
         setSupportActionBar(thirdBinding.toolbar)
 
