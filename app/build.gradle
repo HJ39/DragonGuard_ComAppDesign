@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    compileSdk 29
+    compileSdk 32
 
     defaultConfig {
         applicationId "com.sys.test"
         minSdk 21
-        targetSdk 29
+        targetSdk 32
         versionCode 1
         versionName "1.0"
 
