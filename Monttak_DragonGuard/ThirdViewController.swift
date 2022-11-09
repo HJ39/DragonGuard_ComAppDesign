@@ -11,7 +11,7 @@ import UIKit
 class ThirdViewController: UIViewController{
     
     @IBOutlet var scrollView: UIScrollView!
-    @IBOutlet var tourtitle: UILabel!
+    @IBOutlet var tourAddress: UILabel!
     @IBOutlet var imgview: UIImageView!
     @IBOutlet var introduction: UITextView!
     
@@ -34,11 +34,20 @@ class ThirdViewController: UIViewController{
         super.viewDidLoad()
         
         guard let img = UIImage(named: "배경5")else{ return }
+        let attributedString = NSMutableAttributedString(string: "")
         
         self.view.backgroundColor = UIColor(patternImage: img.resize(newWidth: screenWidth,newHeight: screenHeight))
         self.navigationItem.title = datalist[tourPlaceIndex].title ?? "Jeju Tour"
         self.introduction.text = datalist[tourPlaceIndex].introduction
-        self.tourtitle.text = datalist[tourPlaceIndex].title
+        
+        let imageAttachment = NSTextAttachment()
+        imageAttachment.image = UIImage(systemName: "mappin.and.ellipse")
+        attributedString.append(NSAttributedString(attachment: imageAttachment))
+        attributedString.append(NSAttributedString(string: datalist[tourPlaceIndex].address ?? ""))
+        self.tourAddress.attributedText = attributedString
+
+        
+        
         imgview.image = UIImage(named:"삼겹살")?.resize(newWidth: screenWidth)
         imgview.layer.cornerRadius = 40
         

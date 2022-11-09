@@ -10,7 +10,7 @@ import Foundation
 class Parsing {
     var decodedItem: [Item] = [Item.ItemSample]
     let apiKey = "rrq71a2rotyj9tqm"
-    let STARTPAGE = 1
+    let STARTPAGE = 44
     let ENDPAGE = 45
     
     func getData(){
