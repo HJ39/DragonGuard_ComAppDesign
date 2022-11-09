@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B3047FC291BEA1000CD8BC8 /* JSONFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3047FB291BEA1000CD8BC8 /* JSONFile.swift */; };
+		3B3047FE291BEA4700CD8BC8 /* Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3047FD291BEA4700CD8BC8 /* Parsing.swift */; };
+		3B304802291BF55900CD8BC8 /* JejuInfoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B304801291BF55900CD8BC8 /* JejuInfoList.swift */; };
+		3B304804291BF5AB00CD8BC8 /* JejuInFo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B304803291BF5AB00CD8BC8 /* JejuInFo.swift */; };
 		3B737D3E29162DB900EF6B3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B737D3D29162DB900EF6B3C /* AppDelegate.swift */; };
 		3B737D4029162DB900EF6B3C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B737D3F29162DB900EF6B3C /* SceneDelegate.swift */; };
 		3B737D4229162DB900EF6B3C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B737D4129162DB900EF6B3C /* MainViewController.swift */; };
@@ -18,10 +22,13 @@
 		3B737D56291646C000EF6B3C /* Second.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B737D55291646C000EF6B3C /* Second.storyboard */; };
 		3B737D582916558E00EF6B3C /* Third.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B737D572916558E00EF6B3C /* Third.storyboard */; };
 		3B737D5A2916757100EF6B3C /* TestCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B737D592916757100EF6B3C /* TestCode.swift */; };
-		3B737D5C291677A700EF6B3C /* JejuTourInFo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B737D5B291677A700EF6B3C /* JejuTourInFo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B3047FB291BEA1000CD8BC8 /* JSONFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONFile.swift; sourceTree = "<group>"; };
+		3B3047FD291BEA4700CD8BC8 /* Parsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parsing.swift; sourceTree = "<group>"; };
+		3B304801291BF55900CD8BC8 /* JejuInfoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JejuInfoList.swift; sourceTree = "<group>"; };
+		3B304803291BF5AB00CD8BC8 /* JejuInFo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JejuInFo.swift; sourceTree = "<group>"; };
 		3B737D3A29162DB900EF6B3C /* Monttak_DragonGuard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Monttak_DragonGuard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B737D3D29162DB900EF6B3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B737D3F29162DB900EF6B3C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,7 +42,6 @@
 		3B737D55291646C000EF6B3C /* Second.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Second.storyboard; sourceTree = "<group>"; };
 		3B737D572916558E00EF6B3C /* Third.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Third.storyboard; sourceTree = "<group>"; };
 		3B737D592916757100EF6B3C /* TestCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCode.swift; sourceTree = "<group>"; };
-		3B737D5B291677A700EF6B3C /* JejuTourInFo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JejuTourInFo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +82,11 @@
 				3B737D55291646C000EF6B3C /* Second.storyboard */,
 				3B737D532916432600EF6B3C /* ThirdViewController.swift */,
 				3B737D51291642FD00EF6B3C /* SecondViewController.swift */,
+				3B3047FD291BEA4700CD8BC8 /* Parsing.swift */,
+				3B3047FB291BEA1000CD8BC8 /* JSONFile.swift */,
 				3B737D592916757100EF6B3C /* TestCode.swift */,
-				3B737D5B291677A700EF6B3C /* JejuTourInFo.swift */,
+				3B304801291BF55900CD8BC8 /* JejuInfoList.swift */,
+				3B304803291BF5AB00CD8BC8 /* JejuInFo.swift */,
 				3B737D4629162DBA00EF6B3C /* Assets.xcassets */,
 				3B737D4829162DBA00EF6B3C /* LaunchScreen.storyboard */,
 				3B737D4B29162DBA00EF6B3C /* Info.plist */,
@@ -158,11 +167,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B737D5C291677A700EF6B3C /* JejuTourInFo.swift in Sources */,
+				3B3047FE291BEA4700CD8BC8 /* Parsing.swift in Sources */,
+				3B304804291BF5AB00CD8BC8 /* JejuInFo.swift in Sources */,
 				3B737D52291642FD00EF6B3C /* SecondViewController.swift in Sources */,
 				3B737D4229162DB900EF6B3C /* MainViewController.swift in Sources */,
+				3B3047FC291BEA1000CD8BC8 /* JSONFile.swift in Sources */,
 				3B737D542916432600EF6B3C /* ThirdViewController.swift in Sources */,
 				3B737D3E29162DB900EF6B3C /* AppDelegate.swift in Sources */,
+				3B304802291BF55900CD8BC8 /* JejuInfoList.swift in Sources */,
 				3B737D5A2916757100EF6B3C /* TestCode.swift in Sources */,
 				3B737D4029162DB900EF6B3C /* SceneDelegate.swift in Sources */,
 			);

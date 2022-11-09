@@ -114,8 +114,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="oWs-mL-Bty"/>
                     <connections>
-                        <outlet property="imgView" destination="Y3r-L7-B2p" id="MoN-Ab-giE"/>
+                        <outlet property="imgview" destination="Y3r-L7-B2p" id="kAq-YY-18p"/>
+                        <outlet property="introduction" destination="sQ6-4U-SCe" id="Tvx-Mt-HtC"/>
                         <outlet property="scrollView" destination="pI7-V7-a8n" id="eQJ-tb-vW4"/>
+                        <outlet property="tourtitle" destination="CQ5-Am-kdp" id="p1O-gW-M83"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

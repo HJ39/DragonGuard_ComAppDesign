@@ -9,16 +9,17 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    let parsing = Parsing() // 파싱하는 클래스 선언
+    
     //앱 실행시 가장 먼저 실행되는 메소드
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        
+        parsing.getData() // Api 받아오는 부분
         return true
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        Thread.sleep(forTimeInterval: 0.6)  // 로딩화면 띄우고 잠시 멈춤
+        Thread.sleep(forTimeInterval: 0.8)  // 로딩화면 띄우고 잠시 멈춤
         return true
     }
 

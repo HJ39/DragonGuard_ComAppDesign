@@ -9,9 +9,11 @@ import Foundation
 
 //제주 관광지 정보 저장하는 클래스
 class JejuTourInFo{
-    var title: String?
-    var address: String?
-    var imgURL: String?
-    var latitude: Double?
-    var longitude: Double?
+    var title: String?  //관광지 이름
+    var address: String?    //관광지 주소
+    var imgURL: String?     //관광지 사진 url
+    var latitude: Double?   // 관광지 위도
+    var longitude: Double?  //관광지 경도
 }
+
+
