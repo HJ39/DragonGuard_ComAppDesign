@@ -12,22 +12,19 @@ class SecondViewController: UIViewController {
     var testList = testClass().testReturnList() //테스트를 위한 코드
     var choiceButton: String = "Second"
     
-//    // 뷰 전체 폭 길이
-//    let screenWidth = UIScreen.main.bounds.size.width
-//    // 뷰 전체 높이 길이
-//    let screenHeight = UIScreen.main.bounds.size.height
+    // 뷰 전체 폭 길이
+    let screenWidth = UIScreen.main.bounds.size.width
+    // 뷰 전체 높이 길이
+    let screenHeight = UIScreen.main.bounds.size.height
     
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let img = UIImage(named: "배경3") else{ return }
         
-//        // 이미지 크기 조절
-//        let imgSize = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
-//        img.draw(in: imgSize)
-        
-        self.view.backgroundColor = UIColor(patternImage: img )
+        self.view.backgroundColor = UIColor(patternImage: img.resize(newWidth: screenWidth,newHeight: screenHeight) )
         self.navigationItem.title = choiceButton    //네비게이션 타이틀 지정
         self.navigationItem.rightBarButtonItem = nil    //barItem 삭제
+        self.navigationItem.backButtonTitle = choiceButton
         self.navigationController?.navigationBar.backgroundColor = UIColor(red: 230/255.0, green: 200/255.0, blue: 100/255.0, alpha: 0.5)
     }
 }
@@ -51,7 +48,7 @@ extension SecondViewController: UITableViewDataSource{
         
         title?.text = row.title
         address?.text = row.address
-        img?.image = UIImage(named:"삼겹살")
+        img?.image = UIImage(named:"삼겹살")?.resize(newWidth: screenWidth)
         
         cell.layer.cornerRadius = 40
         cell.layer.shadowRadius = 10
@@ -93,5 +90,32 @@ extension SecondViewController: UITableViewDelegate{
         // 버튼 클릭시 navigation방식으로 Third화면 실행
         self.navigationController?.pushViewController(thirdScreen, animated: true)
         
+    }
+}
+
+extension UIImage {
+    // 사진 크기를 조절하는 함수
+    func resize(newWidth: CGFloat) -> UIImage {
+        let scale = newWidth / self.size.width
+        let newHeight = self.size.height * scale
+        
+        let size = CGSize(width: newWidth, height: newHeight)
+        let render = UIGraphicsImageRenderer(size: size)
+        let renderImage = render.image { context in
+            self.draw(in: CGRect(origin: .zero, size: size))
+        }
+        
+        return renderImage
+    }
+    
+    func resize(newWidth: CGFloat, newHeight: CGFloat) -> UIImage {
+        
+        let size = CGSize(width: newWidth, height: newHeight)
+        let render = UIGraphicsImageRenderer(size: size)
+        let renderImage = render.image { context in
+            self.draw(in: CGRect(origin: .zero, size: size))
+        }
+        
+        return renderImage
     }
 }
