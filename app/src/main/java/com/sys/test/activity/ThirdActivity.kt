@@ -27,9 +27,9 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         datas = intent.getSerializableExtra("data") as ProfileData
 
         thirdBinding.thirdtitle.text = datas.item.title
-        thirdBinding.thirdaddr.append(datas.item.roadaddress ?: "")
-        thirdBinding.thirdphone.append(datas.item.phoneno ?: "")
-        thirdBinding.thirdintro.append(datas.item.introduction ?: "")
+        thirdBinding.thirdaddr.append(datas.item.roadaddress ?: "정보 없음")
+        thirdBinding.thirdphone.append(datas.item.phoneno ?: "정보 없음")
+        thirdBinding.thirdintro.append(datas.item.introduction ?: "정보 없음")
         Glide.with(this).load(datas.thumbnailpath).into(thirdBinding.thirdimage)
         if(datas.item.phoneno.isNullOrEmpty()|| datas.item.phoneno.isNullOrBlank()){
             thirdBinding.tell.visibility = View.GONE
