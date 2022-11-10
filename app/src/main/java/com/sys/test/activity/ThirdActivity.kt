@@ -27,9 +27,9 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
         thirdBinding.thirdtitle.text = datas.item.title
         if(datas.item.roadaddress.isNullOrBlank()|| datas.item.roadaddress =="--"){
-            thirdBinding.thirdaddr.append("정보 없음")
+            thirdBinding.thirdaddr.append("정보 없음\n")
         }else{
-            thirdBinding.thirdaddr.append(datas.item.roadaddress)
+            thirdBinding.thirdaddr.append(datas.item.roadaddress+"\n")
         }
 
         thirdBinding.thirdintro.append(datas.item.introduction ?: "정보 없음")
@@ -37,9 +37,9 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         if(datas.item.phoneno.isNullOrEmpty()|| datas.item.phoneno.isNullOrBlank() || datas.item.phoneno=="--"){
             thirdBinding.tell.visibility = View.GONE
             thirdBinding.tell.isEnabled = false
-            thirdBinding.thirdphone.append("정보 없음")
+            thirdBinding.thirdphone.append("정보 없음\n")
         }else{
-            thirdBinding.thirdphone.append(datas.item.phoneno)
+            thirdBinding.thirdphone.append(datas.item.phoneno+"\n")
         }
         if (datas.item.latitude==null || datas.item.longitude == null|| datas.item.latitude==0.0 || datas.item.longitude == 0.0) {
             thirdBinding.kakaoMap.isEnabled = false
