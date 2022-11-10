@@ -21,7 +21,7 @@ class MainViewController: UIViewController {
     @IBAction func Click_Go_SecondScreen(_ sender: UIButton) {
         let secondStory = UIStoryboard(name: "Second", bundle: nil)
         let secondScreen = secondStory.instantiateViewController(withIdentifier: "SecondScreen") as! SecondViewController
-        
+        secondScreen.choiceButton = " " 
         self.navigationController?.pushViewController(secondScreen, animated: true)
     }
     

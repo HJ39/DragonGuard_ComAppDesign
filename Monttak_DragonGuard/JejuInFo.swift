@@ -14,5 +14,6 @@ class JejuInfo{
     var latitude: Double?
     var longitude: Double?
     var introduction: String?
+    var phoneNumber: String?
     var type: String? // 관광지 종류
 }

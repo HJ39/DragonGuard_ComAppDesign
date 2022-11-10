@@ -14,6 +14,7 @@ class SecondViewController: UIViewController {
     let screenHeight = UIScreen.main.bounds.size.height // 뷰 전체 높이 길이
     var datalist = JejuInfoList().return_Info_List()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //백그라운드 배경 설정
@@ -52,10 +53,11 @@ extension SecondViewController: UITableViewDataSource{
         address?.text = row.address
         
         // url 이미지 주소 설정하는 코드
-        img?.image = UIImage(named: "삼겹살")?.resize(newWidth: screenWidth)
+//        img?.image = UIImage(named: "삼겹살")?.resize(newWidth: screenWidth)
 
+        
         let url = URL(string: datalist[indexPath.section].imgURL ?? "")!
-//        img?.image = img?.load(url: url)
+        img?.load(img: img!,url: url,screenWidth: screenWidth)
         
         // 셀 모양 설정 하는 코드
         cell.layer.cornerRadius = 40
@@ -128,12 +130,13 @@ extension UIImage {
 }
 
 extension UIImageView {
-    func load(url: URL) {
-        DispatchQueue.global().async { [weak self] in
+    func load(img:UIImageView, url: URL, screenWidth: CGFloat) {
+        DispatchQueue.global().async {
             if let data = try? Data(contentsOf: url) {
                 if let image = UIImage(data: data) {
                     DispatchQueue.main.async {
-                        self?.image = image
+                        let resizeImg = image.resize(newWidth: screenWidth)
+                        img.image = resizeImg
                     }
                 }
             }
