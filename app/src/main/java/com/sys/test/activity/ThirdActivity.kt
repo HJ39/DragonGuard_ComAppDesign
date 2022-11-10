@@ -28,6 +28,7 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
         thirdBinding.thirdtitle.text = datas.item.title
         thirdBinding.thirdaddr.append(datas.item.roadaddress ?: "")
+        thirdBinding.thirdphone.append(datas.item.phoneno ?: "")
         thirdBinding.thirdintro.append(datas.item.introduction ?: "")
         Glide.with(this).load(datas.thumbnailpath).into(thirdBinding.thirdimage)
         if(datas.item.phoneno.isNullOrEmpty()|| datas.item.phoneno.isNullOrBlank()){

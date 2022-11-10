@@ -116,14 +116,14 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 ) {
                     if (!items[i].roadaddress.isNullOrEmpty()) {
                         if(!datas.contains(ProfileData(
-                                roadaddress = "주소 : " + items[i].roadaddress,
+                                roadaddress = "${items[i].roadaddress}",
                                 thumbnailpath = items[i].repPhoto.photoid.thumbnailpath,
                                 title = items[i].title,
                                 item = items[i]
                             ))){
                             datas.add(
                                 ProfileData(
-                                    roadaddress = "주소 : " + items[i].roadaddress,
+                                    roadaddress = "${items[i].roadaddress}",
                                     thumbnailpath = items[i].repPhoto.photoid.thumbnailpath,
                                     title = items[i].title,
                                     item = items[i]
@@ -133,14 +133,14 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                         itemCount++
                     } else {
                         if(!datas.contains(ProfileData(
-                                roadaddress = "주소 : ",
+                                roadaddress = "",
                                 thumbnailpath = items[i].repPhoto.photoid.thumbnailpath,
                                 title = items[i].title,
                                 item = items[i]
                             ))){
                             datas.add(
                                 ProfileData(
-                                    roadaddress = "주소 : ",
+                                    roadaddress = "",
                                     thumbnailpath = items[i].repPhoto.photoid.thumbnailpath,
                                     title = items[i].title,
                                     item = items[i]
