@@ -40,8 +40,8 @@
                         android:id="@+id/thirdtitle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="1.5"
+                        android:layout_gravity="center"
+                        android:layout_weight="1.8"
                         android:fontFamily="@font/mokwoosoosimgyul"
                         android:text="제목"
                         android:textColor="#020202"
@@ -49,8 +49,8 @@
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.65" />
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7" />
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
 
@@ -72,22 +72,30 @@
                     android:layout_gravity="center"
                     android:orientation="horizontal">
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/tell"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
                         android:layout_gravity="center_horizontal|center_vertical"
-                        android:text="전화번호" />
+                        android:adjustViewBounds="true"
+                        android:background="@android:color/transparent"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_baseline_local_phone_72"
+                        />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/kakaoMap"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="카카오맵" />
+                        android:layout_width="96dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:adjustViewBounds="true"
+                        android:background="@android:color/transparent"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/kakao_map" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -102,7 +110,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="left"
                             android:layout_marginRight="5dp"
-                            android:src="@drawable/ic_baseline_phone_24"/>
+                            android:src="@drawable/ic_baseline_call_end_24"/>
                         <TextView
                             android:id="@+id/thirdphone"
                             android:layout_width="match_parent"

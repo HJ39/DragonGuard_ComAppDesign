@@ -21,21 +21,27 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         thirdBinding = ActivityThirdBinding.inflate(layoutInflater)
-        var phoneno = ""
         setContentView(thirdBinding.root)
         setToolbar()
         datas = intent.getSerializableExtra("data") as ProfileData
 
         thirdBinding.thirdtitle.text = datas.item.title
-        thirdBinding.thirdaddr.append(datas.item.roadaddress ?: "정보 없음")
-        thirdBinding.thirdphone.append(datas.item.phoneno ?: "정보 없음")
+        if(datas.item.roadaddress.isNullOrBlank()|| datas.item.roadaddress =="--"){
+            thirdBinding.thirdaddr.append("정보 없음")
+        }else{
+            thirdBinding.thirdaddr.append(datas.item.roadaddress)
+        }
+
         thirdBinding.thirdintro.append(datas.item.introduction ?: "정보 없음")
         Glide.with(this).load(datas.thumbnailpath).into(thirdBinding.thirdimage)
-        if(datas.item.phoneno.isNullOrEmpty()|| datas.item.phoneno.isNullOrBlank()){
+        if(datas.item.phoneno.isNullOrEmpty()|| datas.item.phoneno.isNullOrBlank() || datas.item.phoneno=="--"){
             thirdBinding.tell.visibility = View.GONE
             thirdBinding.tell.isEnabled = false
+            thirdBinding.thirdphone.append("정보 없음")
+        }else{
+            thirdBinding.thirdphone.append(datas.item.phoneno)
         }
-        if (datas.item.latitude==null || datas.item.longitude == null) {
+        if (datas.item.latitude==null || datas.item.longitude == null|| datas.item.latitude==0.0 || datas.item.longitude == 0.0) {
             thirdBinding.kakaoMap.isEnabled = false
             thirdBinding.kakaoMap.visibility = View.GONE
         }
