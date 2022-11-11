@@ -161,13 +161,11 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         }
         if (resultDec == 40) {
             secondBinding.itemlist.adapter = profileAdapter
+            chooseView()
         } else {
             secondBinding.itemlist.scrollToPosition(position)
         }
-
-        chooseView()
         Log.d("size", profileAdapter.itemCount.toString())
-
     }
 
     private fun apiCall(api: KakaoMapApi, label: String, split: String) {
@@ -186,11 +184,11 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                             Log.d("결과", "성공 : ${response.raw()}")
                             resultAmount++
                             if (resultAmount == 5) {
-                                secondBinding.loading.visibility = View.GONE
                                 initRecycler(data, label, split)
                                 initScrollListener()
                                 Log.d("최종 결과", "성공")
                                 resultAmount = 0
+                                secondBinding.loading.visibility = View.GONE
                             }
 
                         }
