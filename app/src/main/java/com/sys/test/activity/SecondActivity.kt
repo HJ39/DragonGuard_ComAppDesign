@@ -40,6 +40,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private var split = ""
     private var label = ""
     private var count = 0
+    private var position = 0
     lateinit var profileAdapter: ProfileAdapter
     private var datas = ArrayList<ProfileData>()
     private lateinit var data: ArrayList<Item>
@@ -72,37 +73,27 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         label = intent.getStringExtra("label")!!
         Log.d("split:", " : $split")
         Log.d("label:", " : $label")
-        when(split){
-            "muk"->{
+        when (split) {
+            "muk" -> {
                 secondBinding.mung.text = "먹거리"
             }
-            "nol"->{
+            "nol" -> {
                 secondBinding.mung.text = "놀멍"
             }
-            "bol"->{
+            "bol" -> {
                 secondBinding.mung.text = "볼거리"
             }
-            "shil"->{
+            "shil" -> {
                 secondBinding.mung.text = "쉴멍"
             }
         }
-        CoroutineScope(Dispatchers.Default).launch {
-            launch {
-                val intent = Intent(this@SecondActivity, LoadingActivity::class.java)
-                startActivity(intent)
-            }
-        }
-        CoroutineScope(Dispatchers.Main).launch {
-            launch {
-                val retrofit =
-                    Retrofit.Builder().baseUrl("https://api.visitjeju.net/vsjApi/contents/")
-                        .client(okHttpClient)
-                        .addConverterFactory(GsonConverterFactory.create()).build()
-                val api = retrofit.create(KakaoMapApi::class.java)
-                Log.d("apicall:", " : ")
-                apiCall(api, label, split)
-            }
-        }
+        val retrofit =
+            Retrofit.Builder().baseUrl("https://api.visitjeju.net/vsjApi/contents/")
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create()).build()
+        val api = retrofit.create(KakaoMapApi::class.java)
+        Log.d("apicall:", " : ")
+        apiCall(api, label, split)
     }
 
     private fun initRecycler(items: ArrayList<Item>, label: String, split: String) {
@@ -115,29 +106,36 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                     )
                 ) {
                     if (!items[i].roadaddress.isNullOrEmpty()) {
-                        if(!datas.contains(ProfileData(
-                                roadaddress = "${items[i].roadaddress}",
-                                thumbnailpath = items[i].repPhoto.photoid.thumbnailpath,
-                                title = items[i].title,
-                                item = items[i]
-                            ))){
+                        if (!datas.contains(
+                                ProfileData(
+                                    roadaddress = "${items[i].roadaddress}",
+                                    thumbnailpath = items[i].repPhoto.photoid.thumbnailpath,
+                                    title = items[i].title,
+                                    item = items[i]
+                                )
+                            )
+                        ) {
                             datas.add(
                                 ProfileData(
                                     roadaddress = "${items[i].roadaddress}",
                                     thumbnailpath = items[i].repPhoto.photoid.thumbnailpath,
                                     title = items[i].title,
                                     item = items[i]
-                                ))
+                                )
+                            )
                         }
 
                         itemCount++
                     } else {
-                        if(!datas.contains(ProfileData(
-                                roadaddress = "",
-                                thumbnailpath = items[i].repPhoto.photoid.thumbnailpath,
-                                title = items[i].title,
-                                item = items[i]
-                            ))){
+                        if (!datas.contains(
+                                ProfileData(
+                                    roadaddress = "",
+                                    thumbnailpath = items[i].repPhoto.photoid.thumbnailpath,
+                                    title = items[i].title,
+                                    item = items[i]
+                                )
+                            )
+                        ) {
                             datas.add(
                                 ProfileData(
                                     roadaddress = "",
@@ -155,52 +153,26 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         }
         count += itemCount
         Log.d("실제1 : ", count.toString())
-        if(resultDec==40){
-            Log.d("초기화","")
+        if (resultDec == 40) {
+            Log.d("초기화", "")
             profileAdapter = ProfileAdapter(datas, this)
-            secondBinding.shillist.layoutManager = LinearLayoutManager(this)
-            secondBinding.muklist.layoutManager = LinearLayoutManager(this)
-            secondBinding.bollist.layoutManager = LinearLayoutManager(this)
-            secondBinding.nollist.layoutManager = LinearLayoutManager(this)
+            secondBinding.itemlist.layoutManager = LinearLayoutManager(this)
             profileAdapter.notifyDataSetChanged()
         }
-        when (split) {
-            "nol" -> {
-                if(resultDec==40){
-                    secondBinding.nollist.adapter = profileAdapter
-                }
-                secondBinding.nollist.scrollToPosition(secondBinding.nollist.adapter!!.itemCount-1)
-                chooseView(split)
-            }
-            "bol" -> {
-                if(resultDec==40){
-                    secondBinding.bollist.adapter = profileAdapter
-                }
-                secondBinding.nollist.scrollToPosition(secondBinding.bollist.adapter!!.itemCount-1)
-                chooseView(split)
-            }
-            "shil" -> {
-                if(resultDec==40){
-                    secondBinding.shillist.adapter = profileAdapter
-                }
-                secondBinding.nollist.scrollToPosition(secondBinding.shillist.adapter!!.itemCount-1)
-                chooseView(split)
-            }
-            "muk" -> {
-                if(resultDec==40){
-                    secondBinding.muklist.adapter = profileAdapter
-                }
-                secondBinding.nollist.scrollToPosition(secondBinding.muklist.adapter!!.itemCount-1)
-                chooseView(split)
-            }
+        if (resultDec == 40) {
+            secondBinding.itemlist.adapter = profileAdapter
+        } else {
+            secondBinding.itemlist.scrollToPosition(position)
         }
+
+        chooseView()
         Log.d("size", profileAdapter.itemCount.toString())
 
     }
 
     private fun apiCall(api: KakaoMapApi, label: String, split: String) {
         var count = 0
-        if(resultDec>=0){
+        if (resultDec >= 0) {
             for (j in (resultDec - 4)..(resultDec)) {
                 val kakaoMap = api.getDataPage(j)
                 kakaoMap.enqueue(object : Callback<Monttak> {
@@ -214,12 +186,11 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                             Log.d("결과", "성공 : ${response.raw()}")
                             resultAmount++
                             if (resultAmount == 5) {
+                                secondBinding.loading.visibility = View.GONE
                                 initRecycler(data, label, split)
-                                initScrollListener(split)
+                                initScrollListener()
                                 Log.d("최종 결과", "성공")
                                 resultAmount = 0
-                                val handler = Handler()
-                                handler.postDelayed({  }, 500)
                             }
 
                         }
@@ -237,41 +208,10 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         Log.d("결과 resultDec", "성공 : ${resultDec}")
     }
 
-    private fun chooseView(category: String) {
-        when (category) {
-            "nol" -> {
-                secondBinding.nollist.addItemDecoration(VerticalItemDecorator(20))
-                secondBinding.nollist.addItemDecoration(HorizontalItemDecorator(10))
-                secondBinding.nollist.visibility = View.VISIBLE
-                secondBinding.bollist.visibility = View.INVISIBLE
-                secondBinding.muklist.visibility = View.INVISIBLE
-                secondBinding.shillist.visibility = View.INVISIBLE
-            }
-            "bol" -> {
-                secondBinding.bollist.addItemDecoration(VerticalItemDecorator(20))
-                secondBinding.bollist.addItemDecoration(HorizontalItemDecorator(10))
-                secondBinding.bollist.visibility = View.VISIBLE
-                secondBinding.nollist.visibility = View.INVISIBLE
-                secondBinding.muklist.visibility = View.INVISIBLE
-                secondBinding.shillist.visibility = View.INVISIBLE
-            }
-            "shil" -> {
-                secondBinding.shillist.addItemDecoration(VerticalItemDecorator(20))
-                secondBinding.shillist.addItemDecoration(HorizontalItemDecorator(10))
-                secondBinding.shillist.visibility = View.VISIBLE
-                secondBinding.bollist.visibility = View.INVISIBLE
-                secondBinding.muklist.visibility = View.INVISIBLE
-                secondBinding.nollist.visibility = View.INVISIBLE
-            }
-            "muk" -> {
-                secondBinding.muklist.addItemDecoration(VerticalItemDecorator(20))
-                secondBinding.muklist.addItemDecoration(HorizontalItemDecorator(10))
-                secondBinding.muklist.visibility = View.VISIBLE
-                secondBinding.bollist.visibility = View.INVISIBLE
-                secondBinding.nollist.visibility = View.INVISIBLE
-                secondBinding.shillist.visibility = View.INVISIBLE
-            }
-        }
+    private fun chooseView() {
+        secondBinding.itemlist.addItemDecoration(VerticalItemDecorator(20))
+        secondBinding.itemlist.addItemDecoration(HorizontalItemDecorator(10))
+        secondBinding.itemlist.visibility = View.VISIBLE
     }
 
     private fun setToolbar() {
@@ -317,109 +257,40 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     }
 
     private fun loadMorePosts() {
-        CoroutineScope(Dispatchers.IO).launch{
-            val retrofit = Retrofit.Builder().baseUrl("https://api.visitjeju.net/vsjApi/contents/")
-                .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create()).build()
-            val api = retrofit.create(KakaoMapApi::class.java)
-            Log.d("loadMore", "dd")
-            apiCall(api, label, split)
+        if(secondBinding.loading.visibility == View.GONE) {
+            secondBinding.loading.visibility = View.VISIBLE
+            CoroutineScope(Dispatchers.IO).launch {
+                val retrofit = Retrofit.Builder().baseUrl("https://api.visitjeju.net/vsjApi/contents/")
+                    .client(okHttpClient)
+                    .addConverterFactory(GsonConverterFactory.create()).build()
+                val api = retrofit.create(KakaoMapApi::class.java)
+                Log.d("loadMore", "dd")
+                apiCall(api, label, split)
+            }
         }
-
     }
 
-    private fun initScrollListener(split: String) {
+    private fun initScrollListener() {
+        secondBinding.itemlist.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
-        when(split){
-            "muk"->{
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
 
-                secondBinding.muklist.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-
-                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                        super.onScrolled(recyclerView, dx, dy)
-
-                        val layoutManager = secondBinding.muklist.layoutManager
-
-                        // hasNextPage() -> 다음 페이지가 있는 경우
-                        if (resultDec >1) {
-                            val lastVisibleItem = (layoutManager as LinearLayoutManager)
-                                .findLastCompletelyVisibleItemPosition()
-                            val itemTotalCount = recyclerView.adapter!!.itemCount - 1
-                            // 마지막으로 보여진 아이템 position 이
-                            // 전체 아이템 개수보다 5개 모자란 경우, 데이터를 loadMore 한다
-                            if (!secondBinding.muklist.canScrollVertically(1) && lastVisibleItem == itemTotalCount) {
-                                loadMorePosts()
-                            }
-                        }
+                val layoutManager = secondBinding.itemlist.layoutManager
+                // hasNextPage() -> 다음 페이지가 있는 경우
+                if (resultDec > 1) {
+                    val lastVisibleItem = (layoutManager as LinearLayoutManager)
+                        .findLastCompletelyVisibleItemPosition()
+                    val itemTotalCount = recyclerView.adapter!!.itemCount-1
+                    position = recyclerView.adapter!!.itemCount-1
+                    // 마지막으로 보여진 아이템 position 이
+                    // 전체 아이템 개수보다 5개 모자란 경우, 데이터를 loadMore 한다
+                    if (!secondBinding.itemlist.canScrollVertically(1) && lastVisibleItem == itemTotalCount) {
+                        loadMorePosts()
                     }
-                })
+                }
+
             }
-            "nol"->{
-                secondBinding.bollist.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-
-                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                        super.onScrolled(recyclerView, dx, dy)
-
-                        val layoutManager = secondBinding.bollist.layoutManager
-
-                        // hasNextPage() -> 다음 페이지가 있는 경우
-                        if (resultDec >1) {
-                            val lastVisibleItem = (layoutManager as LinearLayoutManager)
-                                .findLastCompletelyVisibleItemPosition()
-                            val itemTotalCount = recyclerView.adapter!!.itemCount - 1
-                            // 마지막으로 보여진 아이템 position 이
-                            // 전체 아이템 개수보다 5개 모자란 경우, 데이터를 loadMore 한다
-                            if (!secondBinding.muklist.canScrollVertically(1) && lastVisibleItem == itemTotalCount) {
-                                loadMorePosts()
-                            }
-                        }
-                    }
-                })
-            }
-            "bol"->{
-                secondBinding.bollist.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-
-                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                        super.onScrolled(recyclerView, dx, dy)
-
-                        val layoutManager = secondBinding.bollist.layoutManager
-
-                        // hasNextPage() -> 다음 페이지가 있는 경우
-                        if (resultDec >1) {
-                            val lastVisibleItem = (layoutManager as LinearLayoutManager)
-                                .findLastCompletelyVisibleItemPosition()
-                            val itemTotalCount = recyclerView.adapter!!.itemCount - 1
-                            // 마지막으로 보여진 아이템 position 이
-                            // 전체 아이템 개수보다 5개 모자란 경우, 데이터를 loadMore 한다
-                            if (!secondBinding.muklist.canScrollVertically(1) && lastVisibleItem == itemTotalCount) {
-                                loadMorePosts()
-                            }
-                        }
-                    }
-                })
-            }
-            "shil"->{
-                secondBinding.shillist.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-
-                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                        super.onScrolled(recyclerView, dx, dy)
-
-                        val layoutManager = secondBinding.shillist.layoutManager
-
-                        // hasNextPage() -> 다음 페이지가 있는 경우
-                        if (resultDec >1) {
-                            val lastVisibleItem = (layoutManager as LinearLayoutManager)
-                                .findLastCompletelyVisibleItemPosition()
-                            val itemTotalCount = recyclerView.adapter!!.itemCount - 1
-                            // 마지막으로 보여진 아이템 position 이
-                            // 전체 아이템 개수보다 5개 모자란 경우, 데이터를 loadMore 한다
-                            if (!secondBinding.muklist.canScrollVertically(1) && lastVisibleItem == itemTotalCount) {
-                                loadMorePosts()
-                            }
-                        }
-                    }
-                })
-            }
-        }
+        })
     }
 }
