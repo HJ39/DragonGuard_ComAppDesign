@@ -14,7 +14,6 @@ class SecondViewController: UIViewController {
     let screenHeight = UIScreen.main.bounds.size.height // 뷰 전체 높이 길이
     var datalist = JejuInfoList().return_Info_List()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         //백그라운드 배경 설정
@@ -34,12 +33,12 @@ extension SecondViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!   // table cell을 재사용 큐를 이용하여 화면에 표시
-//        cell.backgroundColor = UIColor(red: 255/255.0, green: 150/255.0, blue: 100/255.0, alpha: 0.5)    //셀 배경색 설정
-//        tableView.backgroundColor = UIColor(red: 230/255.0, green: 200/255.0, blue: 100/255.0, alpha: 0.5)
+        //        cell.backgroundColor = UIColor(red: 255/255.0, green: 150/255.0, blue: 100/255.0, alpha: 0.5)    //셀 배경색 설정
+        //        tableView.backgroundColor = UIColor(red: 230/255.0, green: 200/255.0, blue: 100/255.0, alpha: 0.5)
         tableView.separatorStyle = .none    //셀 구분선 제거
         
         let img = cell.viewWithTag(100) as? UIImageView // 이미지를 표시할 변수
-        let title = cell.viewWithTag(101) as? UILabel   // 이름으르 표시할 변수
+        let title = cell.viewWithTag(101) as? UILabel   // 이름을 표시할 변수
         let address = cell.viewWithTag(102) as? UILabel // 도로명 주소를 표시할 변수
         
         //각 버튼을 section으로 나누어서 section으로 구분해야 함
@@ -53,10 +52,11 @@ extension SecondViewController: UITableViewDataSource{
         address?.text = row.address
         
         // url 이미지 주소 설정하는 코드
-//        img?.image = UIImage(named: "삼겹살")?.resize(newWidth: screenWidth)
-
+        //        img?.image = UIImage(named: "삼겹살")?.resize(newWidth: screenWidth)
+        
         
         let url = URL(string: datalist[indexPath.section].imgURL ?? "")!
+        
         img?.load(img: img!,url: url,screenWidth: screenWidth)
         
         // 셀 모양 설정 하는 코드
@@ -91,7 +91,7 @@ extension SecondViewController: UITableViewDelegate{
         let third = UIStoryboard(name: "Third", bundle: nil)
         // UIViewController에서 ThirdViewController로 다운 캐스팅
         let thirdScreen = third.instantiateViewController(withIdentifier: "ThirdScreen") as! ThirdViewController
-    
+        
         // 3번째 화면으로 전송할 데이터 설정하는 코드 부분
         thirdScreen.tourPlaceIndex = indexPath.section
         
@@ -131,15 +131,42 @@ extension UIImage {
 
 extension UIImageView {
     func load(img:UIImageView, url: URL, screenWidth: CGFloat) {
-        DispatchQueue.global().async {
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        let resizeImg = image.resize(newWidth: screenWidth)
-                        img.image = resizeImg
+        
+        let cacheKey = NSString(string: "\(url)")   //메모리 캐시를 이용하기 위한 캐시key값 설정 여기서는 이미지 url을 사용하였다.
+        
+        //디스크 캐시에 필요한 변수
+        guard let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else { return }
+        var filePath = URL(fileURLWithPath: path)   //파일 경로
+        filePath.appendPathComponent(url.lastPathComponent) //이미지 실제 이름을 사용하는 lastPathComponent 사용
+        
+        //메모리에 캐시된 이미지가 있는 경우
+        if let cacheImage = ImageCacheManager.shared.object(forKey: cacheKey){
+            img.image = cacheImage
+        }
+        else if FileManager.default.fileExists(atPath: filePath.path) { //디스크에 이미지가 히트된 경우 실행
+            guard let imageData = try? Data(contentsOf: filePath) else { return } //저장된 이미지 Data를 가져옴
+            guard let image = UIImage(data: imageData) else { return }  //Data를 UIImage타입으로 변경
+            img.image = image
+        }
+        else{ // 메모리 or 디스크에 캐시된 이미지가 없는 경우 네트워크 통신이 이루어진다.
+            DispatchQueue.global().async { 
+                if let data = try? Data(contentsOf: url) {
+                    if let image = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            //네트워크 통신을 하고 메모리와 디스크에 저장시킴
+                            let resizeImg = image.resize(newWidth: screenWidth) //이미지 크기 조절
+                            ImageCacheManager.shared.setObject(resizeImg, forKey: cacheKey) //메모리 캐시에 사용할 수 있게끔 올림
+                            //디스크에 저장하기 위해 파일을 만들어서 디스크에 저장
+                            if !FileManager.default.fileExists(atPath: filePath.path) {
+                                FileManager.default.createFile(atPath: filePath.path, contents: resizeImg.pngData(), attributes: nil)
+                                img.image = resizeImg
+                            }
+                        }
                     }
                 }
             }
         }
+        
+        
     }
 }

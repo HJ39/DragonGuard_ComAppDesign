@@ -22,6 +22,7 @@
 		3B737D56291646C000EF6B3C /* Second.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B737D55291646C000EF6B3C /* Second.storyboard */; };
 		3B737D582916558E00EF6B3C /* Third.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B737D572916558E00EF6B3C /* Third.storyboard */; };
 		3B737D5A2916757100EF6B3C /* TestCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B737D592916757100EF6B3C /* TestCode.swift */; };
+		3B74CC51291E834600A91E71 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B74CC50291E834600A91E71 /* ImageCacheManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		3B737D55291646C000EF6B3C /* Second.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Second.storyboard; sourceTree = "<group>"; };
 		3B737D572916558E00EF6B3C /* Third.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Third.storyboard; sourceTree = "<group>"; };
 		3B737D592916757100EF6B3C /* TestCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCode.swift; sourceTree = "<group>"; };
+		3B74CC50291E834600A91E71 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 		3B737D3C29162DB900EF6B3C /* Monttak_DragonGuard */ = {
 			isa = PBXGroup;
 			children = (
+				3B74CC50291E834600A91E71 /* ImageCacheManager.swift */,
 				3B737D3D29162DB900EF6B3C /* AppDelegate.swift */,
 				3B737D3F29162DB900EF6B3C /* SceneDelegate.swift */,
 				3B737D4129162DB900EF6B3C /* MainViewController.swift */,
@@ -176,6 +179,7 @@
 				3B737D3E29162DB900EF6B3C /* AppDelegate.swift in Sources */,
 				3B304802291BF55900CD8BC8 /* JejuInfoList.swift in Sources */,
 				3B737D5A2916757100EF6B3C /* TestCode.swift in Sources */,
+				3B74CC51291E834600A91E71 /* ImageCacheManager.swift in Sources */,
 				3B737D4029162DB900EF6B3C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
