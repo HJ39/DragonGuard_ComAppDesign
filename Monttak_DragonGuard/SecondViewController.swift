@@ -25,7 +25,10 @@ class SecondViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = nil    //barItem 삭제
         self.navigationItem.backButtonTitle = choiceButton
         self.navigationController?.navigationBar.backgroundColor = UIColor(red: 230/255.0, green: 200/255.0, blue: 100/255.0, alpha: 0.5)
+        
     }
+    
+    
 }
 
 extension SecondViewController: UITableViewDataSource{
@@ -146,7 +149,8 @@ extension UIImageView {
         else if FileManager.default.fileExists(atPath: filePath.path) { //디스크에 이미지가 히트된 경우 실행
             guard let imageData = try? Data(contentsOf: filePath) else { return } //저장된 이미지 Data를 가져옴
             guard let image = UIImage(data: imageData) else { return }  //Data를 UIImage타입으로 변경
-            img.image = image
+            let resizeImg = image.resize(newWidth: screenWidth,newHeight: (screenWidth / 2))
+            img.image = resizeImg
         }
         else{ // 메모리 or 디스크에 캐시된 이미지가 없는 경우 네트워크 통신이 이루어진다.
             DispatchQueue.global().async { 
@@ -154,7 +158,7 @@ extension UIImageView {
                     if let image = UIImage(data: data) {
                         DispatchQueue.main.async {
                             //네트워크 통신을 하고 메모리와 디스크에 저장시킴
-                            let resizeImg = image.resize(newWidth: screenWidth) //이미지 크기 조절
+                            let resizeImg = image.resize(newWidth: screenWidth,newHeight: (screenWidth / 2)) //이미지 크기 조절
                             ImageCacheManager.shared.setObject(resizeImg, forKey: cacheKey) //메모리 캐시에 사용할 수 있게끔 올림
                             //디스크에 저장하기 위해 파일을 만들어서 디스크에 저장
                             if !FileManager.default.fileExists(atPath: filePath.path) {

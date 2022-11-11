@@ -17,7 +17,7 @@ class Parsing {
         
         for i in STARTPAGE...ENDPAGE{
             let urlString = "https://api.visitjeju.net/vsjApi/contents/searchList?apiKey=\(apiKey)&locale=kr&page=\(i)"
-            DispatchQueue.global(qos: .background).async {
+            DispatchQueue.global().async {
                 
                 guard let url = URL(string: urlString) else {print("url 찾을 수 없음"); return}
                 var request = URLRequest.init(url: url)
