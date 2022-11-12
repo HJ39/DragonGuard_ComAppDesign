@@ -11,6 +11,8 @@
 		3B3047FE291BEA4700CD8BC8 /* Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3047FD291BEA4700CD8BC8 /* Parsing.swift */; };
 		3B304802291BF55900CD8BC8 /* JejuInfoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B304801291BF55900CD8BC8 /* JejuInfoList.swift */; };
 		3B304804291BF5AB00CD8BC8 /* JejuInFo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B304803291BF5AB00CD8BC8 /* JejuInFo.swift */; };
+		3B4122DB291F64E500035345 /* BinggraeSamanco-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3B4122D9291F64E500035345 /* BinggraeSamanco-Bold.ttf */; };
+		3B4122DC291F64E500035345 /* mokwu.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3B4122DA291F64E500035345 /* mokwu.otf */; };
 		3B737D3E29162DB900EF6B3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B737D3D29162DB900EF6B3C /* AppDelegate.swift */; };
 		3B737D4029162DB900EF6B3C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B737D3F29162DB900EF6B3C /* SceneDelegate.swift */; };
 		3B737D4229162DB900EF6B3C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B737D4129162DB900EF6B3C /* MainViewController.swift */; };
@@ -30,6 +32,8 @@
 		3B3047FD291BEA4700CD8BC8 /* Parsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parsing.swift; sourceTree = "<group>"; };
 		3B304801291BF55900CD8BC8 /* JejuInfoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JejuInfoList.swift; sourceTree = "<group>"; };
 		3B304803291BF5AB00CD8BC8 /* JejuInFo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JejuInFo.swift; sourceTree = "<group>"; };
+		3B4122D9291F64E500035345 /* BinggraeSamanco-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BinggraeSamanco-Bold.ttf"; sourceTree = "<group>"; };
+		3B4122DA291F64E500035345 /* mokwu.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = mokwu.otf; sourceTree = "<group>"; };
 		3B737D3A29162DB900EF6B3C /* Monttak_DragonGuard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Monttak_DragonGuard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B737D3D29162DB900EF6B3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B737D3F29162DB900EF6B3C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,9 +61,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B4122D8291F64BA00035345 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				3B4122D9291F64E500035345 /* BinggraeSamanco-Bold.ttf */,
+				3B4122DA291F64E500035345 /* mokwu.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		3B737D3129162DB900EF6B3C = {
 			isa = PBXGroup;
 			children = (
+				3B4122D8291F64BA00035345 /* Font */,
 				3B737D3C29162DB900EF6B3C /* Monttak_DragonGuard */,
 				3B737D3B29162DB900EF6B3C /* Products */,
 			);
@@ -156,8 +170,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B737D56291646C000EF6B3C /* Second.storyboard in Resources */,
+				3B4122DC291F64E500035345 /* mokwu.otf in Resources */,
 				3B737D4A29162DBA00EF6B3C /* LaunchScreen.storyboard in Resources */,
 				3B737D4729162DBA00EF6B3C /* Assets.xcassets in Resources */,
+				3B4122DB291F64E500035345 /* BinggraeSamanco-Bold.ttf in Resources */,
 				3B737D4529162DB900EF6B3C /* Main.storyboard in Resources */,
 				3B737D582916558E00EF6B3C /* Third.storyboard in Resources */,
 			);

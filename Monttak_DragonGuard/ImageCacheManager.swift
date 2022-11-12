@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ImageCacheManager{
-    static let shared = NSCache<NSString , UIImage>()
+class ImageCacheManager{    //메모리 캐시를 이용하기 위한 클래스
+    static let shared = NSCache<NSString , UIImage>()   
     private init() {}
 }

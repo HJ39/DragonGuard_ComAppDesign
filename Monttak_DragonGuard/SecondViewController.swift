@@ -20,11 +20,15 @@ class SecondViewController: UIViewController {
         guard let img = UIImage(named: "배경3") else{ return }
         self.view.backgroundColor = UIColor(patternImage: img.resize(newWidth: screenWidth,newHeight: screenHeight) )
         
+        //navigation title 폰트 적용을 위한 코드
+        let titleName = UILabel()
+        titleName.font = UIFont(name: "OTMogujasusimgyeolB" , size: 25)
+        titleName.text = choiceButton
+        
         //네비게이션 아이템 속성 설정 코드
-        self.navigationItem.title = choiceButton    //네비게이션 타이틀 지정
+        self.navigationItem.titleView = titleName    //네비게이션 타이틀 지정
         self.navigationItem.rightBarButtonItem = nil    //barItem 삭제
         self.navigationItem.backButtonTitle = choiceButton
-        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 230/255.0, green: 200/255.0, blue: 100/255.0, alpha: 0.5)
         
     }
     
@@ -59,7 +63,6 @@ extension SecondViewController: UITableViewDataSource{
         
         
         let url = URL(string: datalist[indexPath.section].imgURL ?? "")!
-        
         img?.load(img: img!,url: url,screenWidth: screenWidth)
         
         // 셀 모양 설정 하는 코드
@@ -134,7 +137,9 @@ extension UIImage {
 
 extension UIImageView {
     func load(img:UIImageView, url: URL, screenWidth: CGFloat) {
-        
+        /**
+                이미지 불러올 때 메모리, 디스크 캐시를 탐색하고 없는 경우 네트워크 통신으로 이미지를 불러온다.
+         */
         let cacheKey = NSString(string: "\(url)")   //메모리 캐시를 이용하기 위한 캐시key값 설정 여기서는 이미지 url을 사용하였다.
         
         //디스크 캐시에 필요한 변수
