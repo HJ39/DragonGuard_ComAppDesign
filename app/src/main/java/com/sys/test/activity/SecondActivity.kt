@@ -35,6 +35,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+//세컨 화면 : 프로그래스 바 이후 다 받으면 리사이클러뷰로 정보 제공
 class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private var resultDec = 45
     private var split = ""
@@ -51,21 +52,10 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         .writeTimeout(15, TimeUnit.SECONDS)
         .build()
     private lateinit var secondBinding: SecondBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         secondBinding = SecondBinding.inflate(layoutInflater)
         setContentView(secondBinding.root)
-//        window.apply {
-//            setFlags(
-//                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-//                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-//            )
-//        }
-//        if(Build.VERSION.SDK_INT >= 30) {	// API 30 에 적용
-//            WindowCompat.setDecorFitsSystemWindows(window, false)
-//        }
         setToolbar()
         val intent = intent
         data = ArrayList<Item>()
@@ -95,7 +85,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         Log.d("apicall:", " : ")
         apiCall(api, label, split)
     }
-
+    //받은 관광정보를 리사이클러뷰에 추가
     private fun initRecycler(items: ArrayList<Item>, label: String, split: String) {
         var itemCount = 0
         val token = label.split(",")
@@ -167,7 +157,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         }
         Log.d("size", profileAdapter.itemCount.toString())
     }
-
+    //api 호출 및 initRecyclerview()호출
     private fun apiCall(api: KakaoMapApi, label: String, split: String) {
         var count = 0
         if (resultDec >= 0) {
@@ -205,16 +195,15 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         resultDec -= count
         Log.d("결과 resultDec", "성공 : ${resultDec}")
     }
-
+    //줄 간격 설정 및 visible
     private fun chooseView() {
         secondBinding.itemlist.addItemDecoration(VerticalItemDecorator(20))
         secondBinding.itemlist.addItemDecoration(HorizontalItemDecorator(10))
         secondBinding.itemlist.visibility = View.VISIBLE
     }
-
+    //툴바 생성
     private fun setToolbar() {
         setSupportActionBar(secondBinding.toolbar)
-
         // 툴바 왼쪽 버튼 설정
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)  // 왼쪽 버튼 사용 여부 true
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_orange_menu_24)  // 왼쪽 버튼 이미지 설정
@@ -236,7 +225,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         }
         return super.onOptionsItemSelected(item)
     }
-
+    //아이템이 눌려도 닫음
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {  // 네비게이션 메뉴가 클릭되면 스낵바가 나타난다.
 //            R.id.account-> Snackbar.make(secondBinding.toolbar,"Navigation Account pressed", Snackbar.LENGTH_SHORT).show()
@@ -245,7 +234,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         secondBinding.drawerLayout.closeDrawers() // 기능을 수행하고 네비게이션을 닫아준다.
         return false
     }
-
+    //뒤로가기 버튼눌렸을때 닫음
     override fun onBackPressed() {
         if (secondBinding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             secondBinding.drawerLayout.closeDrawers()
@@ -253,7 +242,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             super.onBackPressed()
         }
     }
-
+    //데이터를 더 받고 recyclerview에 추가함
     private fun loadMorePosts() {
         if(secondBinding.loading.visibility == View.GONE) {
             secondBinding.loading.visibility = View.VISIBLE
@@ -267,7 +256,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             }
         }
     }
-
+    //마지막 item에서 스크롤 하면 로딩과 함께 다시 받아서 추가하기
     private fun initScrollListener() {
         secondBinding.itemlist.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 

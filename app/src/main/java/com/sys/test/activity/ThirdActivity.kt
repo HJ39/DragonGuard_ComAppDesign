@@ -15,6 +15,7 @@ import com.sys.test.R
 import com.sys.test.databinding.ActivityThirdBinding
 import com.sys.test.profiledata.ProfileData
 
+//third 화면 : 관광지 세부사항 표기
 class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     lateinit var datas: ProfileData
     private lateinit var thirdBinding: ActivityThirdBinding
@@ -67,10 +68,9 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         }
 
     }
-
+    //툴바 생성
     private fun setToolbar() {
         setSupportActionBar(thirdBinding.toolbar)
-
         // 툴바 왼쪽 버튼 설정
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)  // 왼쪽 버튼 사용 여부 true
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_orange_menu_24)  // 왼쪽 버튼 이미지 설정
@@ -79,7 +79,6 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
     // 툴바 메뉴 버튼을 설정
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-
         return true
     }
 
@@ -92,7 +91,7 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         }
         return super.onOptionsItemSelected(item)
     }
-
+    //아이템이 눌려도 닫음
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {  // 네비게이션 메뉴가 클릭되면 스낵바가 나타난다.
 //            R.id.account-> Snackbar.make(secondBinding.toolbar,"Navigation Account pressed", Snackbar.LENGTH_SHORT).show()
@@ -101,7 +100,7 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         thirdBinding.drawerLayout.closeDrawers() // 기능을 수행하고 네비게이션을 닫아준다.
         return false
     }
-
+    //뒤로가기 버튼눌렸을때 닫음
     override fun onBackPressed() {
         if (thirdBinding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             thirdBinding.drawerLayout.closeDrawers()
