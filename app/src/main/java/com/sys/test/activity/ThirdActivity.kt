@@ -70,7 +70,7 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                     }
                 }
                 "숙박"->{
-                    val url = "kakaomap://search?q=${datas.item.roadaddress}&p=${datas.item.latitude},${datas.item.longitude}"
+                    val url = "kakaomap://search?q=${datas.item.title}&p=${datas.item.latitude},${datas.item.longitude}"
                     var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                     intent.addCategory(Intent.CATEGORY_BROWSABLE)
                     var list = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
