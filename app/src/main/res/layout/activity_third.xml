@@ -41,9 +41,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_weight="1.8"
+                        android:layout_weight="1.7"
                         android:fontFamily="@font/mokwoosoosimgyul"
                         android:text="제목"
+                        android:ellipsize="end"
+                        android:maxLines="3"
                         android:textColor="#020202"
                         android:textSize="25dp" />
 
@@ -100,7 +102,6 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:orientation="vertical">
-
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -110,19 +111,19 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="left"
                             android:layout_marginRight="5dp"
-                            android:src="@drawable/ic_baseline_call_end_24"/>
+                            android:src="@drawable/ic_baseline_place_24"/>
                         <TextView
-                            android:id="@+id/thirdphone"
+                            android:id="@+id/thirdtitle2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left"
                             android:fontFamily="@font/binggraesamancobold"
-                            android:text="전화번호 : "
+                            android:text="관광지 : "
                             android:textColor="#020202"
                             android:textSize="25dp" />
                     </LinearLayout>
-
                     <LinearLayout
+                        android:layout_marginTop="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -142,10 +143,31 @@
                             android:textColor="#020202"
                             android:textSize="25dp" />
                     </LinearLayout>
-
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_marginRight="5dp"
+                            android:src="@drawable/ic_baseline_call_end_24"/>
+                        <TextView
+                            android:id="@+id/thirdphone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:fontFamily="@font/binggraesamancobold"
+                            android:text="전화번호 : "
+                            android:textColor="#020202"
+                            android:textSize="25dp" />
+                    </LinearLayout>
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
                         android:orientation="horizontal">
                         <LinearLayout
                             android:layout_width="wrap_content"

@@ -27,10 +27,11 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         datas = intent.getSerializableExtra("data") as ProfileData
 
         thirdBinding.thirdtitle.text = datas.item.title
+        thirdBinding.thirdtitle2.append(datas.item.title)
         if(datas.item.roadaddress.isNullOrBlank()|| datas.item.roadaddress =="--"){
-            thirdBinding.thirdaddr.append("정보 없음\n")
+            thirdBinding.thirdaddr.append("정보 없음")
         }else{
-            thirdBinding.thirdaddr.append(datas.item.roadaddress+"\n")
+            thirdBinding.thirdaddr.append(datas.item.roadaddress)
         }
 
         thirdBinding.thirdintro.append(datas.item.introduction ?: "정보 없음")
@@ -38,9 +39,9 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         if(datas.item.phoneno.isNullOrEmpty()|| datas.item.phoneno.isNullOrBlank() || datas.item.phoneno=="--"){
             thirdBinding.tell.visibility = View.GONE
             thirdBinding.tell.isEnabled = false
-            thirdBinding.thirdphone.append("정보 없음\n")
+            thirdBinding.thirdphone.append("정보 없음")
         }else{
-            thirdBinding.thirdphone.append(datas.item.phoneno+"\n")
+            thirdBinding.thirdphone.append(datas.item.phoneno)
         }
         if (datas.item.latitude==null || datas.item.longitude == null|| datas.item.latitude==0.0 || datas.item.longitude == 0.0) {
             thirdBinding.kakaoMap.isEnabled = false
@@ -54,16 +55,46 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             }
         }
         thirdBinding.kakaoMap.setOnClickListener {
-            val url = "kakaomap://look?p=${datas.item.latitude},${datas.item.longitude}"
-            var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-            intent.addCategory(Intent.CATEGORY_BROWSABLE)
-            var list = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
-            if (list == null) {
-                startActivity(
-                    Intent(Intent.ACTION_VIEW,Uri.parse("market://details?id=net.daum.android.map"))
-                )
-            } else {
-                startActivity(intent)
+            when(datas.item.contentscd.label){
+                "음식점"->{
+                    val url = "kakaomap://search?q=${datas.item.title}&p=${datas.item.latitude},${datas.item.longitude}"
+                    var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    intent.addCategory(Intent.CATEGORY_BROWSABLE)
+                    var list = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
+                    if (list == null) {
+                        startActivity(
+                            Intent(Intent.ACTION_VIEW,Uri.parse("market://details?id=net.daum.android.map"))
+                        )
+                    } else {
+                        startActivity(intent)
+                    }
+                }
+                "숙박"->{
+                    val url = "kakaomap://search?q=${datas.item.title}&p=${datas.item.latitude},${datas.item.longitude}"
+                    var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    intent.addCategory(Intent.CATEGORY_BROWSABLE)
+                    var list = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
+                    if (list == null) {
+                        startActivity(
+                            Intent(Intent.ACTION_VIEW,Uri.parse("market://details?id=net.daum.android.map"))
+                        )
+                    } else {
+                        startActivity(intent)
+                    }
+                }
+                else->{
+                    val url = "kakaomap://look?p=${datas.item.latitude},${datas.item.longitude}"
+                    var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    intent.addCategory(Intent.CATEGORY_BROWSABLE)
+                    var list = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
+                    if (list == null) {
+                        startActivity(
+                            Intent(Intent.ACTION_VIEW,Uri.parse("market://details?id=net.daum.android.map"))
+                        )
+                    } else {
+                        startActivity(intent)
+                    }
+                }
             }
         }
 
