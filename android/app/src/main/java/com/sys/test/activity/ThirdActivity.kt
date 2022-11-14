@@ -61,7 +61,7 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                     var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                     intent.addCategory(Intent.CATEGORY_BROWSABLE)
                     var list = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
-                    if (list == null) {
+                    if (list == null|| list.isEmpty()) {
                         startActivity(
                             Intent(Intent.ACTION_VIEW,Uri.parse("market://details?id=net.daum.android.map"))
                         )
@@ -74,7 +74,7 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                     var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                     intent.addCategory(Intent.CATEGORY_BROWSABLE)
                     var list = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
-                    if (list == null) {
+                    if (list == null|| list.isEmpty()) {
                         startActivity(
                             Intent(Intent.ACTION_VIEW,Uri.parse("market://details?id=net.daum.android.map"))
                         )
@@ -87,7 +87,7 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                     var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                     intent.addCategory(Intent.CATEGORY_BROWSABLE)
                     var list = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
-                    if (list == null) {
+                    if (list == null|| list.isEmpty()) {
                         startActivity(
                             Intent(Intent.ACTION_VIEW,Uri.parse("market://details?id=net.daum.android.map"))
                         )
