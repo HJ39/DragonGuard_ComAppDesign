@@ -27,23 +27,50 @@ class ThirdViewController: UIViewController{
     
     //누르면 지도 앱 실행
     @IBAction func click_Go_Map(_ sender: Any) {
-        NSLog("map button clicked")
+        //위도 경도 변수
+        let latitude = datalist[tourPlaceIndex].latitude ?? 0
+        let longitude = datalist[tourPlaceIndex].longitude ?? 0
+        
+        let url = URL(string: "kakaomap://look?p=\(latitude),\(longitude)") //URL 지정
+        if UIApplication.shared.canOpenURL(URL(string: "kakaomap://")!){    //카카오맵 scheme 탐색 후 있는 경우 실행
+            UIApplication.shared.open(url!, options: [:],completionHandler: nil)
+        }
+        else{
+            print("can't open kakaomap")
+        }
+        
     }
     
-    // 누르면 전화번호 전화 앱에 전화번호 입력된다.
+    // 누르면 해당 전화번호에 전화를 걸건지 물어본다.
     @IBAction func click_Go_Call(_ sender: Any) {
         NSLog("call button clicked")
+        let phoneNumber = datalist[tourPlaceIndex].phoneNumber ?? "000-0000-0000"
+        guard let integerNumber = Int(phoneNumber.components(separatedBy: ["-"]).joined()) else{ return }
+
+        let url = URL(string: "tel://\(integerNumber)") //URL 지정
+        if UIApplication.shared.canOpenURL(URL(string: "tel://")!){    //전화 앱scheme 탐색 후 있는 경우 실행
+            UIApplication.shared.open(url!, options: [:],completionHandler: nil)
+        }
+        else{
+            print("can't open tel")
+        }
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let img = UIImage(named: "배경5")else{ return }
+        guard let img = UIImage(named: "배경2")else{ return }
         let attributedString1 = NSMutableAttributedString(string: "")
         let attributedString2 = NSMutableAttributedString(string: "")
         
         self.view.backgroundColor = UIColor(patternImage: img.resize(newWidth: screenWidth,newHeight: screenHeight))
         self.navigationItem.title = datalist[tourPlaceIndex].title ?? ""
         self.introduction.text = datalist[tourPlaceIndex].introduction
+        
+        // url 이미지 주소 설정하는 코드
+        let url = URL(string: datalist[tourPlaceIndex].imgURL ?? "")!
+        imgview?.load(img: imgview!,url: url,screenWidth: screenWidth)  //휴대폰 기기의 가로, 세로 길이를 넘겨서 비율에 맞게 이미지 표시
+        imgview.layer.cornerRadius = 40
         
         // 주소 label 앞에 핀 아이콘 넣어주는 코드
         let imageAttachment1 = NSTextAttachment()
@@ -59,9 +86,7 @@ class ThirdViewController: UIViewController{
         attributedString2.append(NSAttributedString(string: datalist[tourPlaceIndex].phoneNumber ?? "정보 없음"))
         self.phoneNumber.attributedText = attributedString2
         
-        // 이미지 넣어 주면 됨
-        imgview.image = UIImage(named:"삼겹살")?.resize(newWidth: screenWidth,newHeight: (screenWidth / 2))
-        imgview.layer.cornerRadius = 40
+        
         
     }
 }

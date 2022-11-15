@@ -17,9 +17,10 @@ class SecondViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //백그라운드를 이미지로 설정
-        guard let img = UIImage(named: "배경3") else{ return }
+        guard let img = UIImage(named: "배경2") else{ return }
         //이미지크기를 조절해서 백그라운드에 적용
         self.view.backgroundColor = UIColor(patternImage: img.resize(newWidth: screenWidth,newHeight: screenHeight) )
+        self.navigationItem.rightBarButtonItem = nil    //barItem 삭제
         
         //navigation title 폰트 적용을 위한 코드
         let titleName = UILabel()
@@ -28,7 +29,8 @@ class SecondViewController: UIViewController {
         
         //네비게이션 아이템 속성 설정 코드
         self.navigationItem.titleView = titleName    //네비게이션 타이틀 지정
-        self.navigationItem.rightBarButtonItem = nil    //barItem 삭제
+        
+        
     }
     
 }
@@ -117,7 +119,7 @@ extension UIImage {
 }
 
 extension UIImageView {
-    func load(img:UIImageView, url: URL, screenWidth: CGFloat) {
+    func load(img: UIImageView, url: URL, screenWidth: CGFloat) {
         /**
                 이미지 불러올 때 메모리, 디스크 캐시를 탐색하고 없는 경우 네트워크 통신으로 이미지를 불러온다.
          */

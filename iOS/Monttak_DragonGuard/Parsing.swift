@@ -36,9 +36,9 @@ class Parsing {
                                 
                                 let decodedData = try JSONDecoder().decode(Result.self, from: data)
                                 self.decodedItem.append( contentsOf: decodedData.items)
-//                                print(decodedData.currentPage)
                                 
-                                let durationTime = CFAbsoluteTimeGetCurrent() - startTime
+//                                print(decodedData.currentPage)
+//                                let durationTime = CFAbsoluteTimeGetCurrent() - startTime
 //                                print("경과 시간: \(durationTime)")
                                 
                             } catch let error {

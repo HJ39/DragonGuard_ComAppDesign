@@ -16,18 +16,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPy-bD-WkQ">
-                                <rect key="frame" x="299" y="193" width="75" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <action selector="Click_Go_SecondScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zJm-gw-dfI"/>
-                                </connections>
-                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6f-UM-4zN">
+                                <rect key="frame" x="0.0" y="91.000000000000028" width="266" height="412.66666666666674"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cPf-Rf-LIO">
+                                <rect key="frame" x="0.0" y="503.66666666666674" width="390" height="340.33333333333326"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="y9A-s6-3Er">
+                                <rect key="frame" x="266" y="91.000000000000028" width="124" height="412.66666666666674"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPy-bD-WkQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="124" height="129"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="test"/>
+                                        <connections>
+                                            <action selector="Click_Go_SecondScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zJm-gw-dfI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fd9-Z1-shr">
+                                        <rect key="frame" x="0.0" y="173" width="124" height="47"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="버튼2"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="saf-vf-WJ8">
+                                        <rect key="frame" x="0.0" y="264" width="124" height="52.666666666666686"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="버튼3"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xa8-hb-iGb">
+                                        <rect key="frame" x="0.0" y="360.66666666666669" width="124" height="52"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="버튼4"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cPf-Rf-LIO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="561-Tk-5bp"/>
+                            <constraint firstItem="y9A-s6-3Er" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="6mU-Mk-hup"/>
+                            <constraint firstItem="y9A-s6-3Er" firstAttribute="leading" secondItem="i6f-UM-4zN" secondAttribute="trailing" id="DJq-rd-8cs"/>
+                            <constraint firstItem="cPf-Rf-LIO" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="EBp-uC-Xlj"/>
+                            <constraint firstItem="i6f-UM-4zN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="IlF-Q7-ink"/>
+                            <constraint firstItem="cPf-Rf-LIO" firstAttribute="top" secondItem="i6f-UM-4zN" secondAttribute="bottom" id="URS-HW-OJN"/>
+                            <constraint firstItem="cPf-Rf-LIO" firstAttribute="top" secondItem="y9A-s6-3Er" secondAttribute="bottom" id="YMv-2C-6IP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="y9A-s6-3Er" secondAttribute="trailing" id="csC-Dv-Vii"/>
+                            <constraint firstItem="cPf-Rf-LIO" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="lke-hM-Ket"/>
+                            <constraint firstItem="i6f-UM-4zN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="yHU-0t-yWo"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aeb-SH-ab9"/>
                 </viewController>
@@ -55,6 +97,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="test" width="100" height="115"/>
+        <image name="버튼2" width="31.333333969116211" height="33"/>
+        <image name="버튼3" width="31.666666030883789" height="38.666667938232422"/>
+        <image name="버튼4" width="30.333333969116211" height="38"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
