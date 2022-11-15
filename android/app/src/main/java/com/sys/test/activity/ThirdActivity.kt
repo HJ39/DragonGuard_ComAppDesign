@@ -57,43 +57,22 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         thirdBinding.kakaoMap.setOnClickListener {
             when(datas.item.contentscd.label){
                 "음식점"->{
-                    val url = "kakaomap://search?q=${datas.item.title}&p=${datas.item.latitude},${datas.item.longitude}"
+                    val url = "geo:${datas.item.latitude},${datas.item.longitude}?q=${datas.item.title}"
                     var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                     intent.addCategory(Intent.CATEGORY_BROWSABLE)
-                    var list = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
-                    if (list == null|| list.isEmpty()) {
-                        startActivity(
-                            Intent(Intent.ACTION_VIEW,Uri.parse("market://details?id=net.daum.android.map"))
-                        )
-                    } else {
-                        startActivity(intent)
-                    }
+                    startActivity(intent)
                 }
                 "숙박"->{
-                    val url = "kakaomap://search?q=${datas.item.title}&p=${datas.item.latitude},${datas.item.longitude}"
+                    val url = "geo:${datas.item.latitude},${datas.item.longitude}?q=${datas.item.title}"
                     var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                     intent.addCategory(Intent.CATEGORY_BROWSABLE)
-                    var list = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
-                    if (list == null|| list.isEmpty()) {
-                        startActivity(
-                            Intent(Intent.ACTION_VIEW,Uri.parse("market://details?id=net.daum.android.map"))
-                        )
-                    } else {
-                        startActivity(intent)
-                    }
+                    startActivity(intent)
                 }
                 else->{
-                    val url = "kakaomap://look?p=${datas.item.latitude},${datas.item.longitude}"
+                    val url = "geo:${datas.item.latitude},${datas.item.longitude}?q=${datas.item.roadaddress}"
                     var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                     intent.addCategory(Intent.CATEGORY_BROWSABLE)
-                    var list = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
-                    if (list == null|| list.isEmpty()) {
-                        startActivity(
-                            Intent(Intent.ACTION_VIEW,Uri.parse("market://details?id=net.daum.android.map"))
-                        )
-                    } else {
-                        startActivity(intent)
-                    }
+                    startActivity(intent)
                 }
             }
         }
