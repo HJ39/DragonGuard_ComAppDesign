@@ -9,16 +9,16 @@ import UIKit
 
 //Second화면 ViewController
 class SecondViewController: UIViewController{
-    var choiceButton: String = "Second" //main화면에서 어떤 버튼을 선택했는지 보여주는 변수
+    var choiceButton: String? //main화면에서 어떤 버튼을 선택했는지 보여주는 변수
     let screenWidth = UIScreen.main.bounds.size.width // 뷰 전체 폭 길이
     let screenHeight = UIScreen.main.bounds.size.height // 뷰 전체 높이 길이
-    var datalist = JejuInfoList().return_Info_List()    //데이터 리스트 불러옴
+    var datalist: [JejuInfo]?
     @IBOutlet var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //백그라운드를 이미지로 설정
-        guard let img = UIImage(named: "배경2") else{ return }
+        guard let img = UIImage(named: "배경1") else{ return }
         //이미지크기를 조절해서 백그라운드에 적용
         self.view.backgroundColor = UIColor(patternImage: img.resize(newWidth: screenWidth,newHeight: screenHeight) )
         self.navigationItem.rightBarButtonItem = nil    //barItem 삭제
@@ -28,11 +28,11 @@ class SecondViewController: UIViewController{
         titleName.font = UIFont(name: "OTMogujasusimgyeolB" , size: 25) //목우자심결 폰트 적용
         titleName.text = choiceButton
         
+        guard let correctChoiceButton = choiceButton else { return }
+        datalist = JejuInfoList().need_Info_List(choiceButton: correctChoiceButton)       //데이터 리스트 불러옴
+        
         //네비게이션 아이템 속성 설정 코드
         self.navigationItem.titleView = titleName    //네비게이션 타이틀 지정
-        
-//        self.collectionView.delegate = self
-//        self.collectionView.dataSource = self
         
     }
     
@@ -44,24 +44,22 @@ extension SecondViewController: UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!   // table cell을 재사용 큐를 이용하여 화면에 표시
         
-        //        cell.backgroundColor = UIColor(red: 255/255.0, green: 150/255.0, blue: 100/255.0, alpha: 0.5)    //셀 배경색 설정
-        //        tableView.backgroundColor = UIColor(red: 230/255.0, green: 200/255.0, blue: 100/255.0, alpha: 0.5)
+        cell.backgroundColor = UIColor(red: 255/255.0, green: 150/255.0, blue: 100/255.0, alpha: 0.2)    //셀 배경색 설정
+        tableView.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0)
+        
         let img = cell.viewWithTag(100) as? UIImageView // 이미지를 표시할 변수
         let title = cell.viewWithTag(101) as? UILabel   // 이름을 표시할 변수
         let address = cell.viewWithTag(102) as? UILabel // 도로명 주소를 표시할 변수
         
         //각 버튼을 section으로 나누어서 section으로 구분해야 함
         //indexPath는 section과 cell의 row의 정보를 가지고 있음
-        let row = datalist[indexPath.section]
-        
-        // =========== 관광지 구별해야함
-        
-        // 관광지 이름, 도로명 주소 설정
-        title?.text = row.title
-        address?.text = row.address
+        let row = datalist?[indexPath.section]
         
         // url 이미지 주소 설정하는 코드
-        let url = URL(string: datalist[indexPath.section].imgURL ?? "")!
+        let url = URL(string: datalist?[indexPath.section].imgURL ?? "")!
+        
+        title?.text = row?.title
+        address?.text = row?.address
         img?.load(img: img!,url: url,screenWidth: screenWidth)  //휴대폰 기기의 가로, 세로 길이를 넘겨서 비율에 맞게 이미지 표시
         
         tableView.separatorStyle = .none    //셀 구분선 제거
@@ -80,7 +78,7 @@ extension SecondViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? { return " " }
     
     // 섹션 개수 설정하는 함수
-    func numberOfSections(in tableView: UITableView) -> Int { return datalist.count }
+    func numberOfSections(in tableView: UITableView) -> Int { return datalist?.count ?? 1 }
     
     // 실행 시 각 세션에 몇 개의 셀이 생성되는지 작성하는 함수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return 1 }
@@ -100,6 +98,8 @@ extension SecondViewController: UITableViewDelegate{
         
         // 3번째 화면으로 전송할 데이터 설정하는 코드 부분
         thirdScreen.tourPlaceIndex = indexPath.section
+        thirdScreen.datalist = datalist
+        thirdScreen.choiceButton = choiceButton
         
         // 버튼 클릭시 navigation방식으로 Third화면 실행
         self.navigationController?.pushViewController(thirdScreen, animated: true)
