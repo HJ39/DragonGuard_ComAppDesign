@@ -36,7 +36,10 @@ class ThirdViewController: UIViewController{
             UIApplication.shared.open(url!, options: [:],completionHandler: nil)
         }
         else{
-            print("can't open kakaomap")
+            // 카카오맵이 없는 경우 앱스토어로 이동
+            if let openStore = URL(string: "itms-apps://itunes.apple.com/app/id304608425"), UIApplication.shared.canOpenURL(openStore) {
+                UIApplication.shared.open(openStore, options: [:], completionHandler: nil)
+            }
         }
         
     }
