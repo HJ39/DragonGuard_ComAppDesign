@@ -25,6 +25,7 @@ class JejuInfoList{
             info.latitude = datalist?[index].latitude
             info.longitude = datalist?[index].longitude
             info.phoneNumber = datalist?[index].phoneno
+            info.type =  datalist?[index].contentscd.label
             infoList.append(info)
         }
         return infoList

@@ -45,6 +45,7 @@ class ThirdViewController: UIViewController{
     @IBAction func click_Go_Call(_ sender: Any) {
         NSLog("call button clicked")
         let phoneNumber = datalist[tourPlaceIndex].phoneNumber ?? "000-0000-0000"
+        print(phoneNumber.components(separatedBy: ["-"]).joined())
         guard let integerNumber = Int(phoneNumber.components(separatedBy: ["-"]).joined()) else{ return }
 
         let url = URL(string: "tel://\(integerNumber)") //URL 지정
@@ -82,6 +83,7 @@ class ThirdViewController: UIViewController{
         // 전화번호 label 앞에 전화 아이콘 넣는 코드
         let imageAttachment2 = NSTextAttachment()
         imageAttachment2.image = UIImage(systemName: "phone")
+        imageAttachment2.image?.withTintColor(UIColor(red: 100/255.0, green: 100/255.0, blue: 100/255.0, alpha: 0.5))
         attributedString2.append(NSAttributedString(attachment: imageAttachment2))
         attributedString2.append(NSAttributedString(string: datalist[tourPlaceIndex].phoneNumber ?? "정보 없음"))
         self.phoneNumber.attributedText = attributedString2

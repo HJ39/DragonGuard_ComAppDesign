@@ -8,11 +8,12 @@
 import UIKit
 
 //Second화면 ViewController
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController{
     var choiceButton: String = "Second" //main화면에서 어떤 버튼을 선택했는지 보여주는 변수
     let screenWidth = UIScreen.main.bounds.size.width // 뷰 전체 폭 길이
     let screenHeight = UIScreen.main.bounds.size.height // 뷰 전체 높이 길이
     var datalist = JejuInfoList().return_Info_List()    //데이터 리스트 불러옴
+    @IBOutlet var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,8 @@ class SecondViewController: UIViewController {
         //네비게이션 아이템 속성 설정 코드
         self.navigationItem.titleView = titleName    //네비게이션 타이틀 지정
         
+//        self.collectionView.delegate = self
+//        self.collectionView.dataSource = self
         
     }
     
@@ -102,6 +105,24 @@ extension SecondViewController: UITableViewDelegate{
         self.navigationController?.pushViewController(thirdScreen, animated: true)
     }
 }
+
+extension SecondViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath)
+        let img = collectionCell.viewWithTag(400) as? UIImageView
+        img?.image = UIImage(named: "버튼1")
+        print("collectioncell called")
+        return collectionCell
+    }
+    
+    
+}
+
+
 
 extension UIImage {
     // 배경 설정하는 함수 기기의 가로 세로 길이를 받아와 이미지 리턴
