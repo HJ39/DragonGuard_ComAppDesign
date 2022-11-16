@@ -119,7 +119,7 @@ extension SecondViewController: UITableViewDelegate{
         // 3번째 화면으로 전송할 데이터 설정하는 코드 부분
         thirdScreen.tourPlaceIndex = indexPath.section
         thirdScreen.datalist = datalist
-        thirdScreen.choiceButton = choiceButton
+        
         
         // 버튼 클릭시 navigation방식으로 Third화면 실행
         self.navigationController?.pushViewController(thirdScreen, animated: true)

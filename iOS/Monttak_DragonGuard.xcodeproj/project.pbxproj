@@ -25,6 +25,7 @@
 		3B737D582916558E00EF6B3C /* Third.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B737D572916558E00EF6B3C /* Third.storyboard */; };
 		3B74CC51291E834600A91E71 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B74CC50291E834600A91E71 /* ImageCacheManager.swift */; };
 		3BB1E49F292535CD00D871BB /* CustomCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB1E49E292535CD00D871BB /* CustomCollectionCell.swift */; };
+		3BB1E4A12925451F00D871BB /* ThirdScreenCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB1E4A02925451F00D871BB /* ThirdScreenCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		3B74CC50291E834600A91E71 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		3BB131DD29248BD8001489C0 /* Monttak_DragonGuard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Monttak_DragonGuard.entitlements; sourceTree = "<group>"; };
 		3BB1E49E292535CD00D871BB /* CustomCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionCell.swift; sourceTree = "<group>"; };
+		3BB1E4A02925451F00D871BB /* ThirdScreenCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdScreenCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				3B737D532916432600EF6B3C /* ThirdViewController.swift */,
 				3B737D51291642FD00EF6B3C /* SecondViewController.swift */,
 				3BB1E49E292535CD00D871BB /* CustomCollectionCell.swift */,
+				3BB1E4A02925451F00D871BB /* ThirdScreenCollectionViewCell.swift */,
 				3B3047FD291BEA4700CD8BC8 /* Parsing.swift */,
 				3B3047FB291BEA1000CD8BC8 /* JSONFile.swift */,
 				3B304801291BF55900CD8BC8 /* JejuInfoList.swift */,
@@ -192,6 +195,7 @@
 				3B304804291BF5AB00CD8BC8 /* JejuInFo.swift in Sources */,
 				3B737D52291642FD00EF6B3C /* SecondViewController.swift in Sources */,
 				3BB1E49F292535CD00D871BB /* CustomCollectionCell.swift in Sources */,
+				3BB1E4A12925451F00D871BB /* ThirdScreenCollectionViewCell.swift in Sources */,
 				3B737D4229162DB900EF6B3C /* MainViewController.swift in Sources */,
 				3B3047FC291BEA1000CD8BC8 /* JSONFile.swift in Sources */,
 				3B737D542916432600EF6B3C /* ThirdViewController.swift in Sources */,
