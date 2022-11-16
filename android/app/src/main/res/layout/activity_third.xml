@@ -23,8 +23,9 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.65"
-                android:background="@android:color/transparent"
+                android:layout_weight="0.75"
+                android:background="#ffb808"
+
                 android:gravity="center_vertical"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:contentInsetStart="0dp"
@@ -33,26 +34,21 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
                     android:layout_gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/thirdtitle"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_weight="1.7"
                         android:fontFamily="@font/mokwoosoosimgyul"
                         android:text="제목"
                         android:ellipsize="end"
                         android:maxLines="3"
                         android:textColor="#020202"
-                        android:textSize="25dp" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7" />
+                        android:textSize="27dp" />
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
 
@@ -64,6 +60,7 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:layout_marginTop="5dp"
                     android:id="@+id/thirdimage"
                     android:layout_width="300dp"
                     android:background="@drawable/round"
@@ -195,7 +192,7 @@
                                         android:fontFamily="@font/binggraesamancobold"
                                         android:text="설명 : "
                                         android:textColor="#020202"
-                                        android:textSize="25dp" />
+                                        android:textSize="23dp" />
                                 </LinearLayout>
                             </ScrollView>
                         </LinearLayout>
