@@ -66,6 +66,7 @@
                 <ImageView
                     android:id="@+id/thirdimage"
                     android:layout_width="300dp"
+                    android:background="@drawable/round"
                     android:layout_height="200dp" />
 
                 <LinearLayout

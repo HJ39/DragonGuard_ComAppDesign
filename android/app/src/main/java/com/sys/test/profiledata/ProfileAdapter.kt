@@ -34,6 +34,7 @@ class ProfileAdapter(private val datas : ArrayList<ProfileData>,private val cont
             txtTitle.text = data.title
             txtAddress.text = data.roadaddress
             Glide.with(itemView).load(data.thumbnailpath).into(imgProfile)
+            imgProfile.clipToOutline = true
             itemView.setOnClickListener{
                 Intent(context,ThirdActivity::class.java).apply {
                     putExtra("data", data)

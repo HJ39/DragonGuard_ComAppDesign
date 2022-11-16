@@ -25,6 +25,7 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         setContentView(thirdBinding.root)
         setToolbar()
         datas = intent.getSerializableExtra("data") as ProfileData
+        thirdBinding.thirdimage.clipToOutline = true
 
         thirdBinding.thirdtitle.text = datas.item.title
         thirdBinding.thirdtitle2.append(datas.item.title)
