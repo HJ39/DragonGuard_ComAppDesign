@@ -13,8 +13,10 @@ class SecondViewController: UIViewController{
     let screenWidth = UIScreen.main.bounds.size.width // 뷰 전체 폭 길이
     let screenHeight = UIScreen.main.bounds.size.height // 뷰 전체 높이 길이
     var datalist: [JejuInfo]?
+    
     @IBOutlet var collectionView: UICollectionView!
-    var adArray: [String] = ["삼겹살","짜장면"]
+    var nowpage = 0
+    var adArray: [String] = ["삼겹살","짜장면","삼겹살","짜장면","삼겹살","짜장면"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +36,24 @@ class SecondViewController: UIViewController{
         
         //네비게이션 아이템 속성 설정 코드
         self.navigationItem.titleView = titleName    //네비게이션 타이틀 지정
+        timer()
         
+    }
+    
+    func timer(){   //광고 타이머
+        let _: Timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { (Timer) in
+            self.move_Ad_Screen()
+        }
+    }
+    
+    func move_Ad_Screen(){  //타이머 지정 시간마다 다음으로 넘기는 함수
+        if nowpage == adArray.count-1 {
+            collectionView.scrollToItem(at: NSIndexPath(item: 0, section: 0) as IndexPath, at: .right, animated: true)
+            nowpage = 0
+            return
+        }
+        nowpage += 1
+        collectionView.scrollToItem(at: NSIndexPath(item: nowpage, section: 0) as IndexPath, at: .right, animated: true)
     }
     
 }
@@ -107,29 +126,28 @@ extension SecondViewController: UITableViewDelegate{
     }
 }
 
+// CollectionView Custom
 extension SecondViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    //collectionView cell 개수
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return adArray.count
     }
     
+    //collectionView 내부 cell 설정
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "customCollectionCell", for: indexPath) as! CustomCollectionCell
-//        let img = collectionCell.viewWithTag(400) as? UIImageView
         collectionCell.imgAd.image = UIImage(named: adArray[indexPath.row])
-        print("collectioncell called")
         return collectionCell
     }
     
+    // collectionView 의 cell 크기 설정
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width: CGFloat = collectionView.frame.width
-        let height: CGFloat = collectionView.frame.height
-                
+        let width: CGFloat = collectionView.frame.width //collectionview의 가로 길이
+        let height: CGFloat = collectionView.frame.height   //collectionview의 세로 길이
         return CGSize(width: width, height: height)
     }
     
 }
-
-
 
 extension UIImage {
     // 배경 설정하는 함수 기기의 가로 세로 길이를 받아와 이미지 리턴
@@ -149,7 +167,7 @@ extension UIImage {
 extension UIImageView {
     func load(img: UIImageView, url: URL, screenWidth: CGFloat) {
         /**
-                이미지 불러올 때 메모리, 디스크 캐시를 탐색하고 없는 경우 네트워크 통신으로 이미지를 불러온다.
+         이미지 불러올 때 메모리, 디스크 캐시를 탐색하고 없는 경우 네트워크 통신으로 이미지를 불러온다.
          */
         let cacheKey = NSString(string: "\(url)")   //메모리 캐시를 이용하기 위한 캐시key값 설정 여기서는 이미지 url을 사용하였다.
         

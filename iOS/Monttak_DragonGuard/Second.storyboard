@@ -76,7 +76,7 @@
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="miN-cY-JV3">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="fW2-tA-dc9">
                                             <size key="itemSize" width="128" height="128"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -102,6 +102,7 @@
                                                         <constraint firstItem="nnr-UC-nSF" firstAttribute="top" secondItem="8UP-4b-1kk" secondAttribute="top" id="z2j-8b-gTG"/>
                                                     </constraints>
                                                 </collectionViewCellContentView>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <size key="customSize" width="128" height="128"/>
                                                 <connections>
                                                     <outlet property="imgAd" destination="nnr-UC-nSF" id="cJJ-sE-XkV"/>

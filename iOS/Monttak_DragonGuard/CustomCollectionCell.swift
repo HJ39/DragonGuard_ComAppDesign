@@ -8,8 +8,5 @@
 import UIKit
 
 class CustomCollectionCell: UICollectionViewCell {
-    
-    @IBOutlet var imgAd: UIImageView!
-    
-    
+    @IBOutlet var imgAd: UIImageView!   //CollectionViewCell 내부에 있는 imageView
 }
