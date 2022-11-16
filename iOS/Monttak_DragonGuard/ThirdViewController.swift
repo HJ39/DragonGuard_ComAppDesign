@@ -67,7 +67,7 @@ class ThirdViewController: UIViewController{
         guard let correctChoiceButton = choiceButton else {return}
         
         
-        guard let img = UIImage(named: "배경1")else{ return }
+        guard let img = UIImage(named: "thirdbackground")else{ return }
         let attributedString1 = NSMutableAttributedString(string: "")
         let attributedString2 = NSMutableAttributedString(string: "")
         

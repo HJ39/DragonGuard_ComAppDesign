@@ -32,7 +32,7 @@ class Parsing {
                         guard let data = data else { return }
                         DispatchQueue.global().async {
                             do {
-                                let startTime = CFAbsoluteTimeGetCurrent()
+//                                let startTime = CFAbsoluteTimeGetCurrent()
                                 
                                 let decodedData = try JSONDecoder().decode(Result.self, from: data)
                                 self.decodedItem.append( contentsOf: decodedData.items)

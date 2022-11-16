@@ -32,7 +32,7 @@ class JejuInfoList{
     func need_Info_List(choiceButton: String) -> [JejuInfo]{
         var needInfo = [JejuInfo]() //새로운 관광지 정보 담을 리스트 선언
         
-        for index in 1..<(infoList.count){
+        for index in 0..<(infoList.count){
             
             if (choiceButton == "먹거리" && infoList[index].type == "음식점"){
                 needInfo.append(infoList[index])

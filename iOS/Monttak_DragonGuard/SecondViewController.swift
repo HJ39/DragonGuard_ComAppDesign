@@ -14,11 +14,12 @@ class SecondViewController: UIViewController{
     let screenHeight = UIScreen.main.bounds.size.height // 뷰 전체 높이 길이
     var datalist: [JejuInfo]?
     @IBOutlet var collectionView: UICollectionView!
+    var adArray: [String] = ["삼겹살","짜장면"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //백그라운드를 이미지로 설정
-        guard let img = UIImage(named: "배경1") else{ return }
+        guard let img = UIImage(named: "secondbackground") else{ return }
         //이미지크기를 조절해서 백그라운드에 적용
         self.view.backgroundColor = UIColor(patternImage: img.resize(newWidth: screenWidth,newHeight: screenHeight) )
         self.navigationItem.rightBarButtonItem = nil    //barItem 삭제
@@ -44,7 +45,7 @@ extension SecondViewController: UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!   // table cell을 재사용 큐를 이용하여 화면에 표시
         
-        cell.backgroundColor = UIColor(red: 255/255.0, green: 150/255.0, blue: 100/255.0, alpha: 0.2)    //셀 배경색 설정
+        cell.backgroundColor = UIColor(red: 255/255.0, green: 150/255.0, blue: 100/255.0, alpha: 0.4)    //셀 배경색 설정
         tableView.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0)
         
         let img = cell.viewWithTag(100) as? UIImageView // 이미지를 표시할 변수
@@ -106,19 +107,25 @@ extension SecondViewController: UITableViewDelegate{
     }
 }
 
-extension SecondViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+extension SecondViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return adArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath)
-        let img = collectionCell.viewWithTag(400) as? UIImageView
-        img?.image = UIImage(named: "버튼1")
+        let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "customCollectionCell", for: indexPath) as! CustomCollectionCell
+//        let img = collectionCell.viewWithTag(400) as? UIImageView
+        collectionCell.imgAd.image = UIImage(named: adArray[indexPath.row])
         print("collectioncell called")
         return collectionCell
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width: CGFloat = collectionView.frame.width
+        let height: CGFloat = collectionView.frame.height
+                
+        return CGSize(width: width, height: height)
+    }
     
 }
 
