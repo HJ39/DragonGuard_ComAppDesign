@@ -57,6 +57,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         secondBinding = SecondBinding.inflate(layoutInflater)
         setContentView(secondBinding.root)
         setToolbar()
+        secondBinding.itemlist.clipToOutline = true
         val intent = intent
         data = ArrayList<Item>()
         split = intent.getStringExtra("split")!!

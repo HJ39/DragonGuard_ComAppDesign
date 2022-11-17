@@ -48,7 +48,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="4.7"
                     android:layout_gravity="center_horizontal"
-                    android:background="#fbf2d7"
+                    android:background="@android:color/transparent"
                     android:orientation="vertical"
                     android:padding="10dp">
                     <androidx.recyclerview.widget.RecyclerView
@@ -61,6 +61,7 @@
                         android:layout_gravity="center_horizontal"
                         tools:listitem="@layout/monttakrecycler"
                         app:layout_constraintTop_toTopOf="parent"
+                        android:background="@drawable/round"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         android:visibility="gone"/>

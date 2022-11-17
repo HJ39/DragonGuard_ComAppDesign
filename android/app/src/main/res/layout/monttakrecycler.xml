@@ -5,14 +5,15 @@
     android:layout_width="300dp"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
-    >
+    android:paddingTop="5dp"
+    android:background="@drawable/round2">
 
     <ImageView
         android:id="@+id/img_rv_photo"
         android:layout_width="300dp"
         android:layout_height="200dp"
-        android:background="@drawable/round"
         android:layout_gravity="center_horizontal"
+        android:background="@drawable/round"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -24,16 +25,16 @@
         android:id="@+id/tv_rv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="제목"
-        android:textSize="20dp"
-        android:textStyle="bold"
         android:layout_gravity="center_horizontal"
         android:fontFamily="@font/mokwoosoosimgyul"
+        android:text="제목"
+        android:textColor="#020202"
+        android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        android:textColor="#020202"
         app:layout_constraintTop_toBottomOf="@+id/img_rv_photo"
         app:layout_constraintVertical_bias="0.033" />
 
@@ -41,14 +42,14 @@
         android:id="@+id/tv_rv_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="주소"
         android:layout_gravity="center_horizontal"
         android:fontFamily="@font/binggraesamancobold"
+        android:text="주소"
+        android:textColor="#020202"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        android:textColor="#020202"
         app:layout_constraintTop_toBottomOf="@+id/tv_rv_title" />
 
 
