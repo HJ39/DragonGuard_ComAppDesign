@@ -1,27 +1,32 @@
 package com.sys.test.activity
 
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.Menu
 import android.view.MenuItem
-import android.view.WindowInsets
-import android.view.WindowManager
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import androidx.core.view.WindowCompat
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.navigation.NavigationView
 import com.sys.test.R
 import com.sys.test.databinding.ActivityMainBinding
 
-import com.sys.test.network.Item
+import com.sys.test.viewpager.ViewPagerAdapter
 
 
 //메인화면 : 로딩화면 이후 메인 화면에 툴바 달기
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var binding : ActivityMainBinding
+    private val MIN_SCALE = 0.85f
+    private val MIN_ALPHA = 0.5f
+    var currentPosition=0
+    val handler= Handler(Looper.getMainLooper()){
+        setPage()
+        true
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -29,6 +34,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val intent = Intent(this@MainActivity, LoadingActivity::class.java)
         startActivity(intent)
         setToolbar()
+        binding.adviewpager.adapter = ViewPagerAdapter(getAdList())
+        binding.adviewpager.orientation =  ViewPager2.ORIENTATION_HORIZONTAL
+        binding.adviewpager.setPageTransformer(ZoomOutPageTransformer())
+        binding.adviewpager.isUserInputEnabled = false
+
+        val thread=Thread(PagerRunnable())
+        thread.start()
+
         binding.navigationView.setNavigationItemSelectedListener(this)
         binding.bol.setOnClickListener {
             var intent = Intent(applicationContext, SecondActivity::class.java)
@@ -53,6 +66,57 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             intent.putExtra("label","음식점")
             intent.putExtra("split","muk")
             startActivity(intent)
+        }
+    }
+    inner class ZoomOutPageTransformer : ViewPager2.PageTransformer {
+        override fun transformPage(view: View, position: Float) {
+            view.apply {
+                val pageWidth = width
+                val pageHeight = height
+                when {
+                    position < -1 -> { // [-Infinity,-1)
+                        // This page is way off-screen to the left.
+                        alpha = 0f
+                    }
+                    position <= 1 -> { // [-1,1]
+                        // Modify the default slide transition to shrink the page as well
+                        val scaleFactor = Math.max(MIN_SCALE, 1 - Math.abs(position))
+                        val vertMargin = pageHeight * (1 - scaleFactor) / 2
+                        val horzMargin = pageWidth * (1 - scaleFactor) / 2
+                        translationX = if (position < 0) {
+                            horzMargin - vertMargin / 2
+                        } else {
+                            horzMargin + vertMargin / 2
+                        }
+
+                        // Scale the page down (between MIN_SCALE and 1)
+                        scaleX = scaleFactor
+                        scaleY = scaleFactor
+
+                        // Fade the page relative to its size.
+                        alpha = (MIN_ALPHA +
+                                (((scaleFactor - MIN_SCALE) / (1 - MIN_SCALE)) * (1 - MIN_ALPHA)))
+                    }
+                    else -> { // (1,+Infinity]
+                        // This page is way off-screen to the right.
+                        alpha = 0f
+                    }
+                }
+            }
+        }
+    }
+    fun setPage(){
+        binding.adviewpager.setCurrentItem(currentPosition,true)
+        currentPosition+=1
+    }
+
+    //2초 마다 페이지 넘기기
+    inner class PagerRunnable:Runnable{
+        override fun run() {
+            while(true){
+                Thread.sleep(2000)
+                handler.sendEmptyMessage(0)
+            }
         }
     }
     //툴바 생성
@@ -89,5 +153,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }else{
             super.onBackPressed()
         }
+    }
+    private fun getAdList(): ArrayList<Int> {
+        return arrayListOf<Int>(R.drawable.mainbol, R.drawable.mainnol, R.drawable.mainmuk,R.drawable.mainshuil)
     }
 }

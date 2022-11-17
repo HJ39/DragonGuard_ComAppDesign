@@ -167,13 +167,11 @@
                 android:layout_weight="0.6"
                 android:orientation="horizontal">
 
-                <ImageButton
-                    android:id="@+id/mainunder"
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/adviewpager"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="#00ff0000"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/mainnol" />
+                    android:layout_height="match_parent"/>
+
 
             </LinearLayout>
 

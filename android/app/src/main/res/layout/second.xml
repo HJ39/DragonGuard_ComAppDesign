@@ -97,13 +97,10 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
-                    <ImageButton
-                        android:id="@+id/secondunder"
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/adviewpager2"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:backgroundTint="#00ff0000"
-                        android:scaleType="centerInside" />
+                        android:layout_height="match_parent"/>
 
                 </LinearLayout>
             </LinearLayout>

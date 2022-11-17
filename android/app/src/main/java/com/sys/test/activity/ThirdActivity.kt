@@ -5,25 +5,42 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.core.view.GravityCompat
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import com.sys.test.R
 import com.sys.test.databinding.ActivityThirdBinding
 import com.sys.test.profiledata.ProfileData
+import com.sys.test.viewpager.ViewPagerAdapter
 
 //third 화면 : 관광지 세부사항 표기
 class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     lateinit var datas: ProfileData
     private lateinit var thirdBinding: ActivityThirdBinding
+    private val MIN_SCALE = 0.85f
+    private val MIN_ALPHA = 0.5f
+    var currentPosition=0
+    val handler= Handler(Looper.getMainLooper()){
+        setPage()
+        true
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         thirdBinding = ActivityThirdBinding.inflate(layoutInflater)
         setContentView(thirdBinding.root)
         setToolbar()
+        thirdBinding.adviewpager3.adapter = ViewPagerAdapter(getAdList())
+        thirdBinding.adviewpager3.orientation =  ViewPager2.ORIENTATION_HORIZONTAL
+        thirdBinding.adviewpager3.setPageTransformer(ZoomOutPageTransformer())
+        thirdBinding.adviewpager3.isUserInputEnabled = false
+        val thread=Thread(PagerRunnable())
+        thread.start()
         datas = intent.getSerializableExtra("data") as ProfileData
         thirdBinding.thirdimage.clipToOutline = true
 
@@ -78,6 +95,60 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             }
         }
 
+    }
+    inner class ZoomOutPageTransformer : ViewPager2.PageTransformer {
+        override fun transformPage(view: View, position: Float) {
+            view.apply {
+                val pageWidth = width
+                val pageHeight = height
+                when {
+                    position < -1 -> { // [-Infinity,-1)
+                        // This page is way off-screen to the left.
+                        alpha = 0f
+                    }
+                    position <= 1 -> { // [-1,1]
+                        // Modify the default slide transition to shrink the page as well
+                        val scaleFactor = Math.max(MIN_SCALE, 1 - Math.abs(position))
+                        val vertMargin = pageHeight * (1 - scaleFactor) / 2
+                        val horzMargin = pageWidth * (1 - scaleFactor) / 2
+                        translationX = if (position < 0) {
+                            horzMargin - vertMargin / 2
+                        } else {
+                            horzMargin + vertMargin / 2
+                        }
+
+                        // Scale the page down (between MIN_SCALE and 1)
+                        scaleX = scaleFactor
+                        scaleY = scaleFactor
+
+                        // Fade the page relative to its size.
+                        alpha = (MIN_ALPHA +
+                                (((scaleFactor - MIN_SCALE) / (1 - MIN_SCALE)) * (1 - MIN_ALPHA)))
+                    }
+                    else -> { // (1,+Infinity]
+                        // This page is way off-screen to the right.
+                        alpha = 0f
+                    }
+                }
+            }
+        }
+    }
+    private fun getAdList(): ArrayList<Int> {
+        return arrayListOf<Int>(R.drawable.mainbol, R.drawable.mainnol, R.drawable.mainmuk,R.drawable.mainshuil)
+    }
+    fun setPage(){
+        thirdBinding.adviewpager3.setCurrentItem(currentPosition,true)
+        currentPosition+=1
+    }
+
+    //2초 마다 페이지 넘기기
+    inner class PagerRunnable:Runnable{
+        override fun run() {
+            while(true){
+                Thread.sleep(2000)
+                handler.sendEmptyMessage(0)
+            }
+        }
     }
     //툴바 생성
     private fun setToolbar() {
