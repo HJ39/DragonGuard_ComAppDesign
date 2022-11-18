@@ -18,6 +18,9 @@ import com.sys.test.R
 import com.sys.test.databinding.ActivityThirdBinding
 import com.sys.test.profiledata.ProfileData
 import com.sys.test.viewpager.ViewPagerAdapter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 //third 화면 : 관광지 세부사항 표기
 class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -39,8 +42,12 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         thirdBinding.adviewpager3.orientation =  ViewPager2.ORIENTATION_HORIZONTAL
         thirdBinding.adviewpager3.setPageTransformer(ZoomOutPageTransformer())
         thirdBinding.adviewpager3.isUserInputEnabled = false
-        val thread=Thread(PagerRunnable())
-        thread.start()
+        CoroutineScope(Dispatchers.IO).launch{
+            while(true){
+                Thread.sleep(10000)
+                handler.sendEmptyMessage(0)
+            }
+        }
         datas = intent.getSerializableExtra("data") as ProfileData
         thirdBinding.thirdimage.clipToOutline = true
 
@@ -96,6 +103,7 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         }
 
     }
+    //애니매이션 설정
     inner class ZoomOutPageTransformer : ViewPager2.PageTransformer {
         override fun transformPage(view: View, position: Float) {
             view.apply {
@@ -133,22 +141,14 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             }
         }
     }
+    //광고 리스트
     private fun getAdList(): ArrayList<Int> {
         return arrayListOf<Int>(R.drawable.mainbol, R.drawable.mainnol, R.drawable.mainmuk,R.drawable.mainshuil)
     }
+    //광고 페이지 넘기기
     fun setPage(){
         thirdBinding.adviewpager3.setCurrentItem(currentPosition,true)
         currentPosition+=1
-    }
-
-    //2초 마다 페이지 넘기기
-    inner class PagerRunnable:Runnable{
-        override fun run() {
-            while(true){
-                Thread.sleep(2000)
-                handler.sendEmptyMessage(0)
-            }
-        }
     }
     //툴바 생성
     private fun setToolbar() {

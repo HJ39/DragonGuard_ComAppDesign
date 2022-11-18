@@ -71,8 +71,12 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         secondBinding.adviewpager2.orientation =  ViewPager2.ORIENTATION_HORIZONTAL
         secondBinding.adviewpager2.setPageTransformer(ZoomOutPageTransformer())
         secondBinding.adviewpager2.isUserInputEnabled = false
-        val thread=Thread(PagerRunnable())
-        thread.start()
+        CoroutineScope(Dispatchers.IO).launch{
+            while(true){
+                Thread.sleep(10000)
+                handler.sendEmptyMessage(0)
+            }
+        }
         val intent = intent
         data = ArrayList<Item>()
         split = intent.getStringExtra("split")!!
@@ -217,6 +221,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         secondBinding.itemlist.addItemDecoration(HorizontalItemDecorator(10))
         secondBinding.itemlist.visibility = View.VISIBLE
     }
+    //애니매이션 설정
     inner class ZoomOutPageTransformer : ViewPager2.PageTransformer {
         override fun transformPage(view: View, position: Float) {
             view.apply {
@@ -254,9 +259,11 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             }
         }
     }
+    //광고 리스트
     private fun getAdList(): ArrayList<Int> {
         return arrayListOf<Int>(R.drawable.mainbol, R.drawable.mainnol, R.drawable.mainmuk,R.drawable.mainshuil)
     }
+    //광고 페이지 넘기기
     fun setPage(){
         secondBinding.adviewpager2.setCurrentItem(currentPosition,true)
         currentPosition+=1

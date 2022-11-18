@@ -15,6 +15,9 @@ import com.sys.test.R
 import com.sys.test.databinding.ActivityMainBinding
 
 import com.sys.test.viewpager.ViewPagerAdapter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 //메인화면 : 로딩화면 이후 메인 화면에 툴바 달기
@@ -39,8 +42,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.adviewpager.setPageTransformer(ZoomOutPageTransformer())
         binding.adviewpager.isUserInputEnabled = false
 
-        val thread=Thread(PagerRunnable())
-        thread.start()
+        CoroutineScope(Dispatchers.IO).launch{
+            while(true){
+                Thread.sleep(10000)
+                handler.sendEmptyMessage(0)
+            }
+        }
 
         binding.navigationView.setNavigationItemSelectedListener(this)
         binding.bol.setOnClickListener {
@@ -68,6 +75,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             startActivity(intent)
         }
     }
+    //애니매이션 설정
     inner class ZoomOutPageTransformer : ViewPager2.PageTransformer {
         override fun transformPage(view: View, position: Float) {
             view.apply {
@@ -105,19 +113,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
     }
+    //광고 페이지 넘기기
     fun setPage(){
         binding.adviewpager.setCurrentItem(currentPosition,true)
         currentPosition+=1
     }
-
-    //2초 마다 페이지 넘기기
-    inner class PagerRunnable:Runnable{
-        override fun run() {
-            while(true){
-                Thread.sleep(2000)
-                handler.sendEmptyMessage(0)
-            }
-        }
+    //광고 리스트
+    private fun getAdList(): ArrayList<Int> {
+        return arrayListOf<Int>(R.drawable.mainbol, R.drawable.mainnol, R.drawable.mainmuk,R.drawable.mainshuil)
     }
     //툴바 생성
     private fun setToolbar(){
@@ -153,8 +156,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }else{
             super.onBackPressed()
         }
-    }
-    private fun getAdList(): ArrayList<Int> {
-        return arrayListOf<Int>(R.drawable.mainbol, R.drawable.mainnol, R.drawable.mainmuk,R.drawable.mainshuil)
     }
 }
