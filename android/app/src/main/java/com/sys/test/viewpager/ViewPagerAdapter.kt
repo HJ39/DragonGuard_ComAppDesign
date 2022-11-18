@@ -7,13 +7,28 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.sys.test.R
 
+//뷰페이저 어뎁터 구현
 class ViewPagerAdapter(adList: ArrayList<Int>) : RecyclerView.Adapter<ViewPagerAdapter.PagerViewHolder>() {
     var item = adList
     inner class PagerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var imageView_ad = itemView.findViewById<ImageView>(R.id.advertise_img)
-
+        private val imageViewAd = itemView.findViewById<ImageView>(R.id.advertise_img)
         fun onBind(res: Int) {
-            imageView_ad.setImageResource(res)
+            //이미지뷰 리소스와 tag 변경
+            imageViewAd.setImageResource(res)
+            when(res){
+                R.drawable.mainbol->{
+                    imageViewAd.tag = "볼거리"
+                }
+                R.drawable.mainnol->{
+                    imageViewAd.tag = "놀멍"
+                }
+                R.drawable.mainmuk->{
+                    imageViewAd.tag = "먹거리"
+                }
+                R.drawable.mainshuil->{
+                    imageViewAd.tag = "쉴멍"
+                }
+            }
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) :PagerViewHolder {

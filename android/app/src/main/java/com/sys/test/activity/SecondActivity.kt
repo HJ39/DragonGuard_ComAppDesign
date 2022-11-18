@@ -1,7 +1,7 @@
 package com.sys.test.activity
 
 import android.content.Intent
-import android.os.Build
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -9,10 +9,9 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.WindowManager
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -20,7 +19,7 @@ import com.google.android.material.navigation.NavigationView
 import com.sys.test.R
 import com.sys.test.databinding.SecondBinding
 import com.sys.test.network.Item
-import com.sys.test.network.KakaoMapApi
+import com.sys.test.network.JeJuPlaceApi
 import com.sys.test.network.Monttak
 import com.sys.test.profiledata.HorizontalItemDecorator
 import com.sys.test.profiledata.ProfileAdapter
@@ -40,6 +39,7 @@ import java.util.concurrent.TimeUnit
 
 //세컨 화면 : 프로그래스 바 이후 다 받으면 리사이클러뷰로 정보 제공
 class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    //전역변수 선언  뷰바인딩, 뷰페이저, 핸들러등
     private var resultDec = 45
     private var split = ""
     private var label = ""
@@ -62,21 +62,30 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         .writeTimeout(15, TimeUnit.SECONDS)
         .build()
     private lateinit var secondBinding: SecondBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         secondBinding = SecondBinding.inflate(layoutInflater)
         setContentView(secondBinding.root)
+
+        //툴바 설정
         setToolbar()
+
+        //광고배너 어뎁터 및 애니메이션 설정
         secondBinding.adviewpager2.adapter = ViewPagerAdapter(getAdList())
         secondBinding.adviewpager2.orientation =  ViewPager2.ORIENTATION_HORIZONTAL
         secondBinding.adviewpager2.setPageTransformer(ZoomOutPageTransformer())
         secondBinding.adviewpager2.isUserInputEnabled = false
+
+        //자동 스크롤 광고 시작
         CoroutineScope(Dispatchers.IO).launch{
             while(true){
                 Thread.sleep(10000)
                 handler.sendEmptyMessage(0)
             }
         }
+
+        //넘어오는 값으로 주제 판별 및 제목 변경
         val intent = intent
         data = ArrayList<Item>()
         split = intent.getStringExtra("split")!!
@@ -97,14 +106,53 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 secondBinding.mung.text = "쉴멍"
             }
         }
+
+        //api호출을 위한 url등 준비및 호출
         val retrofit =
             Retrofit.Builder().baseUrl("https://api.visitjeju.net/vsjApi/contents/")
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create()).build()
-        val api = retrofit.create(KakaoMapApi::class.java)
+        val api = retrofit.create(JeJuPlaceApi::class.java)
         Log.d("apicall:", " : ")
         apiCall(api, label, split)
+
+        //광고 클릭 리스너 구현
+        secondBinding.adviewpager2.setOnClickListener {
+            val adimg = findViewById<ImageView>(R.id.advertise_img)
+            when(adimg.tag){
+                "볼거리"->{
+                    var intent = Intent(Intent.ACTION_DIAL)
+                    intent.data = Uri.parse("tel:1")
+                    if(intent.resolveActivity(packageManager) != null){
+                        startActivity(intent)
+                    }
+                }
+                "놀멍"->{
+                    var intent = Intent(Intent.ACTION_DIAL)
+                    intent.data = Uri.parse("tel:2")
+                    if(intent.resolveActivity(packageManager) != null){
+                        startActivity(intent)
+                    }
+                }
+                "먹거리"->{
+                    var intent = Intent(Intent.ACTION_DIAL)
+                    intent.data = Uri.parse("tel:3")
+                    if(intent.resolveActivity(packageManager) != null){
+                        startActivity(intent)
+                    }
+                }
+                "쉴멍"->{
+                    var intent = Intent(Intent.ACTION_DIAL)
+                    intent.data = Uri.parse("tel:4")
+                    if(intent.resolveActivity(packageManager) != null){
+                        startActivity(intent)
+                    }
+                }
+            }
+
+        }
     }
+
     //받은 관광정보를 리사이클러뷰에 추가
     private fun initRecycler(items: ArrayList<Item>, label: String, split: String) {
         var itemCount = 0
@@ -177,13 +225,14 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         }
         Log.d("size", profileAdapter.itemCount.toString())
     }
+
     //api 호출 및 initRecyclerview()호출
-    private fun apiCall(api: KakaoMapApi, label: String, split: String) {
+    private fun apiCall(api: JeJuPlaceApi, label: String, split: String) {
         var count = 0
         if (resultDec >= 0) {
             for (j in (resultDec - 4)..(resultDec)) {
-                val kakaoMap = api.getDataPage(j)
-                kakaoMap.enqueue(object : Callback<Monttak> {
+                val jejuPlace = api.getDataPage(j)
+                jejuPlace.enqueue(object : Callback<Monttak> {
                     override fun onResponse(call: Call<Monttak>, response: Response<Monttak>) {
                         if (response.isSuccessful && response.code() == 200) {
                             if (data.isNullOrEmpty()) {
@@ -215,12 +264,14 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         resultDec -= count
         Log.d("결과 resultDec", "성공 : ${resultDec}")
     }
+
     //줄 간격 설정 및 visible
     private fun chooseView() {
         secondBinding.itemlist.addItemDecoration(VerticalItemDecorator(20))
         secondBinding.itemlist.addItemDecoration(HorizontalItemDecorator(10))
         secondBinding.itemlist.visibility = View.VISIBLE
     }
+
     //애니매이션 설정
     inner class ZoomOutPageTransformer : ViewPager2.PageTransformer {
         override fun transformPage(view: View, position: Float) {
@@ -259,6 +310,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             }
         }
     }
+
     //광고 리스트
     private fun getAdList(): ArrayList<Int> {
         return arrayListOf<Int>(R.drawable.mainbol, R.drawable.mainnol, R.drawable.mainmuk,R.drawable.mainshuil)
@@ -278,6 +330,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             }
         }
     }
+
     //툴바 생성
     private fun setToolbar() {
         setSupportActionBar(secondBinding.toolbar)
@@ -302,6 +355,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         }
         return super.onOptionsItemSelected(item)
     }
+
     //아이템이 눌려도 닫음
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {  // 네비게이션 메뉴가 클릭되면 스낵바가 나타난다.
@@ -311,6 +365,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         secondBinding.drawerLayout.closeDrawers() // 기능을 수행하고 네비게이션을 닫아준다.
         return false
     }
+
     //뒤로가기 버튼눌렸을때 닫음
     override fun onBackPressed() {
         if (secondBinding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -319,6 +374,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             super.onBackPressed()
         }
     }
+
     //데이터를 더 받고 recyclerview에 추가함
     private fun loadMorePosts() {
         if(secondBinding.loading.visibility == View.GONE) {
@@ -327,12 +383,13 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 val retrofit = Retrofit.Builder().baseUrl("https://api.visitjeju.net/vsjApi/contents/")
                     .client(okHttpClient)
                     .addConverterFactory(GsonConverterFactory.create()).build()
-                val api = retrofit.create(KakaoMapApi::class.java)
+                val api = retrofit.create(JeJuPlaceApi::class.java)
                 Log.d("loadMore", "dd")
                 apiCall(api, label, split)
             }
         }
     }
+
     //마지막 item에서 스크롤 하면 로딩과 함께 다시 받아서 추가하기
     private fun initScrollListener() {
         secondBinding.itemlist.addOnScrollListener(object : RecyclerView.OnScrollListener() {

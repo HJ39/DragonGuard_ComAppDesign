@@ -13,5 +13,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:tag="내용"
         android:src="@drawable/mainnol" />
 </androidx.constraintlayout.widget.ConstraintLayout>
