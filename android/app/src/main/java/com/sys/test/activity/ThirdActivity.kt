@@ -29,8 +29,8 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     private lateinit var thirdBinding: ActivityThirdBinding
     private val MIN_SCALE = 0.85f
     private val MIN_ALPHA = 0.5f
-    var currentPosition=0
-    val handler= Handler(Looper.getMainLooper()){
+    var currentPosition = 0
+    val handler = Handler(Looper.getMainLooper()) {
         setPage()
         true
     }
@@ -45,13 +45,13 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
         //광고배너 어뎁터 및 애니메이션 설정
         thirdBinding.adviewpager3.adapter = ViewPagerAdapter(getAdList())
-        thirdBinding.adviewpager3.orientation =  ViewPager2.ORIENTATION_HORIZONTAL
+        thirdBinding.adviewpager3.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         thirdBinding.adviewpager3.setPageTransformer(ZoomOutPageTransformer())
         thirdBinding.adviewpager3.isUserInputEnabled = false
 
         //자동 스크롤 광고 시작
-        CoroutineScope(Dispatchers.IO).launch{
-            while(true){
+        CoroutineScope(Dispatchers.IO).launch {
+            while (true) {
                 Thread.sleep(10000)
                 handler.sendEmptyMessage(0)
             }
@@ -66,21 +66,21 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         //받은 정보 화면에 정리해서 사진, 텍스트등을 보여주기
         thirdBinding.thirdtitle.text = datas.item.title
         thirdBinding.thirdtitle2.append(datas.item.title)
-        if(datas.item.roadaddress.isNullOrBlank()|| datas.item.roadaddress =="--"){
+        if (datas.item.roadaddress.isNullOrBlank() || datas.item.roadaddress == "--") {
             thirdBinding.thirdaddr.append("정보 없음")
-        }else{
+        } else {
             thirdBinding.thirdaddr.append(datas.item.roadaddress)
         }
         thirdBinding.thirdintro.append(datas.item.introduction ?: "정보 없음")
         Glide.with(this).load(datas.thumbnailpath).into(thirdBinding.thirdimage)
-        if(datas.item.phoneno.isNullOrEmpty()|| datas.item.phoneno.isNullOrBlank() || datas.item.phoneno=="--"){
+        if (datas.item.phoneno.isNullOrEmpty() || datas.item.phoneno.isNullOrBlank() || datas.item.phoneno == "--") {
             thirdBinding.tell.visibility = View.GONE
             thirdBinding.tell.isEnabled = false
             thirdBinding.thirdphone.append("정보 없음")
-        }else{
+        } else {
             thirdBinding.thirdphone.append(datas.item.phoneno)
         }
-        if (datas.item.latitude==null || datas.item.longitude == null|| datas.item.latitude==0.0 || datas.item.longitude == 0.0) {
+        if (datas.item.latitude == null || datas.item.longitude == null || datas.item.latitude == 0.0 || datas.item.longitude == 0.0) {
             thirdBinding.map.isEnabled = false
             thirdBinding.map.visibility = View.GONE
         }
@@ -89,26 +89,29 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         thirdBinding.tell.setOnClickListener {
             var intent = Intent(Intent.ACTION_DIAL)
             intent.data = Uri.parse("tel:${datas.item.phoneno}")
-            if(intent.resolveActivity(packageManager) != null){
+            if (intent.resolveActivity(packageManager) != null) {
                 startActivity(intent)
             }
         }
         thirdBinding.map.setOnClickListener {
-            when(datas.item.contentscd.label){
-                "음식점"->{
-                    val url = "geo:${datas.item.latitude},${datas.item.longitude}?q=${datas.item.title}"
+            when (datas.item.contentscd.label) {
+                "음식점" -> {
+                    val url =
+                        "geo:${datas.item.latitude},${datas.item.longitude}?q=${datas.item.title}"
                     var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                     intent.addCategory(Intent.CATEGORY_BROWSABLE)
                     startActivity(intent)
                 }
-                "숙박"->{
-                    val url = "geo:${datas.item.latitude},${datas.item.longitude}?q=${datas.item.title}"
+                "숙박" -> {
+                    val url =
+                        "geo:${datas.item.latitude},${datas.item.longitude}?q=${datas.item.title}"
                     var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                     intent.addCategory(Intent.CATEGORY_BROWSABLE)
                     startActivity(intent)
                 }
-                else->{
-                    val url = "geo:${datas.item.latitude},${datas.item.longitude}?q=${datas.item.roadaddress}"
+                else -> {
+                    val url =
+                        "geo:${datas.item.latitude},${datas.item.longitude}?q=${datas.item.roadaddress}"
                     var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                     intent.addCategory(Intent.CATEGORY_BROWSABLE)
                     startActivity(intent)
@@ -117,41 +120,44 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         }
 
         //광고 클릭 리스너 구현
-        thirdBinding.adviewpager3.setOnClickListener {
-            val adimg = findViewById<ImageView>(R.id.advertise_img)
-            when(adimg.tag){
-                "볼거리"->{
-                    var intent = Intent(Intent.ACTION_DIAL)
-                    intent.data = Uri.parse("tel:1")
-                    if(intent.resolveActivity(packageManager) != null){
-                        startActivity(intent)
-                    }
-                }
-                "놀멍"->{
-                    var intent = Intent(Intent.ACTION_DIAL)
-                    intent.data = Uri.parse("tel:2")
-                    if(intent.resolveActivity(packageManager) != null){
-                        startActivity(intent)
-                    }
-                }
-                "먹거리"->{
-                    var intent = Intent(Intent.ACTION_DIAL)
-                    intent.data = Uri.parse("tel:3")
-                    if(intent.resolveActivity(packageManager) != null){
-                        startActivity(intent)
-                    }
-                }
-                "쉴멍"->{
-                    var intent = Intent(Intent.ACTION_DIAL)
-                    intent.data = Uri.parse("tel:4")
-                    if(intent.resolveActivity(packageManager) != null){
-                        startActivity(intent)
-                    }
-                }
-            }
-
-        }
+//        thirdBinding.adviewpager3.setOnClickListener {
+//            val adimg = findViewById<ImageView>(R.id.advertise_img)
+//            var intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://ijto.or.kr/korean/"))
+//            startActivity(intent)
+//            when (adimg.tag) {
+//                "볼거리" -> {
+//                    var intent = Intent(Intent.ACTION_DIAL)
+//                    intent.data = Uri.parse("tel:1")
+//                    if (intent.resolveActivity(packageManager) != null) {
+//                        startActivity(intent)
+//                    }
+//                }
+//                "놀멍" -> {
+//                    var intent = Intent(Intent.ACTION_DIAL)
+//                    intent.data = Uri.parse("tel:2")
+//                    if (intent.resolveActivity(packageManager) != null) {
+//                        startActivity(intent)
+//                    }
+//                }
+//                "먹거리" -> {
+//                    var intent = Intent(Intent.ACTION_DIAL)
+//                    intent.data = Uri.parse("tel:3")
+//                    if (intent.resolveActivity(packageManager) != null) {
+//                        startActivity(intent)
+//                    }
+//                }
+//                "쉴멍" -> {
+//                    var intent = Intent(Intent.ACTION_DIAL)
+//                    intent.data = Uri.parse("tel:4")
+//                    if (intent.resolveActivity(packageManager) != null) {
+//                        startActivity(intent)
+//                    }
+//                }
+//            }
+//
+//        }
     }
+
     //애니매이션 설정
     inner class ZoomOutPageTransformer : ViewPager2.PageTransformer {
         override fun transformPage(view: View, position: Float) {
@@ -193,13 +199,13 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
     //광고 리스트
     private fun getAdList(): ArrayList<Int> {
-        return arrayListOf<Int>(R.drawable.mainbol, R.drawable.mainnol, R.drawable.mainmuk,R.drawable.mainshuil)
+        return arrayListOf<Int>(R.drawable.ad1, R.drawable.ad2, R.drawable.ad3, R.drawable.ad4)
     }
 
     //광고 페이지 넘기기
-    fun setPage(){
-        thirdBinding.adviewpager3.setCurrentItem(currentPosition,true)
-        currentPosition+=1
+    fun setPage() {
+        thirdBinding.adviewpager3.setCurrentItem(currentPosition, true)
+        currentPosition += 1
     }
 
     //툴바 생성

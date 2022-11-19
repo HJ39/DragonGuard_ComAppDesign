@@ -16,16 +16,16 @@ class ViewPagerAdapter(adList: ArrayList<Int>) : RecyclerView.Adapter<ViewPagerA
             //이미지뷰 리소스와 tag 변경
             imageViewAd.setImageResource(res)
             when(res){
-                R.drawable.mainbol->{
+                R.drawable.ad1->{
                     imageViewAd.tag = "볼거리"
                 }
-                R.drawable.mainnol->{
+                R.drawable.ad2->{
                     imageViewAd.tag = "놀멍"
                 }
-                R.drawable.mainmuk->{
+                R.drawable.ad3->{
                     imageViewAd.tag = "먹거리"
                 }
-                R.drawable.mainshuil->{
+                R.drawable.ad4->{
                     imageViewAd.tag = "쉴멍"
                 }
             }
