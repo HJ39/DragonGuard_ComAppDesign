@@ -25,7 +25,7 @@ class ThirdViewController: UIViewController{
     //필요한 정보만 있는 제주 데이터 리스트
     var datalist: [JejuInfo]?
     var nowpage = 0 //광고 현재 페이지 위치
-    var adArray: [String] = ["삼겹살","짜장면","삼겹살","짜장면","삼겹살","짜장면"]
+    var adArray: [String] = ["광고1","광고2","광고3","광고4"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,6 +129,7 @@ extension ThirdViewController: UICollectionViewDelegate, UICollectionViewDataSou
     //collectionView 내부 cell 설정
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomColl", for: indexPath) as! ThirdScreenCollectionViewCell
+
         collectionCell.imgView.image = UIImage(named: adArray[indexPath.row])
         return collectionCell
     }

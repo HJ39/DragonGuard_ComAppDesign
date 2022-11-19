@@ -16,7 +16,7 @@ class SecondViewController: UIViewController{
     
     @IBOutlet var collectionView: UICollectionView!
     var nowpage = 0
-    var adArray: [String] = ["삼겹살","짜장면","삼겹살","짜장면","삼겹살","짜장면"]
+    var adArray: [String] = ["광고1","광고2","광고3","광고4"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
