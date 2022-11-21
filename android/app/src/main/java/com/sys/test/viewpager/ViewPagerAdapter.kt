@@ -15,20 +15,21 @@ class ViewPagerAdapter(adList: ArrayList<Int>) : RecyclerView.Adapter<ViewPagerA
         fun onBind(res: Int) {
             //이미지뷰 리소스와 tag 변경
             imageViewAd.setImageResource(res)
-            when(res){
-                R.drawable.ad1->{
-                    imageViewAd.tag = "볼거리"
-                }
-                R.drawable.ad2->{
-                    imageViewAd.tag = "놀멍"
-                }
-                R.drawable.ad3->{
-                    imageViewAd.tag = "먹거리"
-                }
-                R.drawable.ad4->{
-                    imageViewAd.tag = "쉴멍"
-                }
-            }
+            //이미지뷰에 tag 달기(이미지 구분)
+//            when(res){
+//                R.drawable.ad1->{
+//                    imageViewAd.tag = "볼거리"
+//                }
+//                R.drawable.ad2->{
+//                    imageViewAd.tag = "놀멍"
+//                }
+//                R.drawable.ad3->{
+//                    imageViewAd.tag = "먹거리"
+//                }
+//                R.drawable.ad4->{
+//                    imageViewAd.tag = "쉴멍"
+//                }
+//            }
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) :PagerViewHolder {

@@ -155,7 +155,10 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 //        }
     }
 
-    //받은 관광정보를 리사이클러뷰에 추가
+    /*
+    받은 관광정보를 리사이클러뷰에 추가
+    비어있거나 잘못된 자료 필터링
+    * */
     private fun initRecycler(items: ArrayList<Item>, label: String, split: String) {
         var itemCount = 0
         val token = label.split(",")
@@ -228,7 +231,11 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         Log.d("size", profileAdapter.itemCount.toString())
     }
 
-    //api 호출 및 initRecyclerview()호출
+    /*
+    api 호출 및 initRecyclerview()호출
+    api 5페이지씩 호출하여 정보를 보여줌
+    5개의 호출이 도착하면 로딩바 제거하고 화면을 띄워줌
+    */
     private fun apiCall(api: JeJuPlaceApi, label: String, split: String) {
         var count = 0
         if (resultDec >= 0) {
@@ -251,10 +258,8 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                                 resultAmount = 0
                                 secondBinding.loading.visibility = View.GONE
                             }
-
                         }
                     }
-
                     override fun onFailure(call: Call<Monttak>, t: Throwable) {
                         Log.d("결과:", "실패 : $t")
                     }
@@ -262,7 +267,6 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 count++
             }
         }
-
         resultDec -= count
         Log.d("결과 resultDec", "성공 : ${resultDec}")
     }
@@ -412,7 +416,6 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                         loadMorePosts()
                     }
                 }
-
             }
         })
     }
