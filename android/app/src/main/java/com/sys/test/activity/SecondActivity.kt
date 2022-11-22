@@ -17,6 +17,9 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.navigation.NavigationView
 import com.sys.test.R
+import com.sys.test.connect.DockerJejuPlaceApi
+import com.sys.test.connect.DockerMonttak
+import com.sys.test.connect.DockerMonttakItem
 import com.sys.test.databinding.SecondBinding
 import com.sys.test.network.Item
 import com.sys.test.network.JeJuPlaceApi
@@ -41,6 +44,7 @@ import java.util.concurrent.TimeUnit
 class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     //전역변수 선언  뷰바인딩, 뷰페이저, 핸들러등
     private var resultDec = 45
+    private var resultDecD = 0
     private var split = ""
     private var label = ""
     private var count = 0
@@ -48,7 +52,9 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     lateinit var profileAdapter: ProfileAdapter
     private var datas = ArrayList<ProfileData>()
     private lateinit var data: ArrayList<Item>
+    private lateinit var dataD : ArrayList<DockerMonttakItem>
     private var resultAmount = 0
+    private var resultAmountD = 0
     private val MIN_SCALE = 0.85f
     private val MIN_ALPHA = 0.5f
     var currentPosition=0
@@ -77,6 +83,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         secondBinding.adviewpager2.setPageTransformer(ZoomOutPageTransformer())
         secondBinding.adviewpager2.isUserInputEnabled = false
 
+
         //자동 스크롤 광고 시작
         CoroutineScope(Dispatchers.IO).launch{
             while(true){
@@ -88,6 +95,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         //넘어오는 값으로 주제 판별 및 제목 변경
         val intent = intent
         data = ArrayList<Item>()
+        dataD = ArrayList<DockerMonttakItem>()
         split = intent.getStringExtra("split")!!
         label = intent.getStringExtra("label")!!
         Log.d("split:", " : $split")
@@ -116,6 +124,13 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         Log.d("apicall:", " : ")
         apiCall(api, label, split)
 
+        val retrofitD =
+            Retrofit.Builder().baseUrl("http://172.30.1.89:5001/api/")
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create()).build()
+        val apiD = retrofitD.create(DockerJejuPlaceApi::class.java)
+
+        apiCallD(apiD, label, split)
         //광고 클릭 리스너 구현
 //        secondBinding.adviewpager2.setOnClickListener {
 //            val adimg = findViewById<ImageView>(R.id.advertise_img)
@@ -216,13 +231,13 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         }
         count += itemCount
         Log.d("실제1 : ", count.toString())
-        if (resultDec == 40) {
+        if (resultDec == 42) {
             Log.d("초기화", "")
             profileAdapter = ProfileAdapter(datas, this)
             secondBinding.itemlist.layoutManager = LinearLayoutManager(this)
             profileAdapter.notifyDataSetChanged()
         }
-        if (resultDec == 40) {
+        if (resultDec == 42) {
             secondBinding.itemlist.adapter = profileAdapter
             chooseView()
         } else {
@@ -233,13 +248,13 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     /*
     api 호출 및 initRecyclerview()호출
-    api 5페이지씩 호출하여 정보를 보여줌
-    5개의 호출이 도착하면 로딩바 제거하고 화면을 띄워줌
+    api 3페이지씩 호출하여 정보를 보여줌
+    3개의 호출이 도착하면 로딩바 제거하고 화면을 띄워줌
     */
     private fun apiCall(api: JeJuPlaceApi, label: String, split: String) {
         var count = 0
         if (resultDec >= 0) {
-            for (j in (resultDec - 4)..(resultDec)) {
+            for (j in (resultDec - 2)..(resultDec)) {
                 val jejuPlace = api.getDataPage(j)
                 jejuPlace.enqueue(object : Callback<Monttak> {
                     override fun onResponse(call: Call<Monttak>, response: Response<Monttak>) {
@@ -251,7 +266,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                             }
                             Log.d("결과", "성공 : ${response.raw()}")
                             resultAmount++
-                            if (resultAmount == 5) {
+                            if (resultAmount == 3) {
                                 initRecycler(data, label, split)
                                 initScrollListener()
                                 Log.d("최종 결과", "성공")
@@ -268,9 +283,39 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             }
         }
         resultDec -= count
-        Log.d("결과 resultDec", "성공 : ${resultDec}")
     }
 
+    private fun apiCallD(api: DockerJejuPlaceApi, label: String, split: String) {
+        var result = 0
+        if (resultDecD >= 0) {
+            val jejuPlace = api.getDataPage(resultDecD,resultDecD+100)
+            jejuPlace.enqueue(object : Callback<List<DockerMonttakItem>> {
+                override fun onResponse(call: Call<List<DockerMonttakItem>>, response: Response<List<DockerMonttakItem>>) {
+                    if (response.isSuccessful && response.code() == 200) {
+                        if (dataD.isNullOrEmpty()) {
+                            dataD = response.body()!! as ArrayList<DockerMonttakItem>
+                        } else {
+                            dataD.addAll(response.body()!!)
+                        }
+                        Log.d("결과", "성공 : ${response.raw()}")
+                        result++
+                        if (result == 1) {
+                            Log.d("도커 결과", "성공${dataD[0].address}")
+//                            initRecycler(data, label, split)
+//                            initScrollListener()
+                            Log.d("도커 결과", "성공")
+
+                        }
+                    }
+                }
+                override fun onFailure(call: Call<List<DockerMonttakItem>>, t: Throwable) {
+                    Log.d("도커 결과:", "실패 : $t")
+                }
+            })
+        }
+        resultDecD += 100
+        Log.d("결과 resultDecD", "성공 : ${4400-resultDecD}")
+    }
     //줄 간격 설정 및 visible
     private fun chooseView() {
         secondBinding.itemlist.addItemDecoration(VerticalItemDecorator(20))
