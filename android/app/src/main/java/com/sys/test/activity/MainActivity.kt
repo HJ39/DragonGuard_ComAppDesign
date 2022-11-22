@@ -64,14 +64,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //볼거리, 쉴멍, 먹거리, 놀멍 버튼 클릭리스너 구현 (누르면 각 주제별 정보를 넘김)
         binding.bol.setOnClickListener {
             var intent = Intent(applicationContext, SecondActivity::class.java)
-            intent.putExtra("label","정보,축제/행사")
+            intent.putExtra("label","정보,축제/행사,관광지")
             intent.putExtra("split","bol")
             startActivity(intent)
         }
         binding.nol.setOnClickListener {
             var intent = Intent(applicationContext, SecondActivity::class.java)
             intent.putExtra("label","테마여행,쇼핑")
-            intent.putExtra("split","bol")
+            intent.putExtra("split","nol")
             startActivity(intent)
         }
         binding.shil.setOnClickListener {
