@@ -175,75 +175,75 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     받은 관광정보를 리사이클러뷰에 추가
     비어있거나 잘못된 자료 필터링
     * */
-    private fun initRecycler(items: ArrayList<Item>, label: String, split: String) {
-        var itemCount = 0
-        val token = label.split(",")
-        for (i in 0 until items.size) {
-            if (items[i].repPhoto != null && items[i].repPhoto.photoid != null) {
-                if (items[i].repPhoto.photoid.thumbnailpath != null && token.contains(
-                        items[i].contentscd.label
-                    )
-                ) {
-                    if (!items[i].roadaddress.isNullOrEmpty()) {
-                        if (!datas.contains(
-                                ProfileData(
-                                    roadaddress = "${items[i].roadaddress}",
-                                    thumbnailpath = items[i].repPhoto.photoid.thumbnailpath,
-                                    title = items[i].title,
-                                    item = items[i]
-                                )
-                            )
-                        ) {
-                            datas.add(
-                                ProfileData(
-                                    roadaddress = "${items[i].roadaddress}",
-                                    thumbnailpath = items[i].repPhoto.photoid.thumbnailpath,
-                                    title = items[i].title,
-                                    item = items[i]
-                                )
-                            )
-                        }
-
-                        itemCount++
-                    } else {
-                        if (!datas.contains(
-                                ProfileData(
-                                    roadaddress = "",
-                                    thumbnailpath = items[i].repPhoto.photoid.thumbnailpath,
-                                    title = items[i].title,
-                                    item = items[i]
-                                )
-                            )
-                        ) {
-                            datas.add(
-                                ProfileData(
-                                    roadaddress = "",
-                                    thumbnailpath = items[i].repPhoto.photoid.thumbnailpath,
-                                    title = items[i].title,
-                                    item = items[i]
-                                )
-                            )
-                        }
-
-                        itemCount++
-                    }
-                }
-            }
-        }
-        count += itemCount
-        Log.d("실제1 : ", count.toString())
-        if (resultDec == 42) {
-            Log.d("초기화", "")
-            profileAdapter = ProfileAdapter(datas, this)
-            secondBinding.itemlist.layoutManager = LinearLayoutManager(this)
-            profileAdapter.notifyDataSetChanged()
-            secondBinding.itemlist.adapter = profileAdapter
-            chooseView()
-        }else {
-            secondBinding.itemlist.scrollToPosition(position)
-        }
-        Log.d("size", profileAdapter.itemCount.toString())
-    }
+//    private fun initRecycler(items: ArrayList<Item>, label: String, split: String) {
+//        var itemCount = 0
+//        val token = label.split(",")
+//        for (i in 0 until items.size) {
+//            if (items[i].repPhoto != null && items[i].repPhoto.photoid != null) {
+//                if (items[i].repPhoto.photoid.thumbnailpath != null && token.contains(
+//                        items[i].contentscd.label
+//                    )
+//                ) {
+//                    if (!items[i].roadaddress.isNullOrEmpty()) {
+//                        if (!datas.contains(
+//                                ProfileData(
+//                                    roadaddress = "${items[i].roadaddress}",
+//                                    thumbnailpath = items[i].repPhoto.photoid.thumbnailpath,
+//                                    title = items[i].title,
+//                                    item = items[i]
+//                                )
+//                            )
+//                        ) {
+//                            datas.add(
+//                                ProfileData(
+//                                    roadaddress = "${items[i].roadaddress}",
+//                                    thumbnailpath = items[i].repPhoto.photoid.thumbnailpath,
+//                                    title = items[i].title,
+//                                    item = items[i]
+//                                )
+//                            )
+//                        }
+//
+//                        itemCount++
+//                    } else {
+//                        if (!datas.contains(
+//                                ProfileData(
+//                                    roadaddress = "",
+//                                    thumbnailpath = items[i].repPhoto.photoid.thumbnailpath,
+//                                    title = items[i].title,
+//                                    item = items[i]
+//                                )
+//                            )
+//                        ) {
+//                            datas.add(
+//                                ProfileData(
+//                                    roadaddress = "",
+//                                    thumbnailpath = items[i].repPhoto.photoid.thumbnailpath,
+//                                    title = items[i].title,
+//                                    item = items[i]
+//                                )
+//                            )
+//                        }
+//
+//                        itemCount++
+//                    }
+//                }
+//            }
+//        }
+//        count += itemCount
+//        Log.d("실제1 : ", count.toString())
+//        if (resultDec == 42) {
+//            Log.d("초기화", "")
+//            profileAdapter = ProfileAdapter(datas, this)
+//            secondBinding.itemlist.layoutManager = LinearLayoutManager(this)
+//            profileAdapter.notifyDataSetChanged()
+//            secondBinding.itemlist.adapter = profileAdapter
+//            chooseView()
+//        }else {
+//            secondBinding.itemlist.scrollToPosition(position)
+//        }
+//        Log.d("size", profileAdapter.itemCount.toString())
+//    }
 
     /*
     db서버에서 받은 관광정보를 리사이클러뷰에 추가
@@ -257,41 +257,21 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                     items[i].contentscdlabel
                 )
             ) {
-                if (!items[i].road_address.isNullOrEmpty()) {
-                    if (!datasD.contains(
-                            DockerProfileData(
-                                monttakItem = items[i],
-                                title = items[i].title
-                            )
+                if (!datasD.contains(
+                        DockerProfileData(
+                            monttakItem = items[i],
+                            title = items[i].title
                         )
-                    ) {
-                        datasD.add(
-                            DockerProfileData(
-                                monttakItem = items[i],
-                                title = items[i].title
-                            )
+                    )
+                ) {
+                    datasD.add(
+                        DockerProfileData(
+                            monttakItem = items[i],
+                            title = items[i].title
                         )
-                    }
-
-                    itemCount++
-                } else {
-                    if (!datasD.contains(
-                            DockerProfileData(
-                                monttakItem = items[i],
-                                title = items[i].title
-                            )
-                        )
-                    ) {
-                        datasD.add(
-                            DockerProfileData(
-                                monttakItem = items[i],
-                                title = items[i].title
-                            )
-                        )
-                    }
-
-                    itemCount++
+                    )
                 }
+                itemCount++
             }
 
         }

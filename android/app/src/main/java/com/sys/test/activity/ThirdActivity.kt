@@ -72,7 +72,9 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         } else {
             thirdBinding.thirdaddr.append(datas.monttakItem.road_address)
         }
-        thirdBinding.thirdintro.append(datas.monttakItem.introduction ?: "정보 없음")
+        if(datas.monttakItem.introduction.isBlank()){
+            thirdBinding.thirdintro.append("정보 없음")
+        }
         Glide.with(this).load(datas.monttakItem.thumbnailpath).into(thirdBinding.thirdimage)
         if (datas.monttakItem.phoneno.isNullOrEmpty() || datas.monttakItem.phoneno.isNullOrBlank() || datas.monttakItem.phoneno == "--") {
             thirdBinding.tell.visibility = View.GONE
