@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import com.sys.test.R
 import com.sys.test.databinding.ActivityThirdBinding
+import com.sys.test.profiledata.DockerProfileData
 import com.sys.test.profiledata.ProfileData
 import com.sys.test.viewpager.ViewPagerAdapter
 import kotlinx.coroutines.CoroutineScope
@@ -25,7 +26,7 @@ import kotlinx.coroutines.launch
 //third 화면 : 관광지 세부사항 표기
 class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     //전역변수 선언  뷰바인딩, 뷰페이저, 핸들러
-    lateinit var datas: ProfileData
+    lateinit var datas: DockerProfileData
     private lateinit var thirdBinding: ActivityThirdBinding
     private val MIN_SCALE = 0.85f
     private val MIN_ALPHA = 0.5f
@@ -58,66 +59,66 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         }
 
         //두번째 화면의 리사이클러뷰로부터 정보 받기
-        datas = intent.getSerializableExtra("data") as ProfileData
+        datas = intent.getSerializableExtra("data") as DockerProfileData
 
         //사진 모서리 둥글게 하기
         thirdBinding.thirdimage.clipToOutline = true
 
         //받은 정보 화면에 정리해서 사진, 텍스트등을 보여주기
-        thirdBinding.thirdtitle.text = datas.item.title
-        thirdBinding.thirdtitle2.append(datas.item.title)
-        if (datas.item.roadaddress.isNullOrBlank() || datas.item.roadaddress == "--") {
+        thirdBinding.thirdtitle.text = datas.title
+        thirdBinding.thirdtitle2.append(datas.title)
+        if (datas.monttakItem.road_address.isNullOrBlank() || datas.monttakItem.road_address == "--") {
             thirdBinding.thirdaddr.append("정보 없음")
         } else {
-            thirdBinding.thirdaddr.append(datas.item.roadaddress)
+            thirdBinding.thirdaddr.append(datas.monttakItem.road_address)
         }
-        thirdBinding.thirdintro.append(datas.item.introduction ?: "정보 없음")
-        Glide.with(this).load(datas.thumbnailpath).into(thirdBinding.thirdimage)
-        if (datas.item.phoneno.isNullOrEmpty() || datas.item.phoneno.isNullOrBlank() || datas.item.phoneno == "--") {
+        thirdBinding.thirdintro.append(datas.monttakItem.introduction ?: "정보 없음")
+        Glide.with(this).load(datas.monttakItem.thumbnailpath).into(thirdBinding.thirdimage)
+        if (datas.monttakItem.phoneno.isNullOrEmpty() || datas.monttakItem.phoneno.isNullOrBlank() || datas.monttakItem.phoneno == "--") {
             thirdBinding.tell.visibility = View.GONE
             thirdBinding.tell.isEnabled = false
             thirdBinding.thirdphone.append("정보 없음")
         } else {
-            thirdBinding.thirdphone.append(datas.item.phoneno)
+            thirdBinding.thirdphone.append(datas.monttakItem.phoneno)
         }
-        if (datas.item.latitude == null || datas.item.longitude == null || datas.item.latitude == 0.0 || datas.item.longitude == 0.0) {
-            thirdBinding.map.isEnabled = false
-            thirdBinding.map.visibility = View.GONE
-        }
+//        if (datas.monttakItem.latitude == null || datas.monttakItem.longitude == null || datas.monttakItem.latitude == 0.0 || datas.monttakItem.longitude == 0.0) {
+//            thirdBinding.map.isEnabled = false
+//            thirdBinding.map.visibility = View.GONE
+//        }
 
         //전화걸기및 지도 클릭시 동작
         thirdBinding.tell.setOnClickListener {
             var intent = Intent(Intent.ACTION_DIAL)
-            intent.data = Uri.parse("tel:${datas.item.phoneno}")
+            intent.data = Uri.parse("tel:${datas.monttakItem.phoneno}")
             if (intent.resolveActivity(packageManager) != null) {
                 startActivity(intent)
             }
         }
-        thirdBinding.map.setOnClickListener {
-            when (datas.item.contentscd.label) {
-                "음식점" -> {
-                    val url =
-                        "geo:${datas.item.latitude},${datas.item.longitude}?q=${datas.item.title}"
-                    var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                    intent.addCategory(Intent.CATEGORY_BROWSABLE)
-                    startActivity(intent)
-                }
-                "숙박" -> {
-                    val url =
-                        "geo:${datas.item.latitude},${datas.item.longitude}?q=${datas.item.title}"
-                    var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                    intent.addCategory(Intent.CATEGORY_BROWSABLE)
-                    startActivity(intent)
-                }
-                else -> {
-                    val url =
-                        "geo:${datas.item.latitude},${datas.item.longitude}?q=${datas.item.roadaddress}"
-                    var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                    intent.addCategory(Intent.CATEGORY_BROWSABLE)
-                    startActivity(intent)
-                }
-            }
-        }
+//        thirdBinding.map.setOnClickListener {
+//            when (datas.monttakItem.contentscdlabel) {
+//                "음식점" -> {
+//                    val url =
+//                        "geo:${datas.monttakItem.latitude},${datas.monttakItem.longitude}?q=${datas.monttakItem.title}"
+//                    var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+//                    intent.addCategory(Intent.CATEGORY_BROWSABLE)
+//                    startActivity(intent)
+//                }
+//                "숙박" -> {
+//                    val url =
+//                        "geo:${datas.monttakItem.latitude},${datas.monttakItem.longitude}?q=${datas.monttakItem.title}"
+//                    var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+//                    intent.addCategory(Intent.CATEGORY_BROWSABLE)
+//                    startActivity(intent)
+//                }
+//                else -> {
+//                    val url =
+//                        "geo:${datas.monttakItem.latitude},${datas.monttakItem.longitude}?q=${datas.monttakItem.road_address}"
+//                    var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+//                    intent.addCategory(Intent.CATEGORY_BROWSABLE)
+//                    startActivity(intent)
+//                }
+//            }
+//        }
 
         //광고 클릭 리스너 구현
 //        thirdBinding.adviewpager3.setOnClickListener {

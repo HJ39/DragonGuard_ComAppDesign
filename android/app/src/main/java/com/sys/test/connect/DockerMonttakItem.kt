@@ -1,5 +1,8 @@
 package com.sys.test.connect
 
+import java.io.Serializable
+
+//관광지 데이터 클래스
 data class DockerMonttakItem(
     val address: String,
     val alltag: String,
@@ -14,4 +17,4 @@ data class DockerMonttakItem(
     val tag: String,
     val thumbnailpath: String,
     val title: String
-)
+):Serializable

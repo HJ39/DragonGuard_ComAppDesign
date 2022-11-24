@@ -55,7 +55,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private var resultAmount = 0
     private var resultAmountD = 0
     private val MIN_SCALE = 0.85f
-    private val dockerIp = "http://192.168.202.217:5001/api/"
+    private val dockerIp = "http://172.30.1.80:5001/api/"
     private val MIN_ALPHA = 0.5f
     var currentPosition = 0
     val handler = Handler(Looper.getMainLooper()) {
@@ -115,7 +115,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             }
         }
 
-        //api호출을 위한 url등 준비및 호출
+//      api호출을 위한 url등 준비및 호출(단순 api호출)
 //        val retrofit =
 //            Retrofit.Builder().baseUrl("https://api.visitjeju.net/vsjApi/contents/")
 //                .client(okHttpClient)
@@ -124,6 +124,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 //        Log.d("apicall:", " : ")
 //        apiCall(api, label, split)
 
+//      api호출을 위한 url등 준비및 호출(db서버에서 호출)
         val retrofitD =
             Retrofit.Builder().baseUrl(dockerIp)
                 .client(okHttpClient)
@@ -244,6 +245,10 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         Log.d("size", profileAdapter.itemCount.toString())
     }
 
+    /*
+    db서버에서 받은 관광정보를 리사이클러뷰에 추가
+    비어있거나 잘못된 자료 필터링
+    * */
     private fun initRecyclerD(items: ArrayList<DockerMonttakItem>, label: String, split: String) {
         var itemCount = 0
         val token = label.split(",")
@@ -312,41 +317,45 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     api 3페이지씩 호출하여 정보를 보여줌
     3개의 호출이 도착하면 로딩바 제거하고 화면을 띄워줌
     */
-    private fun apiCall(api: JeJuPlaceApi, label: String, split: String) {
-        var count = 0
-        if (resultDec >= 0) {
-            for (j in (resultDec - 2)..(resultDec)) {
-                val jejuPlace = api.getDataPage(j)
-                jejuPlace.enqueue(object : Callback<Monttak> {
-                    override fun onResponse(call: Call<Monttak>, response: Response<Monttak>) {
-                        if (response.isSuccessful && response.code() == 200) {
-                            if (data.isNullOrEmpty()) {
-                                data = response.body()!!.items as ArrayList<Item>
-                            } else {
-                                data.addAll(response.body()!!.items)
-                            }
-                            Log.d("결과", "성공 : ${response.raw()}")
-                            resultAmount++
-                            if (resultAmount == 3) {
-                                initRecycler(data, label, split)
-                                initScrollListener()
-                                Log.d("최종 결과", "성공")
-                                resultAmount = 0
-                                secondBinding.loading.visibility = View.GONE
-                            }
-                        }
-                    }
-
-                    override fun onFailure(call: Call<Monttak>, t: Throwable) {
-                        Log.d("결과:", "실패 : $t")
-                    }
-                })
-                count++
-            }
-        }
-        resultDec -= count
-    }
-
+//    private fun apiCall(api: JeJuPlaceApi, label: String, split: String) {
+//        var count = 0
+//        if (resultDec >= 0) {
+//            for (j in (resultDec - 2)..(resultDec)) {
+//                val jejuPlace = api.getDataPage(j)
+//                jejuPlace.enqueue(object : Callback<Monttak> {
+//                    override fun onResponse(call: Call<Monttak>, response: Response<Monttak>) {
+//                        if (response.isSuccessful && response.code() == 200) {
+//                            if (data.isNullOrEmpty()) {
+//                                data = response.body()!!.items as ArrayList<Item>
+//                            } else {
+//                                data.addAll(response.body()!!.items)
+//                            }
+//                            Log.d("결과", "성공 : ${response.raw()}")
+//                            resultAmount++
+//                            if (resultAmount == 3) {
+//                                initRecycler(data, label, split)
+//                                initScrollListener()
+//                                Log.d("최종 결과", "성공")
+//                                resultAmount = 0
+//                                secondBinding.loading.visibility = View.GONE
+//                            }
+//                        }
+//                    }
+//
+//                    override fun onFailure(call: Call<Monttak>, t: Throwable) {
+//                        Log.d("결과:", "실패 : $t")
+//                    }
+//                })
+//                count++
+//            }
+//        }
+//        resultDec -= count
+//    }
+    /*
+    db서버의 api 호출 및 initRecyclerview()호출
+    api 3페이지씩 호출하여 정보를 보여줌
+    3개의 호출이 도착하면 로딩바 제거하고 화면을 띄워줌
+    */
     private fun apiCallD(api: DockerJejuPlaceApi, label: String, split: String) {
         var result = 0
         Log.d("api 전","before")

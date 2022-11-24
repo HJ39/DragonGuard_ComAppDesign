@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.sys.test.R
 import com.sys.test.activity.ThirdActivity
 
-
+//db서버에서 받은 데이터를 위한 recyclerview adapter
 class DockerProfileAdapter (private val datas : ArrayList<DockerProfileData>,private val context: Context) : RecyclerView.Adapter<DockerProfileAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
