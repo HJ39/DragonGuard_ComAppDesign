@@ -21,7 +21,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-//메인화면 : 로딩화면 이후 메인 화면에 툴바 달기
+/*메인화면 : 로딩화면 이후 메인 화면에 툴바 달기
+  광고 보여주기만 하므로 리스너도 주석처리함
+*/
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     //전역변수 선언  뷰바인딩, 뷰페이저, 핸들러
     private lateinit var binding : ActivityMainBinding

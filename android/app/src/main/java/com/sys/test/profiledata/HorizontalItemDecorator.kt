@@ -4,6 +4,7 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
+//리사이클러뷰 수평 마진
 class HorizontalItemDecorator(private val divHeight : Int) : RecyclerView.ItemDecoration() {
 
     @Override

@@ -5,7 +5,9 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-//db 서버에서 호출
+/*db 서버에서 호출
+ http:ip주소:5001/api/시작페이지/끝페이지   형태
+*/
 interface DockerJejuPlaceApi {
 
     @GET("{Startpage}/{Endpage}")

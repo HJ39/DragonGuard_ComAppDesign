@@ -37,7 +37,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-//세컨 화면 : 프로그래스 바 이후 다 받으면 리사이클러뷰로 정보 제공
+/*세컨 화면 : 프로그래스 바 이후 다 받으면 리사이클러뷰로 정보 제공
+  도커 서버 적용이후 이전 apicall, initrecycler는 주석처리함
+  광고 또한 보여주기만 하므로 리스너도 주석처리함
+* */
 class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     //전역변수 선언  뷰바인딩, 뷰페이저, 핸들러등
     private var resultDec = 45
@@ -520,7 +523,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
                 val layoutManager = secondBinding.itemlist.layoutManager
                 // hasNextPage() -> 다음 페이지가 있는 경우
-                if (resultDec > 1) {
+                if (resultDecD <4401 ) {
                     val lastVisibleItem = (layoutManager as LinearLayoutManager)
                         .findLastCompletelyVisibleItemPosition()
                     val itemTotalCount = recyclerView.adapter!!.itemCount - 1

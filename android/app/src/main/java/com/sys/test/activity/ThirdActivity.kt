@@ -67,15 +67,19 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         //받은 정보 화면에 정리해서 사진, 텍스트등을 보여주기
         thirdBinding.thirdtitle.text = datas.title
         thirdBinding.thirdtitle2.append(datas.title)
+        //관광지 도로명주소 출력
         if (datas.monttakItem.road_address.isNullOrBlank() || datas.monttakItem.road_address == "--") {
             thirdBinding.thirdaddr.append("정보 없음")
         } else {
             thirdBinding.thirdaddr.append(datas.monttakItem.road_address)
         }
+        //관광지 설명 출력
         if(datas.monttakItem.introduction.isBlank()){
             thirdBinding.thirdintro.append("정보 없음")
         }
+        //관련 이미지 불러오기
         Glide.with(this).load(datas.monttakItem.thumbnailpath).into(thirdBinding.thirdimage)
+        //관광지 전화번호 출력 및 버튼 적용
         if (datas.monttakItem.phoneno.isNullOrEmpty() || datas.monttakItem.phoneno.isNullOrBlank() || datas.monttakItem.phoneno == "--") {
             thirdBinding.tell.visibility = View.GONE
             thirdBinding.tell.isEnabled = false
@@ -83,10 +87,12 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         } else {
             thirdBinding.thirdphone.append(datas.monttakItem.phoneno)
         }
-//        if (datas.monttakItem.latitude == null || datas.monttakItem.longitude == null || datas.monttakItem.latitude == 0.0 || datas.monttakItem.longitude == 0.0) {
-//            thirdBinding.map.isEnabled = false
-//            thirdBinding.map.visibility = View.GONE
-//        }
+
+        //위도및 경도가 null,0.0이면 버튼 없애기
+        if (datas.monttakItem.latitude == null || datas.monttakItem.longitude == null || datas.monttakItem.latitude == 0.0 || datas.monttakItem.longitude == 0.0) {
+            thirdBinding.map.isEnabled = false
+            thirdBinding.map.visibility = View.GONE
+        }
 
         //전화걸기및 지도 클릭시 동작
         thirdBinding.tell.setOnClickListener {
@@ -96,6 +102,7 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 startActivity(intent)
             }
         }
+        //지도 아이콘 누르면 관광지 위치를 지도앱들로 보여줌
         thirdBinding.map.setOnClickListener {
             when (datas.monttakItem.contentscdlabel) {
                 "음식점" -> {

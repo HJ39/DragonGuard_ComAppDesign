@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import com.sys.test.R
 
+//앱 실행시 보여주는 로딩화면
 class LoadingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

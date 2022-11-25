@@ -7,7 +7,9 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.sys.test.R
 
-//뷰페이저 어뎁터 구현
+/*뷰페이저 어뎁터 구현
+  광고 리스너를 만들지 않으므로 광고에 tag 붙이지 않음
+ */
 class ViewPagerAdapter(adList: ArrayList<Int>) : RecyclerView.Adapter<ViewPagerAdapter.PagerViewHolder>() {
     var item = adList
     inner class PagerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -15,6 +17,7 @@ class ViewPagerAdapter(adList: ArrayList<Int>) : RecyclerView.Adapter<ViewPagerA
         fun onBind(res: Int) {
             //이미지뷰 리소스와 tag 변경
             imageViewAd.setImageResource(res)
+            
             //이미지뷰에 tag 달기(이미지 구분)
 //            when(res){
 //                R.drawable.ad1->{

@@ -21,9 +21,8 @@ class DockerProfileAdapter (private val datas : ArrayList<DockerProfileData>,pri
     }
     override fun getItemCount(): Int = datas.size
 
-
+    //리사이클러 뷰의 요소들을 넣어줌
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
         private val txtTitle: TextView = itemView.findViewById(R.id.tv_rv_title)
         private val txtAddress: TextView = itemView.findViewById(R.id.tv_rv_address)
         private val imgProfile: ImageView = itemView.findViewById(R.id.img_rv_photo)
