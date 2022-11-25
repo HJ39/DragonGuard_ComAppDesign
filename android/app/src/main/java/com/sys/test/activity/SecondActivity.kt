@@ -55,7 +55,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private var resultAmount = 0
     private var resultAmountD = 0
     private val MIN_SCALE = 0.85f
-    private val dockerIp = "http://172.30.1.80:5001/api/"
+    private val dockerIp = "http://192.168.202.31:5001/api/"
     private val MIN_ALPHA = 0.5f
     var currentPosition = 0
     val handler = Handler(Looper.getMainLooper()) {

@@ -96,31 +96,31 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 startActivity(intent)
             }
         }
-//        thirdBinding.map.setOnClickListener {
-//            when (datas.monttakItem.contentscdlabel) {
-//                "음식점" -> {
-//                    val url =
-//                        "geo:${datas.monttakItem.latitude},${datas.monttakItem.longitude}?q=${datas.monttakItem.title}"
-//                    var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-//                    intent.addCategory(Intent.CATEGORY_BROWSABLE)
-//                    startActivity(intent)
-//                }
-//                "숙박" -> {
-//                    val url =
-//                        "geo:${datas.monttakItem.latitude},${datas.monttakItem.longitude}?q=${datas.monttakItem.title}"
-//                    var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-//                    intent.addCategory(Intent.CATEGORY_BROWSABLE)
-//                    startActivity(intent)
-//                }
-//                else -> {
-//                    val url =
-//                        "geo:${datas.monttakItem.latitude},${datas.monttakItem.longitude}?q=${datas.monttakItem.road_address}"
-//                    var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-//                    intent.addCategory(Intent.CATEGORY_BROWSABLE)
-//                    startActivity(intent)
-//                }
-//            }
-//        }
+        thirdBinding.map.setOnClickListener {
+            when (datas.monttakItem.contentscdlabel) {
+                "음식점" -> {
+                    val url =
+                        "geo:${datas.monttakItem.latitude},${datas.monttakItem.longitude}?q=${datas.monttakItem.title}"
+                    var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    intent.addCategory(Intent.CATEGORY_BROWSABLE)
+                    startActivity(intent)
+                }
+                "숙박" -> {
+                    val url =
+                        "geo:${datas.monttakItem.latitude},${datas.monttakItem.longitude}?q=${datas.monttakItem.title}"
+                    var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    intent.addCategory(Intent.CATEGORY_BROWSABLE)
+                    startActivity(intent)
+                }
+                else -> {
+                    val url =
+                        "geo:${datas.monttakItem.latitude},${datas.monttakItem.longitude}?q=${datas.monttakItem.road_address}"
+                    var intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    intent.addCategory(Intent.CATEGORY_BROWSABLE)
+                    startActivity(intent)
+                }
+            }
+        }
 
         //광고 클릭 리스너 구현
 //        thirdBinding.adviewpager3.setOnClickListener {
