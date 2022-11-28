@@ -1,8 +1,6 @@
 package com.sys.test.activity
 
 import android.content.ClipData
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -10,7 +8,6 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,7 +16,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.navigation.NavigationView
 import com.sys.test.R
 import com.sys.test.connect.DockerJejuPlaceApi
-import com.sys.test.connect.DockerMonttak
 import com.sys.test.connect.DockerMonttakItem
 import com.sys.test.databinding.SecondBinding
 import com.sys.test.profiledata.*
@@ -41,7 +37,6 @@ import java.util.concurrent.TimeUnit
 * */
 class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     //전역변수 선언  뷰바인딩, 뷰페이저, 핸들러등
-    private var resultDec = 45
     private var resultDecD = 1
     private var split = ""
     private var label = ""
@@ -51,8 +46,6 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private var datasD = ArrayList<DockerProfileData>()
     private lateinit var data: ArrayList<ClipData.Item>
     private lateinit var dataD: ArrayList<DockerMonttakItem>
-    private var resultAmount = 0
-    private var resultAmountD = 0
     private val MIN_SCALE = 0.85f
     private val dockerIp = "http://192.168.203.49:5001/api/"
     private val MIN_ALPHA = 0.5f
