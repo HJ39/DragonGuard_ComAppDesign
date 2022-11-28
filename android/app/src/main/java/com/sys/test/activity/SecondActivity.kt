@@ -1,5 +1,6 @@
 package com.sys.test.activity
 
+import android.content.ClipData
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -21,9 +22,6 @@ import com.sys.test.connect.DockerJejuPlaceApi
 import com.sys.test.connect.DockerMonttak
 import com.sys.test.connect.DockerMonttakItem
 import com.sys.test.databinding.SecondBinding
-import com.sys.test.network.Item
-import com.sys.test.network.JeJuPlaceApi
-import com.sys.test.network.Monttak
 import com.sys.test.profiledata.*
 import com.sys.test.viewpager.ViewPagerAdapter
 import kotlinx.coroutines.CoroutineScope
@@ -49,16 +47,14 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private var label = ""
     private var count = 0
     private var position = 0
-    lateinit var profileAdapter: ProfileAdapter
     lateinit var dockerprofileAdapter : DockerProfileAdapter
-    private var datas = ArrayList<ProfileData>()
     private var datasD = ArrayList<DockerProfileData>()
-    private lateinit var data: ArrayList<Item>
+    private lateinit var data: ArrayList<ClipData.Item>
     private lateinit var dataD: ArrayList<DockerMonttakItem>
     private var resultAmount = 0
     private var resultAmountD = 0
     private val MIN_SCALE = 0.85f
-    private val dockerIp = "http://192.168.202.31:5001/api/"
+    private val dockerIp = "http://192.168.203.49:5001/api/"
     private val MIN_ALPHA = 0.5f
     var currentPosition = 0
     val handler = Handler(Looper.getMainLooper()) {
@@ -97,7 +93,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
         //넘어오는 값으로 주제 판별 및 제목 변경
         val intent = intent
-        data = ArrayList<Item>()
+        data = ArrayList<ClipData.Item>()
         dataD = ArrayList<DockerMonttakItem>()
         split = intent.getStringExtra("split")!!
         label = intent.getStringExtra("label")!!
@@ -118,16 +114,8 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             }
         }
 
-//      api호출을 위한 url등 준비및 호출(단순 api호출)
-//        val retrofit =
-//            Retrofit.Builder().baseUrl("https://api.visitjeju.net/vsjApi/contents/")
-//                .client(okHttpClient)
-//                .addConverterFactory(GsonConverterFactory.create()).build()
-//        val api = retrofit.create(JeJuPlaceApi::class.java)
-//        Log.d("apicall:", " : ")
-//        apiCall(api, label, split)
 
-//      api호출을 위한 url등 준비및 호출(db서버에서 호출)
+//      api호출을 위한 url등 준비및 호출(도커 서버에서 호출)
         val retrofitD =
             Retrofit.Builder().baseUrl(dockerIp)
                 .client(okHttpClient)
@@ -135,118 +123,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         val apiD = retrofitD.create(DockerJejuPlaceApi::class.java)
 
         apiCallD(apiD, label, split)
-        //광고 클릭 리스너 구현
-//        secondBinding.adviewpager2.setOnClickListener {
-//            val adimg = findViewById<ImageView>(R.id.advertise_img)
-//            var intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://ijto.or.kr/korean/"))
-//            startActivity(intent)
-//            when(adimg.tag){
-//                "볼거리"->{
-//                    var intent = Intent(Intent.ACTION_DIAL)
-//                    intent.data = Uri.parse("tel:1")
-//                    if(intent.resolveActivity(packageManager) != null){
-//                        startActivity(intent)
-//                    }
-//                }
-//                "놀멍"->{
-//                    var intent = Intent(Intent.ACTION_DIAL)
-//                    intent.data = Uri.parse("tel:2")
-//                    if(intent.resolveActivity(packageManager) != null){
-//                        startActivity(intent)
-//                    }
-//                }
-//                "먹거리"->{
-//                    var intent = Intent(Intent.ACTION_DIAL)
-//                    intent.data = Uri.parse("tel:3")
-//                    if(intent.resolveActivity(packageManager) != null){
-//                        startActivity(intent)
-//                    }
-//                }
-//                "쉴멍"->{
-//                    var intent = Intent(Intent.ACTION_DIAL)
-//                    intent.data = Uri.parse("tel:4")
-//                    if(intent.resolveActivity(packageManager) != null){
-//                        startActivity(intent)
-//                    }
-//                }
-//            }
-//
-//        }
     }
-
-    /*
-    받은 관광정보를 리사이클러뷰에 추가
-    비어있거나 잘못된 자료 필터링
-    * */
-//    private fun initRecycler(items: ArrayList<Item>, label: String, split: String) {
-//        var itemCount = 0
-//        val token = label.split(",")
-//        for (i in 0 until items.size) {
-//            if (items[i].repPhoto != null && items[i].repPhoto.photoid != null) {
-//                if (items[i].repPhoto.photoid.thumbnailpath != null && token.contains(
-//                        items[i].contentscd.label
-//                    )
-//                ) {
-//                    if (!items[i].roadaddress.isNullOrEmpty()) {
-//                        if (!datas.contains(
-//                                ProfileData(
-//                                    roadaddress = "${items[i].roadaddress}",
-//                                    thumbnailpath = items[i].repPhoto.photoid.thumbnailpath,
-//                                    title = items[i].title,
-//                                    item = items[i]
-//                                )
-//                            )
-//                        ) {
-//                            datas.add(
-//                                ProfileData(
-//                                    roadaddress = "${items[i].roadaddress}",
-//                                    thumbnailpath = items[i].repPhoto.photoid.thumbnailpath,
-//                                    title = items[i].title,
-//                                    item = items[i]
-//                                )
-//                            )
-//                        }
-//
-//                        itemCount++
-//                    } else {
-//                        if (!datas.contains(
-//                                ProfileData(
-//                                    roadaddress = "",
-//                                    thumbnailpath = items[i].repPhoto.photoid.thumbnailpath,
-//                                    title = items[i].title,
-//                                    item = items[i]
-//                                )
-//                            )
-//                        ) {
-//                            datas.add(
-//                                ProfileData(
-//                                    roadaddress = "",
-//                                    thumbnailpath = items[i].repPhoto.photoid.thumbnailpath,
-//                                    title = items[i].title,
-//                                    item = items[i]
-//                                )
-//                            )
-//                        }
-//
-//                        itemCount++
-//                    }
-//                }
-//            }
-//        }
-//        count += itemCount
-//        Log.d("실제1 : ", count.toString())
-//        if (resultDec == 42) {
-//            Log.d("초기화", "")
-//            profileAdapter = ProfileAdapter(datas, this)
-//            secondBinding.itemlist.layoutManager = LinearLayoutManager(this)
-//            profileAdapter.notifyDataSetChanged()
-//            secondBinding.itemlist.adapter = profileAdapter
-//            chooseView()
-//        }else {
-//            secondBinding.itemlist.scrollToPosition(position)
-//        }
-//        Log.d("size", profileAdapter.itemCount.toString())
-//    }
 
     /*
     db서버에서 받은 관광정보를 리사이클러뷰에 추가
@@ -295,45 +172,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         Log.d("size", dockerprofileAdapter.itemCount.toString())
     }
 
-    /*
-    api 호출 및 initRecyclerview()호출
-    api 3페이지씩 호출하여 정보를 보여줌
-    3개의 호출이 도착하면 로딩바 제거하고 화면을 띄워줌
-    */
-//    private fun apiCall(api: JeJuPlaceApi, label: String, split: String) {
-//        var count = 0
-//        if (resultDec >= 0) {
-//            for (j in (resultDec - 2)..(resultDec)) {
-//                val jejuPlace = api.getDataPage(j)
-//                jejuPlace.enqueue(object : Callback<Monttak> {
-//                    override fun onResponse(call: Call<Monttak>, response: Response<Monttak>) {
-//                        if (response.isSuccessful && response.code() == 200) {
-//                            if (data.isNullOrEmpty()) {
-//                                data = response.body()!!.items as ArrayList<Item>
-//                            } else {
-//                                data.addAll(response.body()!!.items)
-//                            }
-//                            Log.d("결과", "성공 : ${response.raw()}")
-//                            resultAmount++
-//                            if (resultAmount == 3) {
-//                                initRecycler(data, label, split)
-//                                initScrollListener()
-//                                Log.d("최종 결과", "성공")
-//                                resultAmount = 0
-//                                secondBinding.loading.visibility = View.GONE
-//                            }
-//                        }
-//                    }
-//
-//                    override fun onFailure(call: Call<Monttak>, t: Throwable) {
-//                        Log.d("결과:", "실패 : $t")
-//                    }
-//                })
-//                count++
-//            }
-//        }
-//        resultDec -= count
-//    }
+
     /*
     db서버의 api 호출 및 initRecyclerview()호출
     api 3페이지씩 호출하여 정보를 보여줌
@@ -435,15 +274,6 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         currentPosition += 1
     }
 
-    //2초 마다 페이지 넘기기
-    inner class PagerRunnable : Runnable {
-        override fun run() {
-            while (true) {
-                Thread.sleep(2000)
-                handler.sendEmptyMessage(0)
-            }
-        }
-    }
 
     //툴바 생성
     private fun setToolbar() {
@@ -493,15 +323,6 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private fun loadMorePosts() {
         if (secondBinding.loading.visibility == View.GONE) {
             secondBinding.loading.visibility = View.VISIBLE
-//            CoroutineScope(Dispatchers.IO).launch {
-//                val retrofit =
-//                    Retrofit.Builder().baseUrl("https://api.visitjeju.net/vsjApi/contents/")
-//                        .client(okHttpClient)
-//                        .addConverterFactory(GsonConverterFactory.create()).build()
-//                val api = retrofit.create(JeJuPlaceApi::class.java)
-//                Log.d("loadMore", "dd")
-//                apiCall(api, label, split)
-//            }
             CoroutineScope(Dispatchers.Main).launch {
                 val retrofitD =
                     Retrofit.Builder().baseUrl(dockerIp)

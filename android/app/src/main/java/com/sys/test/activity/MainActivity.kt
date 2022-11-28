@@ -88,43 +88,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             intent.putExtra("split","muk")
             startActivity(intent)
         }
-
-        //광고 클릭 리스너 구현
-//        binding.adviewpager.setOnClickListener {
-//            val adimg = findViewById<ImageView>(R.id.advertise_img)
-//            var intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://ijto.or.kr/korean/"))
-//            startActivity(intent)
-//            when(adimg.tag){
-//                "볼거리"->{
-//                    var intent = Intent(Intent.ACTION_DIAL)
-//                    intent.data = Uri.parse("tel:1")
-//                    if(intent.resolveActivity(packageManager) != null){
-//                        startActivity(intent)
-//                    }
-//                }
-//                "놀멍"->{
-//                    var intent = Intent(Intent.ACTION_DIAL)
-//                    intent.data = Uri.parse("tel:2")
-//                    if(intent.resolveActivity(packageManager) != null){
-//                        startActivity(intent)
-//                    }
-//                }
-//                "먹거리"->{
-//                    var intent = Intent(Intent.ACTION_DIAL)
-//                    intent.data = Uri.parse("tel:3")
-//                    if(intent.resolveActivity(packageManager) != null){
-//                        startActivity(intent)
-//                    }
-//                }
-//                "쉴멍"->{
-//                    var intent = Intent(Intent.ACTION_DIAL)
-//                    intent.data = Uri.parse("tel:4")
-//                    if(intent.resolveActivity(packageManager) != null){
-//                        startActivity(intent)
-//                    }
-//                }
-//            }
-//        }
     }
 
     //애니매이션 설정
