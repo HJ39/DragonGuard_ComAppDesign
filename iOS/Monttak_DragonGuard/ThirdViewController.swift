@@ -129,7 +129,7 @@ extension ThirdViewController: UICollectionViewDelegate, UICollectionViewDataSou
     //collectionView 내부 cell 설정
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomColl", for: indexPath) as! ThirdScreenCollectionViewCell
-
+        print("nn")
         collectionCell.imgView.image = UIImage(named: adArray[indexPath.row])
         return collectionCell
     }

@@ -30,7 +30,7 @@ class SecondViewController: UIViewController{
         titleName.font = UIFont(name: "OTMogujasusimgyeolB" , size: 25) //목우자심결 폰트 적용
         titleName.text = choiceButton
         
-        choiceButton = "먹거리"
+        
         guard let correctChoiceButton = choiceButton else { return }
         datalist = JejuInfoList().need_Info_List(choiceButton: correctChoiceButton)       //데이터 리스트 불러옴
         
