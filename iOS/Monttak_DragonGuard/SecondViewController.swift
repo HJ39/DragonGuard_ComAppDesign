@@ -19,7 +19,6 @@ class SecondViewController: UIViewController{
     var adArray: [String] = ["광고1","광고2","광고3","광고4"]
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         //백그라운드를 이미지로 설정
         guard let img = UIImage(named: "secondbackground") else{ return }
         //이미지크기를 조절해서 백그라운드에 적용
@@ -31,13 +30,14 @@ class SecondViewController: UIViewController{
         titleName.font = UIFont(name: "OTMogujasusimgyeolB" , size: 25) //목우자심결 폰트 적용
         titleName.text = choiceButton
         
+        choiceButton = "먹거리"
         guard let correctChoiceButton = choiceButton else { return }
         datalist = JejuInfoList().need_Info_List(choiceButton: correctChoiceButton)       //데이터 리스트 불러옴
         
         //네비게이션 아이템 속성 설정 코드
         self.navigationItem.titleView = titleName    //네비게이션 타이틀 지정
         timer()
-        
+        super.viewDidLoad()
     }
     
     func timer(){   //광고 타이머
@@ -61,7 +61,6 @@ class SecondViewController: UIViewController{
 extension SecondViewController: UITableViewDataSource{
     // tableview cell들에 입력할 데이터를 관리하는 함수
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!   // table cell을 재사용 큐를 이용하여 화면에 표시
         
         cell.backgroundColor = UIColor(red: 255/255.0, green: 150/255.0, blue: 100/255.0, alpha: 0.4)    //셀 배경색 설정
