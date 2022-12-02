@@ -7,18 +7,22 @@
     android:orientation="vertical"
     tools:context=".activity.ThirdActivity">
 
+    <!--  화면을 drawlayout으로 감싼다  -->
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
+        <!--navigation drawer-->
+        <!-- main layout-->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/monttakmain2"
             android:orientation="vertical">
 
+            <!--기존 타이틀바 제거하고 다는 툴바-->
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -30,6 +34,7 @@
                 app:contentInsetStart="0dp"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
+                <!--관광지의 제목-->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -51,6 +56,7 @@
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
 
+            <!--관광지 이미지, 전화번호, 지도 및 설명-->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
@@ -201,6 +207,7 @@
 
             </LinearLayout>
 
+            <!-- 광고칸  -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"

@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -47,7 +48,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private lateinit var data: ArrayList<ClipData.Item>
     private lateinit var dataD: ArrayList<DockerMonttakItem>
     private val MIN_SCALE = 0.85f
-    private val dockerIp = "http://192.168.203.49:5001/api/"
+    private val dockerIp = "http://192.168.202.179:5001/api/"
     private val MIN_ALPHA = 0.5f
     var currentPosition = 0
     val handler = Handler(Looper.getMainLooper()) {
@@ -210,7 +211,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         Log.d("결과 resultDecD", "성공 : ${4400 - resultDecD}")
     }
 
-    //줄 간격 설정 및 visible
+    //recycler뷰 줄 간격 설정 및 visible
     private fun chooseView() {
         secondBinding.itemlist.addItemDecoration(VerticalItemDecorator(20))
         secondBinding.itemlist.addItemDecoration(HorizontalItemDecorator(10))

@@ -27,6 +27,7 @@ class DockerProfileAdapter (private val datas : ArrayList<DockerProfileData>,pri
         private val txtAddress: TextView = itemView.findViewById(R.id.tv_rv_address)
         private val imgProfile: ImageView = itemView.findViewById(R.id.img_rv_photo)
 
+        //클릭리스너 구현
         fun bind(data: DockerProfileData) {
             txtTitle.text = data.monttakItem.title
             txtAddress.text = data.monttakItem.road_address
@@ -38,9 +39,6 @@ class DockerProfileAdapter (private val datas : ArrayList<DockerProfileData>,pri
                 }.run{context.startActivity(this)}
             }
         }
-    }
-    fun deleteLoading(){
-        datas.removeAt(datas.lastIndex) // 로딩이 완료되면 프로그레스바를 지움
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
