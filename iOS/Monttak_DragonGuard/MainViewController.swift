@@ -34,12 +34,9 @@ class MainViewController: UIViewController {
         
         texttitle.font = UIFont(name: "OTMogujasusimgyeolB" , size: 40) //목우자수심결 폰트 적용
         texttitle.text = "[몬딱,제주]"
-        
-<<<<<<< Updated upstream
-=======
-        textview.font = UIFont(name: "OTMogujasusimgyeolB" , size: 20) //목우자수심결 폰트 적용
+
         textview.text = "- '몬딱, 제주'는 '모두 함께, 제주'라는 뜻의 제주 방언입니다. 육지에 사는 당신이 아름다운 섬 제주도를 만끽할 수 있도록 여러가지 정보를 제공합니다.\n\n- 오른쪽의 각 버튼을 클릭하면 정보가 나옵니다. 먹거리, 놀거리, 볼거리와 쉴 곳이 가득한 제주에서 당신의 인생에 쉼표를 찍어보세요. \n\n-먹거리에는 식당과 카페, 놀멍에는 테마여행과 쇼핑, 볼거리에는 축제 및 행사 정보, 쉴멍에는 숙박업소 정보가 있습니다. \n\n- 이 앱의 정보는 제주관광공사의 오픈API를 받아서 제작했습니다. "
->>>>>>> Stashed changes
+
         
         //백그라운드를 이미지로 설정
         guard let img = UIImage(named: "secondbackground") else{ return }
