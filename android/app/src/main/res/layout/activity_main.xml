@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--parent layout-->
+<?xml version="1.0" encoding="utf-8"?>
+<!--parent layout-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,6 +9,7 @@
     android:orientation="vertical"
     tools:context=".activity.MainActivity">
 
+    <!--  화면을 drawlayout으로 감싼다  -->
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
@@ -23,22 +25,25 @@
             android:background="@drawable/monttakmain1"
             android:orientation="vertical">
 
+            <!--     기존 타이틀바 제거하고 다는 툴바       -->
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.5"
+                android:layout_weight="0.4"
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:contentInsetStart="0dp"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" >
+
+            </androidx.appcompat.widget.Toolbar>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2.5"
+                android:layout_weight="3"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -49,13 +54,14 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="5.2"
                     android:background="#fbf2d7"
                     android:orientation="vertical"
                     android:gravity="center_horizontal"
                     android:padding="10dp">
 
+                    <!-- 앱 이름  -->
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -77,7 +83,7 @@
 
                     </LinearLayout>
 
-
+                    <!-- 앱 설명  -->
                     <LinearLayout
                         android:id="@+id/title"
                         android:layout_width="wrap_content"
@@ -92,7 +98,8 @@
                                 android:id="@+id/content"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical">
+                                android:orientation="vertical"
+                                android:layout_marginBottom="10dp">
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -111,10 +118,11 @@
                     </LinearLayout>
                 </LinearLayout>
 
+                <!-- 장르 별 버튼  -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:layout_weight="2.1"
                     android:orientation="vertical">
 
@@ -122,6 +130,7 @@
                         android:id="@+id/muk"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginVertical="15dp"
                         android:layout_gravity="center"
                         android:background="@android:color/transparent"
                         android:src="@drawable/mainmuk" />
@@ -130,6 +139,7 @@
                         android:id="@+id/nol"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginVertical="15dp"
                         android:layout_gravity="center"
                         android:background="@android:color/transparent"
                         android:src="@drawable/mainnol" />
@@ -138,6 +148,7 @@
                         android:id="@+id/bol"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginVertical="15dp"
                         android:layout_gravity="center"
                         android:background="@android:color/transparent"
                         android:src="@drawable/mainbol" />
@@ -146,6 +157,7 @@
                         android:id="@+id/shil"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginVertical="15dp"
                         android:layout_gravity="center"
                         android:background="@android:color/transparent"
                         android:src="@drawable/mainshuil" />
@@ -153,26 +165,27 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.3"
-                android:orientation="horizontal" />
 
+            <!-- 광고칸  -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:gravity="bottom"
-                android:layout_weight="0.9"
-                android:orientation="horizontal">
+                android:layout_weight="0.6"
+                android:orientation="vertical">
 
-                <ImageButton
-                    android:id="@+id/mainunder"
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/adviewpager"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#00ff0000"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/mainnol" />
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight="0.1">
+
+                </LinearLayout>
 
             </LinearLayout>
 

@@ -7,55 +7,56 @@
     android:orientation="vertical"
     tools:context=".activity.ThirdActivity">
 
+    <!--  화면을 drawlayout으로 감싼다  -->
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
+        <!--navigation drawer-->
+        <!-- main layout-->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/monttakmain2"
             android:orientation="vertical">
 
+            <!--기존 타이틀바 제거하고 다는 툴바-->
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.65"
-                android:background="@android:color/transparent"
+                android:layout_weight="0.6"
+
                 android:gravity="center_vertical"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:contentInsetStart="0dp"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
+                <!--관광지의 제목-->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
                     android:layout_gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/thirdtitle"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_weight="1.7"
                         android:fontFamily="@font/mokwoosoosimgyul"
                         android:text="제목"
                         android:ellipsize="end"
                         android:maxLines="3"
                         android:textColor="#020202"
                         android:textSize="25dp" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7" />
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
 
+            <!--관광지 이미지, 전화번호, 지도 및 설명-->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
@@ -64,8 +65,10 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:layout_marginTop="5dp"
                     android:id="@+id/thirdimage"
                     android:layout_width="300dp"
+                    android:background="@drawable/round"
                     android:layout_height="200dp" />
 
                 <LinearLayout
@@ -76,8 +79,8 @@
 
                     <ImageButton
                         android:id="@+id/tell"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_gravity="center_horizontal|center_vertical"
                         android:adjustViewBounds="true"
                         android:background="@android:color/transparent"
@@ -86,14 +89,14 @@
                         />
 
                     <ImageButton
-                        android:id="@+id/kakaoMap"
+                        android:id="@+id/map"
                         android:layout_width="96dp"
                         android:layout_height="72dp"
                         android:layout_gravity="center_horizontal|center_vertical"
                         android:adjustViewBounds="true"
                         android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/kakao_map" />
+                        android:src="@drawable/map_icon" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -194,7 +197,7 @@
                                         android:fontFamily="@font/binggraesamancobold"
                                         android:text="설명 : "
                                         android:textColor="#020202"
-                                        android:textSize="25dp" />
+                                        android:textSize="23dp" />
                                 </LinearLayout>
                             </ScrollView>
                         </LinearLayout>
@@ -204,19 +207,23 @@
 
             </LinearLayout>
 
+            <!-- 광고칸  -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="0.95"
                 android:orientation="vertical">
 
-                <ImageButton
-                    android:id="@+id/thirdunder"
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/adviewpager3"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:backgroundTint="#00ff0000"
-                    android:scaleType="centerInside" />
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight="0.1"/>
             </LinearLayout>
 
 
