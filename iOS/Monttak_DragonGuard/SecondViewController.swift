@@ -8,27 +8,52 @@
 import UIKit
 
 //Second화면 ViewController
-class SecondViewController: UIViewController {
-    var choiceButton: String = "Second" //main화면에서 어떤 버튼을 선택했는지 보여주는 변수
+class SecondViewController: UIViewController{
+    var choiceButton: String? //main화면에서 어떤 버튼을 선택했는지 보여주는 변수
     let screenWidth = UIScreen.main.bounds.size.width // 뷰 전체 폭 길이
     let screenHeight = UIScreen.main.bounds.size.height // 뷰 전체 높이 길이
-    var datalist = JejuInfoList().return_Info_List()    //데이터 리스트 불러옴
+    var datalist: [JejuInfo]?
+    
+    @IBOutlet var collectionView: UICollectionView!
+    var nowpage = 0
+    var adArray: [String] = ["광고1","광고2","광고3","광고4"]
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         //백그라운드를 이미지로 설정
-        guard let img = UIImage(named: "배경3") else{ return }
+        guard let img = UIImage(named: "secondbackground") else{ return }
         //이미지크기를 조절해서 백그라운드에 적용
         self.view.backgroundColor = UIColor(patternImage: img.resize(newWidth: screenWidth,newHeight: screenHeight) )
+        self.navigationItem.rightBarButtonItem = nil    //barItem 삭제
         
         //navigation title 폰트 적용을 위한 코드
         let titleName = UILabel()
         titleName.font = UIFont(name: "OTMogujasusimgyeolB" , size: 25) //목우자심결 폰트 적용
         titleName.text = choiceButton
         
+        
+        guard let correctChoiceButton = choiceButton else { return }
+        datalist = JejuInfoList().need_Info_List(choiceButton: correctChoiceButton)       //데이터 리스트 불러옴
+        
         //네비게이션 아이템 속성 설정 코드
         self.navigationItem.titleView = titleName    //네비게이션 타이틀 지정
-        self.navigationItem.rightBarButtonItem = nil    //barItem 삭제
+        timer()
+        super.viewDidLoad()
+    }
+    
+    func timer(){   //광고 타이머
+        let _: Timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { (Timer) in
+            self.move_Ad_Screen()
+        }
+    }
+    
+    func move_Ad_Screen(){  //타이머 지정 시간마다 다음으로 넘기는 함수
+        if nowpage == adArray.count-1 {
+            collectionView.scrollToItem(at: NSIndexPath(item: 0, section: 0) as IndexPath, at: .right, animated: true)
+            nowpage = 0
+            return
+        }
+        nowpage += 1
+        collectionView.scrollToItem(at: NSIndexPath(item: nowpage, section: 0) as IndexPath, at: .right, animated: true)
     }
     
 }
@@ -36,27 +61,24 @@ class SecondViewController: UIViewController {
 extension SecondViewController: UITableViewDataSource{
     // tableview cell들에 입력할 데이터를 관리하는 함수
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!   // table cell을 재사용 큐를 이용하여 화면에 표시
         
-        //        cell.backgroundColor = UIColor(red: 255/255.0, green: 150/255.0, blue: 100/255.0, alpha: 0.5)    //셀 배경색 설정
-        //        tableView.backgroundColor = UIColor(red: 230/255.0, green: 200/255.0, blue: 100/255.0, alpha: 0.5)
+        cell.backgroundColor = UIColor(red: 255/255.0, green: 150/255.0, blue: 100/255.0, alpha: 0.4)    //셀 배경색 설정
+        tableView.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0)
+        
         let img = cell.viewWithTag(100) as? UIImageView // 이미지를 표시할 변수
         let title = cell.viewWithTag(101) as? UILabel   // 이름을 표시할 변수
         let address = cell.viewWithTag(102) as? UILabel // 도로명 주소를 표시할 변수
         
         //각 버튼을 section으로 나누어서 section으로 구분해야 함
         //indexPath는 section과 cell의 row의 정보를 가지고 있음
-        let row = datalist[indexPath.section]
-        
-        // =========== 관광지 구별해야함
-        
-        // 관광지 이름, 도로명 주소 설정
-        title?.text = row.title
-        address?.text = row.address
+        let row = datalist?[indexPath.section]
         
         // url 이미지 주소 설정하는 코드
-        let url = URL(string: datalist[indexPath.section].imgURL ?? "")!
+        let url = URL(string: datalist?[indexPath.section].imgURL ?? "")!
+        
+        title?.text = row?.title
+        address?.text = row?.address
         img?.load(img: img!,url: url,screenWidth: screenWidth)  //휴대폰 기기의 가로, 세로 길이를 넘겨서 비율에 맞게 이미지 표시
         
         tableView.separatorStyle = .none    //셀 구분선 제거
@@ -75,7 +97,7 @@ extension SecondViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? { return " " }
     
     // 섹션 개수 설정하는 함수
-    func numberOfSections(in tableView: UITableView) -> Int { return datalist.count }
+    func numberOfSections(in tableView: UITableView) -> Int { return datalist?.count ?? 1 }
     
     // 실행 시 각 세션에 몇 개의 셀이 생성되는지 작성하는 함수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return 1 }
@@ -95,10 +117,35 @@ extension SecondViewController: UITableViewDelegate{
         
         // 3번째 화면으로 전송할 데이터 설정하는 코드 부분
         thirdScreen.tourPlaceIndex = indexPath.section
+        thirdScreen.datalist = datalist
+        
         
         // 버튼 클릭시 navigation방식으로 Third화면 실행
         self.navigationController?.pushViewController(thirdScreen, animated: true)
     }
+}
+
+// CollectionView Custom
+extension SecondViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    //collectionView cell 개수
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return adArray.count
+    }
+    
+    //collectionView 내부 cell 설정
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "customCollectionCell", for: indexPath) as! CustomCollectionCell
+        collectionCell.imgAd.image = UIImage(named: adArray[indexPath.row])
+        return collectionCell
+    }
+    
+    // collectionView 의 cell 크기 설정
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width: CGFloat = collectionView.frame.width //collectionview의 가로 길이
+        let height: CGFloat = collectionView.frame.height   //collectionview의 세로 길이
+        return CGSize(width: width, height: height)
+    }
+    
 }
 
 extension UIImage {
@@ -117,9 +164,9 @@ extension UIImage {
 }
 
 extension UIImageView {
-    func load(img:UIImageView, url: URL, screenWidth: CGFloat) {
+    func load(img: UIImageView, url: URL, screenWidth: CGFloat) {
         /**
-                이미지 불러올 때 메모리, 디스크 캐시를 탐색하고 없는 경우 네트워크 통신으로 이미지를 불러온다.
+         이미지 불러올 때 메모리, 디스크 캐시를 탐색하고 없는 경우 네트워크 통신으로 이미지를 불러온다.
          */
         let cacheKey = NSString(string: "\(url)")   //메모리 캐시를 이용하기 위한 캐시key값 설정 여기서는 이미지 url을 사용하였다.
         

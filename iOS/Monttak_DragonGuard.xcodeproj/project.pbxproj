@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B14AFAC293A83CA00DB876A /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B14AFAB293A83CA00DB876A /* MainCollectionViewCell.swift */; };
 		3B3047FC291BEA1000CD8BC8 /* JSONFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3047FB291BEA1000CD8BC8 /* JSONFile.swift */; };
 		3B3047FE291BEA4700CD8BC8 /* Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3047FD291BEA4700CD8BC8 /* Parsing.swift */; };
 		3B304802291BF55900CD8BC8 /* JejuInfoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B304801291BF55900CD8BC8 /* JejuInfoList.swift */; };
@@ -23,11 +24,13 @@
 		3B737D542916432600EF6B3C /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B737D532916432600EF6B3C /* ThirdViewController.swift */; };
 		3B737D56291646C000EF6B3C /* Second.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B737D55291646C000EF6B3C /* Second.storyboard */; };
 		3B737D582916558E00EF6B3C /* Third.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B737D572916558E00EF6B3C /* Third.storyboard */; };
-		3B737D5A2916757100EF6B3C /* TestCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B737D592916757100EF6B3C /* TestCode.swift */; };
 		3B74CC51291E834600A91E71 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B74CC50291E834600A91E71 /* ImageCacheManager.swift */; };
+		3BB1E49F292535CD00D871BB /* CustomCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB1E49E292535CD00D871BB /* CustomCollectionCell.swift */; };
+		3BB1E4A12925451F00D871BB /* ThirdScreenCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB1E4A02925451F00D871BB /* ThirdScreenCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B14AFAB293A83CA00DB876A /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B3047FB291BEA1000CD8BC8 /* JSONFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONFile.swift; sourceTree = "<group>"; };
 		3B3047FD291BEA4700CD8BC8 /* Parsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parsing.swift; sourceTree = "<group>"; };
 		3B304801291BF55900CD8BC8 /* JejuInfoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JejuInfoList.swift; sourceTree = "<group>"; };
@@ -46,8 +49,10 @@
 		3B737D532916432600EF6B3C /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		3B737D55291646C000EF6B3C /* Second.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Second.storyboard; sourceTree = "<group>"; };
 		3B737D572916558E00EF6B3C /* Third.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Third.storyboard; sourceTree = "<group>"; };
-		3B737D592916757100EF6B3C /* TestCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCode.swift; sourceTree = "<group>"; };
 		3B74CC50291E834600A91E71 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
+		3BB131DD29248BD8001489C0 /* Monttak_DragonGuard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Monttak_DragonGuard.entitlements; sourceTree = "<group>"; };
+		3BB1E49E292535CD00D871BB /* CustomCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionCell.swift; sourceTree = "<group>"; };
+		3BB1E4A02925451F00D871BB /* ThirdScreenCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdScreenCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +95,7 @@
 		3B737D3C29162DB900EF6B3C /* Monttak_DragonGuard */ = {
 			isa = PBXGroup;
 			children = (
+				3BB131DD29248BD8001489C0 /* Monttak_DragonGuard.entitlements */,
 				3B74CC50291E834600A91E71 /* ImageCacheManager.swift */,
 				3B737D3D29162DB900EF6B3C /* AppDelegate.swift */,
 				3B737D3F29162DB900EF6B3C /* SceneDelegate.swift */,
@@ -99,9 +105,11 @@
 				3B737D55291646C000EF6B3C /* Second.storyboard */,
 				3B737D532916432600EF6B3C /* ThirdViewController.swift */,
 				3B737D51291642FD00EF6B3C /* SecondViewController.swift */,
+				3BB1E49E292535CD00D871BB /* CustomCollectionCell.swift */,
+				3BB1E4A02925451F00D871BB /* ThirdScreenCollectionViewCell.swift */,
+				3B14AFAB293A83CA00DB876A /* MainCollectionViewCell.swift */,
 				3B3047FD291BEA4700CD8BC8 /* Parsing.swift */,
 				3B3047FB291BEA1000CD8BC8 /* JSONFile.swift */,
-				3B737D592916757100EF6B3C /* TestCode.swift */,
 				3B304801291BF55900CD8BC8 /* JejuInfoList.swift */,
 				3B304803291BF5AB00CD8BC8 /* JejuInFo.swift */,
 				3B737D4629162DBA00EF6B3C /* Assets.xcassets */,
@@ -189,12 +197,14 @@
 				3B3047FE291BEA4700CD8BC8 /* Parsing.swift in Sources */,
 				3B304804291BF5AB00CD8BC8 /* JejuInFo.swift in Sources */,
 				3B737D52291642FD00EF6B3C /* SecondViewController.swift in Sources */,
+				3BB1E49F292535CD00D871BB /* CustomCollectionCell.swift in Sources */,
+				3BB1E4A12925451F00D871BB /* ThirdScreenCollectionViewCell.swift in Sources */,
+				3B14AFAC293A83CA00DB876A /* MainCollectionViewCell.swift in Sources */,
 				3B737D4229162DB900EF6B3C /* MainViewController.swift in Sources */,
 				3B3047FC291BEA1000CD8BC8 /* JSONFile.swift in Sources */,
 				3B737D542916432600EF6B3C /* ThirdViewController.swift in Sources */,
 				3B737D3E29162DB900EF6B3C /* AppDelegate.swift in Sources */,
 				3B304802291BF55900CD8BC8 /* JejuInfoList.swift in Sources */,
-				3B737D5A2916757100EF6B3C /* TestCode.swift in Sources */,
 				3B74CC51291E834600A91E71 /* ImageCacheManager.swift in Sources */,
 				3B737D4029162DB900EF6B3C /* SceneDelegate.swift in Sources */,
 			);
@@ -341,11 +351,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Monttak_DragonGuard/Monttak_DragonGuard.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SN5J3DYFX4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Monttak_DragonGuard/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -358,6 +371,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ComputerApplicationDesign.Monttak-DragonGuard";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -369,11 +383,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Monttak_DragonGuard/Monttak_DragonGuard.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SN5J3DYFX4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Monttak_DragonGuard/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -386,6 +403,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ComputerApplicationDesign.Monttak-DragonGuard";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
