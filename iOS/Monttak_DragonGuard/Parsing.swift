@@ -9,7 +9,6 @@ import Foundation
 
 class Parsing {
     var decodingItems = [JejuInfo]()
-    var count = 0
     var ip = ""
     func getData(){
 
@@ -42,10 +41,6 @@ class Parsing {
                                     eachData.latitude = d.latitude
                                     eachData.longitude = d.longitude
                                     self.decodingItems.append(eachData)
-                                    self.count += 1
-                                }
-                                if self.decodingItems.count == 200{
-                                    print("Done")
                                 }
                                 
                             } catch let error {

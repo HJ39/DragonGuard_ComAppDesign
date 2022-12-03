@@ -35,7 +35,6 @@ class MainViewController: UIViewController {
         texttitle.font = UIFont(name: "OTMogujasusimgyeolB" , size: 40) //목우자심결 폰트 적용
         texttitle.text = "[몬딱,제주]"
         
-        texttitle.font = UIFont(name: "OTMogujasusimgyeolB" , size: 40) //목우자심결 폰트 적용
         
         //백그라운드를 이미지로 설정
         guard let img = UIImage(named: "secondbackground") else{ return }

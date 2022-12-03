@@ -87,7 +87,6 @@ class ThirdViewController: UIViewController{
     
     // 누르면 해당 전화번호에 전화를 걸건지 물어본다.
     @IBAction func click_Go_Call(_ sender: Any) {
-        NSLog("call button clicked")
         let phoneNumber = datalist?[tourPlaceIndex].phoneNumber ?? "000-0000-0000"
         print(phoneNumber.components(separatedBy: ["-"]).joined())
         guard let integerNumber = Int(phoneNumber.components(separatedBy: ["-"]).joined()) else{ return }
@@ -129,7 +128,6 @@ extension ThirdViewController: UICollectionViewDelegate, UICollectionViewDataSou
     //collectionView 내부 cell 설정
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomColl", for: indexPath) as! ThirdScreenCollectionViewCell
-        print("nn")
         collectionCell.imgView.image = UIImage(named: adArray[indexPath.row])
         return collectionCell
     }
