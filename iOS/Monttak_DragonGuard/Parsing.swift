@@ -8,53 +8,52 @@
 import Foundation
 
 class Parsing {
-    var decodedItem: [Item] = [Item.ItemSample]
-    let apiKey = "rrq71a2rotyj9tqm"
-    let STARTPAGE = 44
-    let ENDPAGE = 45
-    
+    var decodingItems = [JejuInfo]()
+    var ip = ""
     func getData(){
-        
-        for i in STARTPAGE...ENDPAGE{
-            let urlString = "https://api.visitjeju.net/vsjApi/contents/searchList?apiKey=\(apiKey)&locale=kr&page=\(i)"
+
+            let urlString = "http://\(ip):5001/api/1/200"
             DispatchQueue.global().async {
-                
-                guard let url = URL(string: urlString) else {print("url 찾을 수 없음"); return}
-                var request = URLRequest.init(url: url)
+                guard let url = URL(string: urlString) else { print("url 찾을 수 없음"); return}
+                var request = URLRequest(url: url)
                 request.httpMethod = "GET"
+                request.addValue("application/json", forHTTPHeaderField: "accept")
                 
                 let daskTask = URLSession.shared.dataTask(with: request){ data, res, err in
                     if let err = err{ print("Error!",err); return }
                     guard data != nil else { print("data 없음"); return }
                     guard let res = res as? HTTPURLResponse else { return }
-                    
+                        
                     if res.statusCode == 200 {
-                        guard let data = data else { return }
+                        guard let data = data else { print("no data"); return }
                         DispatchQueue.global().async {
                             do {
-                                let startTime = CFAbsoluteTimeGetCurrent()
+                                let decodedData = try JSONDecoder().decode([CodableResult].self, from: data)
                                 
-                                let decodedData = try JSONDecoder().decode(Result.self, from: data)
-                                self.decodedItem.append( contentsOf: decodedData.items)
-//                                print(decodedData.currentPage)
-                                
-                                let durationTime = CFAbsoluteTimeGetCurrent() - startTime
-//                                print("경과 시간: \(durationTime)")
+                                for d in decodedData{
+                                    let eachData = JejuInfo()
+                                    eachData.introduction = d.introduction
+                                    eachData.imgURL = d.thumbnailpath
+                                    eachData.address = d.address
+                                    eachData.phoneNumber = d.phoneno
+                                    eachData.type = d.contentscdlabel
+                                    eachData.title = d.title
+                                    eachData.latitude = d.latitude
+                                    eachData.longitude = d.longitude
+                                    self.decodingItems.append(eachData)
+                                }
                                 
                             } catch let error {
                                 print("Error decoding: ", error)
                             }
-                        }   //thread
-                        
-                    } // if문
-                }//daskTask
+                        }
+                    }
+                }
                 daskTask.resume()
             }
-        }
-        
     }//getData
     
-    func getItemInfo() -> [Item]{       //MainScreen으로 파싱된 데이터를 전달하는 함수
-        return self.decodedItem
+    func getItemInfo() -> [JejuInfo]{       //MainScreen으로 파싱된 데이터를 전달하는 함수
+        return self.decodingItems
     }
 }
