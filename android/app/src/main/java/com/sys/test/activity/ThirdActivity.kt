@@ -51,7 +51,7 @@ class ThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         //자동 스크롤 광고 시작
         CoroutineScope(Dispatchers.IO).launch {
             while (true) {
-                Thread.sleep(10000)
+                Thread.sleep(3000)
                 handler.sendEmptyMessage(0)
             }
         }

@@ -48,7 +48,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private lateinit var data: ArrayList<ClipData.Item>
     private lateinit var dataD: ArrayList<DockerMonttakItem>
     private val MIN_SCALE = 0.85f
-    private val dockerIp = "http://192.168.202.179:5001/api/"
+    private val dockerIp = "http://172.30.1.85:5001/api/"
     private val MIN_ALPHA = 0.5f
     var currentPosition = 0
     val handler = Handler(Looper.getMainLooper()) {
@@ -80,7 +80,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         //자동 스크롤 광고 시작
         CoroutineScope(Dispatchers.IO).launch {
             while (true) {
-                Thread.sleep(10000)
+                Thread.sleep(3000)
                 handler.sendEmptyMessage(0)
             }
         }
