@@ -2,12 +2,19 @@
  
 ## 기능 설명
 ***
- ### 메인화면
+
+### 로딩 화면
+<img width="399" alt="스크린샷 2022-12-16 16 15 07" src="https://user-images.githubusercontent.com/81843677/208044451-8f984b89-02d1-4a44-8a72-525422c668ae.png">
 
 
- ### 세컨화면
- 
- ### 서드화면
+### 메인 화면
+<img width="399" alt="스크린샷 2022-12-16 16 15 25" src="https://user-images.githubusercontent.com/81843677/208044400-b59a5c49-58b0-4bf8-9e36-2f46e202202e.png">
+
+### 세컨 화면
+<img src="<img width="399" alt="스크린샷 2022-12-16 16 17 15" src="https://user-images.githubusercontent.com/81843677/208044158-650571e3-7522-4b1d-a12c-32e7ca04dcc2.png">"/>
+
+ ### 서드 화면
+<img width="399" alt="스크린샷 2022-12-16 16 16 57" src="https://user-images.githubusercontent.com/81843677/208044301-d0b91ea8-3bde-4598-8436-52234295f3cc.png">
 
 ***
 
