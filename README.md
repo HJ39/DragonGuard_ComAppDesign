@@ -3,11 +3,11 @@
 ## 기능 설명
 ***
 
-### 로딩 화면
+### 로딩 화면   ### 메인 화면
 <img width="100" alt="스크린샷 2022-12-16 16 15 07" src="https://user-images.githubusercontent.com/81843677/208044451-8f984b89-02d1-4a44-8a72-525422c668ae.png">
 
 
-### 메인 화면
+
 <img width="100" alt="스크린샷 2022-12-16 16 15 25" src="https://user-images.githubusercontent.com/81843677/208044400-b59a5c49-58b0-4bf8-9e36-2f46e202202e.png">
 
 ### 세컨 화면
